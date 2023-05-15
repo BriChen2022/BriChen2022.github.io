@@ -1,0 +1,632 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>解线性方程组的直接法 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>解线性方程组的直接法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2022-11-01T23:21:25.000Z" id="date"> 2022-11-02</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T08:45:07.059Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><h1 id="消元法上三角阵"><a href="#消元法（上三角阵）" class="headerlink" title="消元法（上三角阵）"></a>消元法（上三角阵）</h1>
+<h2 id="gauss消元法"><a href="#Gauss消元法" class="headerlink" title="Gauss消元法"></a>Gauss消元法</h2>
+<p>以<span class="math inline">\(3\times3\)</span>为例, <span
+class="math display">\[
+\left\{\begin{matrix}
+a_{11}^{(1)}x_1 &amp;  +a_{12}^{(1)}x_2 &amp;  +a_{13}^{(1)}x_3 &amp;=
+b_{1}^{(1)}\\
+  a_{21}^{(1)}x_1 &amp; + a_{22}^{(1)}x_2 &amp; + a_{23}^{(1)}x_3 &amp;=
+b_{2}^{(1)} \\
+  a_{31}^{(1)}x_1 &amp;  +a_{32}^{(1)}x_2 &amp;  +a_{33}^{(1)}x_3 &amp;=
+b_{3}^{(1)}
+\end{matrix}\right.
+\]</span> 第一次消元 <span class="math display">\[
+\left\{\begin{matrix}
+a_{11}^{(1)}x_1 &amp;  +a_{12}^{(1)}x_2 &amp;  +a_{13}^{(1)}x_3 &amp;=
+b_{1}^{(1)}\\
+0&amp; a_{22}^{(2)}x_2 &amp; + a_{23}^{(2)}x_3 &amp;= b_{2}^{(2)} \\
+0&amp; a_{32}^{(2)}x_2 &amp;  +a_{33}^{(2)}x_3 &amp;= b_{3}^{(2)}
+\end{matrix}\right.
+\]</span> 第二次消元 <span class="math display">\[
+\left\{\begin{matrix}
+a_{11}^{(1)}x_1 &amp;  +a_{12}^{(1)}x_2 &amp;  +a_{13}^{(1)}x_3 &amp;=
+b_{1}^{(1)}\\
+0&amp; a_{22}^{(2)}x_2 &amp; + a_{23}^{(2)}x_3 &amp;= b_{2}^{(2)} \\
+0&amp;  0 &amp; a_{33}^{(3)}x_3 &amp;= b_{3}^{(3)}
+\end{matrix}\right.
+\]</span></p>
+<p><strong>总结算法:</strong>!!!!!!!!!!!!!!!!! <span
+class="math display">\[
+\left\{\begin{matrix}
+\\
+\\
+\end{matrix}\right.
+\]</span></p>
+<p><strong>定理:</strong> <span
+class="math inline">\(A\)</span>可以进行Gauss消元,即<span
+class="math inline">\(a_{ii}^i\neq 0,i=1,\cdots,k\Leftrightarrow
+A\)</span>的各阶顺序主子式不为0.</p>
+<p><strong>证明:</strong> <span
+class="math inline">\(\Leftarrow\)</span> 当<span
+class="math inline">\(k=1\)</span>时,<span
+class="math inline">\(D_1=a_{11}^{(1)}\neq 0\)</span>,显然成立.
+若充分性对<span class="math inline">\(k-1\)</span>成立,即当<span
+class="math inline">\(D_i\neq 0,i=1,\cdots,k-1\)</span>,有<span
+class="math inline">\(a_{ii}^{(i)}\neq 0,i=1,\cdots,k-1\)</span>.
+往证,当<span class="math inline">\(D_k\neq 0\)</span>时,有<span
+class="math inline">\(a_{kk}^{(k)}\neq 0\)</span>.</p>
+<p><strong>推论:</strong> 如果<span
+class="math inline">\(A\)</span>的各阶顺序主子式<span
+class="math inline">\(D_k\neq 0\)</span>,则 <span
+class="math display">\[
+a_{11}^{(1)}=D_1,\cdots,a_{kk}^{(k)}=\frac{D_k}{D_{k-1}},\cdots
+\]</span></p>
+<h2 id="gauss列主元"><a href="#Gauss列主元" class="headerlink" title="Gauss列主元"></a>Gauss列主元</h2>
+<p>若有<span class="math inline">\(a_{kk}^{(k)}\approx
+0\)</span>会把舍入误差放大,引起解的失真.为了避免Gauss消元法的这种局限性,我们选取列主元后再进行消元,精确度就有不错的提高.</p>
+<h2 id="gauss全主元"><a href="#Gauss全主元" class="headerlink" title="Gauss全主元"></a>Gauss全主元</h2>
+<p>一般情况下,选取列主元再消元的列主元消元法已经可以满足精度需求,但是再一些情况下,我们需要更高的精度,我们可以尝试全主元消元法提高精度和稳定性.</p>
+<h2 id="消元法和矩阵分解的关系"><a href="#消元法和矩阵分解的关系" class="headerlink" title="消元法和矩阵分解的关系"></a>消元法和矩阵分解的关系</h2>
+<p><strong>初等矩阵:</strong> 由单位矩阵经过一次初等变换得到的矩阵.</p>
+<p><strong>用得到的说明</strong> <span class="math display">\[
+l_{i1}=\frac{a^{(1)}_{i1}}{a_{11}^{(1)}},\quad L_{1}^{-1}A=A^{(2)}\\
+l_{ik}=\frac{a^{(k)}_{ik}}{a_{kk}^{(k)}},\quad
+L_{k}^{-1}A^{(k)}=A^{(k+1)}\\
+\vdots\\
+A^{(k+1)}=L_{k}^{-1}L_{k-1}^{-1}\cdots
+L_{1}^{-1}A^{(1)}=L_{k}^{-1}L_{k-1}^{-1}\cdots L_{1}^{-1}A
+\]</span> 若<span class="math inline">\(A\)</span>为<span
+class="math inline">\(n\)</span>阶方阵,则需要进行<span
+class="math inline">\(n-1\)</span>次消元于是有 <span
+class="math display">\[
+A^{(n)}=L_{n-1}^{-1}L_{n-2}^{-1}\cdots L_{1}^{-1}A^{(1)}
+\]</span> 记, <span class="math display">\[
+L=L_1L_2\cdots L_{n-1}\\
+L^{-1}=L_{n-1}^{-1}L_{n-2}^{-1}\cdots L_{1}^{-1}\\
+U=A^{(n)}
+\]</span> 于是就有, <span class="math display">\[
+U=L^{-1}A,\quad A=LU
+\]</span></p>
+<p><span class="math display">\[
+L_{1}=\left(\begin{array}{cccc}
+1 &amp; &amp; &amp; \\
+l_{21} &amp; 1 &amp; &amp; \\
+l_{31} &amp;&amp; 1 &amp; &amp; \\
+\vdots &amp; &amp;&amp; \ddots &amp; \\
+l_{n 1} &amp; &amp;&amp; &amp; 1
+\end{array}\right)
+L_{k}=\left(\begin{array}{cccccc}
+1 &amp; &amp; &amp; &amp; &amp; \\
+&amp; 1 &amp; &amp; &amp; &amp; \\
+&amp; &amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; &amp;1 &amp; &amp;  \\
+&amp; &amp; &amp;l_{k+1,k} &amp; 1 &amp; &amp; \\
+&amp; &amp;&amp; \vdots &amp; &amp; \ddots &amp; \\
+&amp; &amp;&amp; l_{n k} &amp;&amp; &amp; 1
+\end{array}\right)
+\]</span> <span class="math display">\[
+L_{1}^{-1}=\left(\begin{array}{cccc}
+1 &amp; &amp; &amp; \\
+-l_{21} &amp; 1 &amp; &amp; \\
+-l_{31} &amp;&amp; 1 &amp; &amp; \\
+\vdots &amp; &amp;&amp; \ddots &amp; \\
+-l_{n 1} &amp; &amp;&amp; &amp; 1
+\end{array}\right)
+L_{k}^{-1}=\left(\begin{array}{cccccc}
+1 &amp; &amp; &amp; &amp; &amp; \\
+&amp; 1 &amp; &amp; &amp; &amp; \\
+&amp; &amp; \ddots &amp; &amp; &amp; \\
+&amp; &amp; &amp;1 &amp; &amp;  \\
+&amp; &amp; &amp;-l_{k+1,k} &amp; 1 &amp; &amp; \\
+&amp; &amp;&amp; \vdots &amp; &amp; \ddots &amp; \\
+&amp; &amp;&amp; -l_{n k} &amp;&amp; &amp; 1
+\end{array}\right)
+\]</span></p>
+<p><strong>定理:</strong> 若<span
+class="math inline">\(A\)</span>的各阶顺序主子式不为0,则<span
+class="math inline">\(A\)</span>必可以分解成一个下三角阵与一个上三角阵的乘积.
+<span class="math display">\[
+A=LU
+\]</span> 下三角的对角线元素全为<span
+class="math inline">\(1\)</span>,上三角的对角线元素不为<span
+class="math inline">\(0\)</span>.</p>
+<p><strong>Proof:</strong> (存在性)显然. (唯一性)用反证法.若不然,有<span
+class="math inline">\(A=LU=L&#39;U&#39;\)</span>！！！！！！！！！！
+则有 <span class="math display">\[
+L^{-1}L&#39;=U(U&#39;)^{-1}
+\]</span></p>
+<h1 id="矩阵的三角分解"><a href="#矩阵的三角分解" class="headerlink" title="矩阵的三角分解"></a>矩阵的三角分解</h1>
+<h2 id="doolittle-三角分解"><a href="#Doolittle-三角分解" class="headerlink" title="Doolittle-三角分解"></a>Doolittle 三角分解</h2>
+<p>计算流程！！！！</p>
+<p>计算流程(自己算一下) <span class="math display">\[
+A=\left(\begin{array}{rrrr}
+2 &amp; 4 &amp; 2 &amp; 0 \\
+2 &amp; 3 &amp; 6 &amp; 0 \\
+0 &amp; 4 &amp; 2 &amp; 24 \\
+0 &amp; 0 &amp; 5 &amp; 1
+\end{array}\right)
+\]</span> ## Crout 分解</p>
+<p><strong>定理:</strong> 若<span
+class="math inline">\(A\)</span>的各阶主子式不为0,则<span
+class="math inline">\(A\)</span>必可以分解成一个下三角阵与一个上三角阵的乘积.
+<span class="math display">\[
+A=LU
+\]</span> 其中<span class="math inline">\(L\)</span>为下三角阵,<span
+class="math inline">\(U\)</span>为单位上三角阵.</p>
+<p><strong>Proof:</strong> <span
+class="math inline">\(A^{T}\)</span>也有LU分解,即, <span
+class="math display">\[
+A^{T}=LU
+\]</span> 其中<span class="math inline">\(L\)</span>为单位下三角阵,则,
+<span class="math display">\[
+A=U^{T}L^{T}
+\]</span> 得证.</p>
+<p>(用这分解算算上面的A)</p>
+<h2 id="三对角阵的追赶法"><a href="#三对角阵的追赶法" class="headerlink" title="三对角阵的追赶法"></a>三对角阵的追赶法</h2>
+<p>设方程组<span class="math inline">\(AX=d\)</span>,其中, <span
+class="math display">\[
+\left(\begin{array}{l}
+a_{1} &amp; b_{1} &amp; &amp; &amp; &amp; \\
+c_{2} &amp; a_{2} &amp; b_{2} &amp; &amp; &amp; \\
+&amp; c_{3} &amp; a_{3} &amp; b_{3} &amp; \\
+&amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; \\
+&amp;&amp; &amp; \ddots &amp; \ddots  &amp; b_{n-1}\\
+&amp;&amp;&amp;&amp;c_n&amp;a_n
+\end{array}\right)
+\]</span></p>
+<p><strong>主对角线严格占优</strong></p>
+<p>10.21</p>
+<h1 id="对称正交阵的平方根法"><a href="#对称正交阵的平方根法" class="headerlink" title="对称正交阵的平方根法"></a>对称正交阵的平方根法</h1>
+<h2 id="对称阵的ldlt分解">对称阵的<span
+class="math inline">\(LDL^T\)</span>分解</h2>
+<p><strong>定理:</strong> 若<span
+class="math inline">\(A\)</span>为<span
+class="math inline">\(n\)</span>阶方阵,且其各阶顺序主子式不为零,则当<span
+class="math inline">\(A\)</span>对称时,可唯一分解为<span
+class="math inline">\(LDL^T\)</span>,其中<span
+class="math inline">\(L\)</span>为单位下三角阵,<span
+class="math inline">\(D\)</span>为对角阵.</p>
+<p><strong>Proof:</strong> 显然,由定理条件可知,<span
+class="math inline">\(A\)</span>可以进行LU分解. <span
+class="math display">\[
+A=LU
+\]</span> 其中, <span class="math display">\[
+L=\left(\begin{array}{cccc}
+1 &amp; &amp; &amp; \\
+l_{21} &amp; 1 &amp; &amp; \\
+l_{31} &amp;l_{32}&amp; 1 &amp; &amp; \\
+\vdots &amp; \vdots&amp;&amp; \ddots &amp; \\
+l_{n 1} &amp;l_{n2} &amp;\cdots&amp;l_{n,(n-1)} &amp; 1
+\end{array}\right)
+\]</span> !!!!!!!!!!!!!!</p>
+<h2
+id="对称正定阵的平方根法llt分解cholesky分解">对称正定阵的平方根法(<span
+class="math inline">\(LL^T\)</span>分解、Cholesky分解)</h2>
+<p><strong>定理:</strong> 若<span
+class="math inline">\(A\)</span>为<span
+class="math inline">\(n\)</span>阶对称正定阵,则存在一个实非奇异下三角阵<span
+class="math inline">\(L\)</span>,使得 <span
+class="math display">\[A=LL^T\]</span> 当限定<span
+class="math inline">\(L\)</span>的对角元为正时,分解唯一.</p>
+<p><strong>Proof:</strong> !!!!!!!!!!!!!!!!!!</p>
+<h2 id="计算流程"><a href="#计算流程" class="headerlink" title="计算流程"></a>计算流程</h2>
+<h1 id="gauss-jordan-求逆矩阵"><a href="#Gauss-Jordan-求逆矩阵" class="headerlink" title="Gauss-Jordan-求逆矩阵"></a>Gauss-Jordan 求逆矩阵</h1>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2>
+<p><span class="math inline">\((A\ |\ I)\Rightarrow(I\ |\
+A^{-1})\)</span></p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2>
+<p>Gauss消元法+对角线全消+对角元归一化</p>
+<h2 id="计算例题"><a href="#计算例题" class="headerlink" title="计算例题"></a>计算例题</h2>
+<h1 id="矩阵的正交三角化及应用"><a href="#矩阵的正交三角化及应用" class="headerlink" title="矩阵的正交三角化及应用"></a>矩阵的正交三角化及应用</h1>
+<h2 id="初等反射阵与-household-变换"><a href="#初等反射阵与-Household 变换" class="headerlink" title="初等反射阵与-Household 变换"></a>初等反射阵与 Household 变换</h2>
+<h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3>
+<p><strong>定义:</strong></p>
+<p><strong>定理:</strong> 设<span
+class="math inline">\(w^Tw=1,H(w)=I-2ww^T\)</span>为初等反射阵,则:</p>
+<ul>
+<li><span class="math inline">\(H\)</span>为对称阵</li>
+<li><span class="math inline">\(H\)</span>为正交阵</li>
+<li>若<span class="math inline">\(A\)</span>为对称阵,则<span
+class="math inline">\(A_1=H^{-1}AH=HAH\)</span>也对称</li>
+</ul>
+<p><strong>Proof:</strong></p>
+<ul>
+<li>因</li>
+</ul>
+<h3 id="任意向量构造初等反射阵"><a href="#任意向量构造初等反射阵" class="headerlink" title="任意向量构造初等反射阵"></a>任意向量构造初等反射阵</h3>
+<h3 id="初等反射阵的几何意义"><a href="#初等反射阵的几何意义" class="headerlink" title="初等反射阵的几何意义"></a>初等反射阵的几何意义</h3>
+<ul>
+<li><span class="math inline">\(w\)</span> 与 <span
+class="math inline">\(X-HX\)</span> 平行</li>
+<li><span class="math inline">\(||X||_2=||HX||_2\)</span></li>
+</ul>
+<h3 id="初等反射阵计算意义"><a href="#初等反射阵计算意义" class="headerlink" title="初等反射阵计算意义"></a>初等反射阵计算意义</h3>
+<p>通过选取合适的<span
+class="math inline">\(w\)</span>,使得对任意的<span
+class="math inline">\(X\neq 0\)</span>,存在一个<span
+class="math inline">\(H(w)\)</span>,满足 <span class="math display">\[
+HX=-\sigma e_1,\quad where\ \sigma=\pm||X||_2,e_1=(1,0,\cdots)
+\]</span> 即 <span class="math display">\[
+X=,
+HX=
+\]</span></p>
+<p><strong>引理</strong>:<span class="math inline">\(\forall x,y\in
+\R^n,x\neq y\)</span>,且<span
+class="math inline">\(||X||_2=||Y||_2\)</span>,则存在初等反射矩阵<span
+class="math inline">\(H\)</span>,使得 <span class="math display">\[
+X=HY
+\]</span></p>
+<p><strong>proof</strong>:</p>
+<p>令<span
+class="math inline">\(w=\frac{X-Y}{||X-Y||_2}\)</span>，显然<span
+class="math inline">\(||w||_2=1\)</span>于是有,</p>
+<p><span class="math display">\[
+H(w)=I-2ww^T=I-2\frac{(X-Y)(X-Y)^T}{||X-Y||_2^2}
+\]</span></p>
+<p>那么,</p>
+<p><span class="math display">\[
+HX=(I-2\frac{(X-Y)(X-Y)^T}{||X-Y||_2})X
+\]</span></p>
+<p>注意到,</p>
+<p><span class="math display">\[
+X^TX=(X,X)=||X||_2^2=||Y||_2^2=(Y,Y)=Y^TY\\
+X^TY=Y^TX\\
+\]</span></p>
+<p>有,</p>
+<p><span class="math display">\[
+\begin{split}
+  ||X-Y||_2^2&amp;=(X-Y,X-Y)=(X-Y)^T(X-Y)\\&amp;=X^TX-X^TY-Y^TX+Y^TY\\
+  &amp;=2(X-Y)^TX
+\end{split}
+\]</span></p>
+<p>故,</p>
+<p><span class="math display">\[HX=X-(X-Y)=Y\]</span></p>
+<p>注: 正交变换不改变向量的2范数,即若<span
+class="math inline">\(P\)</span>为正交阵,则 <span
+class="math display">\[||PX||_2=||X||_2 \]</span> 因为,<span
+class="math inline">\(||PX||_2^2=(PX,PX)=(X,P^TPX)=(X,IX)=||X||_2^2\)</span></p>
+<p><strong>定理</strong>: (约化定理)设<span
+class="math inline">\(X=(x_1,x_2,\cdots,x_n)^T\neq
+0\)</span>,则存在初等反射阵<span
+class="math inline">\(H\)</span>,使得,</p>
+<p><span class="math display">\[
+HX=-\sigma e_1
+\]</span></p>
+<p>其中,</p>
+<p><span class="math display">\[\begin{cases}
+  e_1=(1,0,\cdots,0)^T\\
+  H=I-\beta^{-1}uu^T\\
+  \sigma =sign(x_1)||X||_2\\
+  u=X+\sigma e_1\\
+  \beta=\sigma(\sigma+x_1)
+\end{cases}\]</span></p>
+<p><strong>proof</strong>: 令<span class="math inline">\(Y=-\sigma
+e_1\)</span>,取<span class="math inline">\(\sigma=\pm||X||_2\)</span>
+此时,<span class="math inline">\(||Y||_2=|\sigma|=||X||_2\)</span>
+由上面的引理知, <span class="math display">\[\exists H=I-2ww^T\
+,s.t.HX=-\sigma e_1\]</span> 其中, <span class="math display">\[
+w=\frac{X-Y}{||X-Y||_2}=\frac{X+\sigma e_1}{||X+\sigma
+e_1||_2}:=\frac{u}{||u||_2}\]</span> 且, <span
+class="math display">\[H=I-2ww^T=I-2\frac{uu^T}{||u||_2^2}:=I-\beta^{-1}uu^T\\
+\beta=\frac{1}{2}||u||_2\]</span> 显然, <span
+class="math display">\[\begin{split}
+  \beta&amp;=\frac{1}{2}||u||_2=\frac{1}{2}||X+\sigma e_1||_2^2\\
+  &amp;=\frac{1}{2}((X_1+\sigma)^2+X_2^2+\cdots+X_n^2)\\
+  &amp;=\frac{1}{2}(\sigma^2+2\sigma X_1+X_1^2+X_2^2+\cdots+X_n^2)\\
+  &amp;=\frac{1}{2}(\sigma^2+2\sigma X_1+\sigma^2)\\
+  &amp;=\sigma(\sigma+X_1)
+\end{split}\]</span></p>
+<p>为避免有效数字损失,<span
+class="math inline">\(\sigma\)</span>应该与<span
+class="math inline">\(X_1\)</span>同号.</p>
+<p>计算上,当<span
+class="math inline">\(X\)</span>的分量太大时,可考虑归一化, 令<span
+class="math inline">\(d=||X||_{\infty},X&#39;=\frac{X}{d}\)</span>,
+<span class="math display">\[\begin{cases}
+  \sigma&#39; =sign(X_1&#39;)||X&#39;||_2=\frac{\sigma}{d}\\
+  u&#39;=X&#39;+\sigma&#39; e_1=\frac{u}{d}\\
+  \beta&#39;=\sigma&#39;(\sigma&#39;+X_1&#39;)=\frac{\beta}{d^2}\\
+  H=I-(\beta&#39;)^{-1}(u&#39;)(u&#39;)^T=H
+\end{cases}\]</span></p>
+<h2 id="平面旋转矩阵和givens变换"><a href="#平面旋转矩阵和Givens变换" class="headerlink" title="平面旋转矩阵和Givens变换"></a>平面旋转矩阵和Givens变换</h2>
+<p>对于<span class="math inline">\(\R^2\)</span>上的旋转变换(向量逆时针)
+<span class="math display">\[
+\begin{pmatrix}
+  x&#39;\\
+  y&#39;
+\end{pmatrix}
+=\begin{pmatrix}
+  \cos\theta&amp;-\sin\theta\\
+  \sin\theta&amp;\cos\theta
+\end{pmatrix}\begin{pmatrix}
+  x\\
+  y
+\end{pmatrix}
+\]</span></p>
+<p>而坐标系逆时针(向量顺时针)的旋转矩阵为 <span
+class="math display">\[P^{-1}=P^T=
+\begin{pmatrix}
+  \cos\theta&amp;\sin\theta\\
+  -\sin\theta&amp;\cos\theta
+\end{pmatrix}
+\]</span></p>
+<p>一般地,对于<span
+class="math inline">\(\R_n\)</span>也有旋转变换,<span
+class="math inline">\(y=Px,\quad x,y\in \R^n\)</span></p>
+<p><span class="math display">\[
+P(i,j,\theta)=P(i,j)=
+=\left(\begin{array}{cccc}
+1 &amp; &amp; &amp; &amp;&amp;\\
+&amp;1&amp; &amp; &amp;&amp;\\
+&amp;&amp;\ddots &amp; &amp; &amp; &amp;&amp;\\
+&amp;&amp;&amp;\cos \theta &amp; &amp; &amp;\sin \theta  \leftarrow i
+\text { 行 } &amp;&amp;\\
+&amp;&amp;&amp;&amp;1&amp; &amp; &amp;&amp;\\
+&amp;&amp;&amp;&amp;&amp; \ddots  &amp; &amp;&amp;\\
+&amp;&amp;&amp;-\sin \theta &amp; &amp; &amp;\cos \theta  \leftarrow j
+\text { 行 }&amp;&amp;\\
+&amp;&amp;&amp;&amp;&amp;&amp;&amp;\ddots&amp;\\
+&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;1
+\end{array} \right).
+\]</span></p>
+<p>称为平面<span
+class="math inline">\(\{x_i,y_i\}\)</span>的旋转变换,或称为Givens变换.</p>
+<p><strong>定理</strong>: (约化定理)对<span
+class="math inline">\(\forall X=(x_1,\cdots,x_n)\neq
+0\)</span>,则可选取Givens变换<span
+class="math inline">\(P(i,j,\theta)\)</span>使得, <span
+class="math display">\[PX=(x_1,\cdots,x_i&#39;,x_{i+1},\cdots,0,x_{j+1},\cdots,x_n)^T\]</span>
+其中<span
+class="math inline">\(x_i&#39;=\sqrt{x_i^2+x_j^2},\theta=\arctan\frac{x_j}{x_i}\)</span></p>
+<p><strong>Proof</strong>:</p>
+<h2 id="矩阵的qr分解"><a href="#矩阵的QR分解" class="headerlink" title="矩阵的QR分解"></a>矩阵的QR分解</h2>
+<h3 id="household变换下的qr分解"><a href="#Household变换下的QR分解" class="headerlink" title="Household变换下的QR分解"></a>Household变换下的QR分解</h3>
+<p><strong>目的</strong>: 对矩阵<span
+class="math inline">\(A\in\R^{m\times n},(m\leq
+n),s=\min(m-1,n)\)</span>,则存在初等反射阵<span
+class="math inline">\(H_1,H_2,\cdots,H_s\)</span>,使得, <span
+class="math display">\[
+H_s\cdots H_1=\begin{cases}
+  R,m=n\\
+  (R,\theta)^T,m&gt;n
+\end{cases}
+\]</span></p>
+<p><strong>引理</strong>：若 <span class="math inline">\(A\in\R^{m\times
+n}\)</span> 且 <span class="math inline">\(A\)</span> 列满秩。<span
+class="math inline">\(s=\min(m-1,n)\)</span>,则有初等反射阵， <span
+class="math inline">\(H_1,H_2,\cdots,H_s\)</span>,使得, <span
+class="math display">\[
+H_s\cdots H_1=\begin{cases}
+  R,m=n\\
+  (R,\theta)^T,m&gt;n
+\end{cases}
+\]</span></p>
+<p><strong>Proof</strong>：设 <span
+class="math display">\[A=\begin{pmatrix}  
+  a_{11} &amp; \cdots &amp; a_{1n} \\  
+  \vdots &amp; \ddots &amp; \vdots \\  
+  a_{m1} &amp; \cdots &amp; a_{mn}  
+\end{pmatrix} =A^{(1)}=(a_1,a_2,\cdots,a_n)\]</span></p>
+<p>第一步：（约化）<span class="math inline">\(a_1\neq
+\vec{0}\)</span></p>
+<p>由前面的定理，可以知道存在初等反射阵， <span
+class="math display">\[H_1=I-\beta^{-1}_1u_1u_1^T\]</span> 使得，<span
+class="math inline">\(H_1a_1=-\sigma_1 e_1,\sigma
+=sign(a_{11})||a_1||_2\)</span>,于是， <span
+class="math display">\[H_1A^{(1)}=(H_1a_1,H_1a_2,\cdots,H_1a_n)\\=\begin{pmatrix}  
+  -\sigma_1 &amp;a_{12}^{(2)}&amp; \cdots &amp; a_{1n}^{(2)} \\  
+0 &amp;a_{22}^{(2)}&amp; \ddots &amp; \vdots \\  
+    \vdots &amp;\vdots&amp; \ddots &amp; \vdots \\  
+0 &amp;a_{m2}^{(2)}&amp; \cdots &amp; a_{mn}^{(2)}
+\end{pmatrix} \]</span></p>
+<p><strong>定理</strong>：(矩阵的QR分解) - <span
+class="math inline">\(m&gt;n\)</span>,设<span
+class="math inline">\(A\in\R^{m\times n},A\)</span>列满秩.<span
+class="math inline">\(s=\min(m-1,n)\)</span>,则存在初等反射阵<span
+class="math inline">\(H_1,H_2,\cdots,H_s\)</span>,使得, <span
+class="math display">\[H_s\cdots H_1A=(R,\theta)^T\]</span> 其中<span
+class="math inline">\(R\)</span>为非奇异的<span
+class="math inline">\(n\)</span>阶上三角阵.<span
+class="math inline">\(\theta\)</span>为零矩阵.</p>
+<ul>
+<li><span class="math inline">\(m=n\)</span>,设<span
+class="math inline">\(A\in\R^{n\times n},A\)</span>非奇异,则 <span
+class="math display">\[A=QR\]</span> 其中<span
+class="math inline">\(R\)</span>为非奇异的<span
+class="math inline">\(n\)</span>阶上三角阵.<span
+class="math inline">\(Q\)</span>为<strong>正交矩阵</strong>.且当<span
+class="math inline">\(R\)</span>的对角线元素均为正值,分解唯一.</li>
+</ul>
+<p><strong>Proof</strong>: (1)第一条证明同上一条引理. (2)第二条,当<span
+class="math inline">\(m=n\)</span>时,<span
+class="math inline">\(s=\min(m-1,n)=n-1\)</span>,则存在初等反射阵,<span
+class="math inline">\(H_1,H_2,\cdots,H_{n-1}\)</span>,使得, <span
+class="math display">\[H_{n-1}\cdots H_1A=\begin{pmatrix}  
+  r_{11}&amp; r_{12}&amp; \cdots  &amp; r_{1n} \\  
+  0&amp; r_{22}&amp; \cdots  &amp; r_{2n} \\  
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\  
+  0&amp; 0&amp; \cdots  &amp; r_{nn}  
+\end{pmatrix}  
+:=R\]</span> 记<span class="math inline">\(Q^{-1}=Q^T=H_{n-1}\cdots
+H_1\)</span>,则 <span class="math display">\[Q^{-1}A=R\]</span> 即,<span
+class="math inline">\(A=QR\)</span>,Q为正交阵. 下证唯一性, 若<span
+class="math inline">\(A=Q_1R_1=Q_2R_2\)</span>,且<span
+class="math inline">\(R_1,R_2\)</span>为非奇异上三角阵,有正的对角元,<span
+class="math inline">\(Q_1,Q_2\)</span>为正交阵. 考虑<span
+class="math inline">\(A^TA\)</span>,因<span
+class="math inline">\(A^TA\)</span>对称正定.则 <span
+class="math display">\[A^TA=(Q_1R_1)^TQ_1R_1=R_1^TR_1\]</span> <span
+class="math display">\[A^TA=(Q_2R_2)^TQ_2R_2=R_2^TR_2\]</span> 由于<span
+class="math inline">\(A^TA\)</span>的cholesky分解的唯一性,知, <span
+class="math display">\[Q_1=Q_2,R_1=R_2\]</span></p>
+<p>注解: (1)若<span class="math inline">\(A\in\R^{n\times
+n}\)</span>非奇异,则<span
+class="math inline">\(A^TA\)</span>是对称正定的;
+<strong>证明</strong>:对称是显然的, 任给一个非零向量<span
+class="math inline">\(X\)</span>,因为<span
+class="math inline">\(A\)</span>非奇异,所以有<span
+class="math inline">\(AX\neq 0\)</span>,要验证<span
+class="math inline">\(A^TA\)</span>为正定阵, 有正定定义, <span
+class="math display">\[X^TA^TAX=(AX)^TAX=(AX,AX)=||AX||_2^2&gt;0,\forall
+X\neq 0\]</span> (2)QR分解的计算意义: <span
+class="math inline">\(AX=b\Rightarrow QRX=b\Rightarrow RX=Q^Tb\)</span>
+转置基本没有计算量,<span
+class="math inline">\(R\)</span>是上三角阵解出<span
+class="math inline">\(X\)</span>是容易的.</p>
+<h3 id="givens变换下的qr分解"><a href="#Givens变换下的QR分解" class="headerlink" title="Givens变换下的QR分解"></a>Givens变换下的QR分解</h3>
+<p><strong>定理</strong>:若<span class="math inline">\(A\in\R^{n\times
+n},A\)</span>非奇异,则存在平面旋转矩阵<span
+class="math inline">\(P_1,P_2,\cdots,P_{n-1}\)</span>,使得, <span
+class="math display">\[
+P_{n-1}\cdots P_1A=R=\begin{pmatrix}  
+  r_{11}&amp; r_{12}&amp; \cdots  &amp; r_{1n} \\  
+  0&amp; r_{22}&amp; \cdots  &amp; r_{2n} \\  
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\  
+  0&amp; 0&amp; \cdots  &amp; r_{nn}  
+\end{pmatrix}  
+\]</span> <span class="math inline">\(A\)</span>有QR分解,其中<span
+class="math inline">\(R\)</span>为非奇异的<span
+class="math inline">\(n\)</span>阶上三角阵.<span
+class="math inline">\(Q\)</span>为<strong>正交矩阵</strong>.且当<span
+class="math inline">\(R\)</span>的对角线元素均为正值,分解唯一.</p>
+<p><strong>Proof</strong>: 第一步约化,不妨设第一列元素都不为0.
+可以选取<span class="math inline">\(n-1\)</span>个Givens变换,<span
+class="math inline">\(P(1,2),\cdots,P(1,n)\)</span>作用再<span
+class="math inline">\(A\)</span>上,使得, <span class="math display">\[
+P(1,n)\cdots P(1,2)A=\begin{pmatrix}  
+  r_{11}&amp; r_{12}&amp; \cdots  &amp; r_{1n} \\  
+  0&amp; a_{22}^{(2)}&amp; \cdots  &amp; a^{(2)}_{2n} \\  
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\  
+  0&amp; a_{n2}^{(2)}&amp; \cdots  &amp; a^{(2)}_{nn}  
+\end{pmatrix}  :=A^{(2)}
+\]</span> 其中<span
+class="math inline">\(r_{11}^2=a_{11}^2+a_{21}^2+\cdots+a_{n1}^2\)</span>,记
+<span class="math display">\[P_1=P(1,n)\cdots P(1,2)\]</span> <span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span><span
+class="math inline">\(\big|\Big| |\bigg|\Bigg|\)</span></p>
+<p>第k步约化:设已经完成<span class="math inline">\(k-1\)</span>步约化,即
+<span class="math display">\[
+P_{k-1}\cdots P_1A=\left(\begin{array}{cccccc}
+r_{11} &amp; r_{12} &amp; \cdots &amp; r_{1 k} &amp; \cdots &amp; r_{1
+n} \\
+&amp; r_{22} &amp; \cdots &amp; r_{2 k} &amp; \cdots &amp; r_{2 n} \\
+&amp; &amp; \ddots &amp; \vdots&amp; &amp; \vdots \\
+&amp; &amp; &amp; a_{k k}^{(k)}&amp; \cdots &amp; a_{k n}^{(k)} \\
+&amp; &amp;  &amp; \vdots&amp; &amp; \vdots \\
+&amp; &amp; &amp; a_{n k}^{(k)} &amp; \cdots &amp; a_{n n}^{(k)}
+\end{array}\right):=A^{(k)}
+\]</span> 现进行第<span
+class="math inline">\(k\)</span>步约化,不妨设<span
+class="math inline">\(a_{jk}^{(k)}\neq
+0,(j=k+1,\cdots,n)\)</span>,则可以选择Givens变换, <span
+class="math display">\[P(k,j)\]</span> 使得, <span
+class="math display">\[A^{(k+1)}=P(k,n)\cdots
+P(k,k+1)A^{(k)}=P_kA^{(k)}\]</span> 此时,就把<span
+class="math inline">\(a_{k k}^{(k)}\)</span>更新成<span
+class="math inline">\(r_{kk}\)</span>且其下方元素为0. 故得到<span
+class="math inline">\(k+1\)</span>阶上三角阵<span
+class="math inline">\(A^{(k+1)}\)</span>, 继续以上约化过程,最后就有,
+<span class="math display">\[ P_{n-1}\cdots P_1A=A^{(n)}:=R\]</span>
+记<span class="math inline">\(Q^T=Q^{-1}=P_{n-1}\cdots
+P_1\)</span>,有<span class="math inline">\(Q^{-1}A=R\)</span>,即有 <span
+class="math display">\[A=QR\]</span> 其中<span
+class="math inline">\(Q\)</span>为正交阵,<span
+class="math inline">\(R\)</span>为非奇异上三角阵<strong>(唯一性,Cholesky分解)</strong>.</p>
+<hr />
+<p><strong>例题</strong>:用反射阵对 <span class="math display">\[
+A=\left(\begin{array}{lll}
+0 &amp; 2 &amp; 0 \\
+2 &amp; 1 &amp; 2 \\
+0 &amp; 2 &amp; 1
+\end{array}\right)
+\]</span> 进行QR分解.</p>
+<h2 id="求解超定方程组"><a href="#求解超定方程组" class="headerlink" title="求解超定方程组"></a>求解超定方程组</h2>
+<p>设<span class="math inline">\(AX=b,A\in \R^{m\times
+n},(m&gt;n)\)</span>,<span
+class="math inline">\(A\)</span>列满秩,一般而言没有通常意义下的解.
+<strong>线性最小二乘问题</strong>:对超定方程组,找到<span
+class="math inline">\(X^*\in \R^n\)</span>,使得 <span
+class="math display">\[
+\min_{X^*\in \R^n}||b-AX||_2^2=||b-AX^*||_2^2\neq 0
+\]</span> 记 <span class="math display">\[r=b-AX\]</span>
+为残差向量,于是我们只要让<span
+class="math inline">\(||r||_2^2\)</span>最小即可.
+<strong>可以利用正交约化求最小二乘解</strong>.
+有正交约化定理,可选择初等反射阵<span class="math inline">\(H_1,\cdots
+H_n\)</span>,使得, 左边 <span class="math display">\[
+H_n,\cdots H_1A=\left.\left(\frac{R}{\theta}\right)\right.
+\]</span> <span class="math inline">\(R\)</span>为<span
+class="math inline">\(n\times n\)</span>的矩阵,<span
+class="math inline">\(\theta\)</span>为<span
+class="math inline">\((m-n)\times n\)</span>的矩阵 右边 <span
+class="math display">\[
+H_n,\cdots H_1b=\left.\left(\frac{c}{d}\right)\right.
+\]</span> 记<span class="math inline">\(Q=H_n,\cdots H_1\)</span>,于是
+<span class="math display">\[Qr=Q(b-AX)=Qb-QAX\]</span> <span
+class="math display">\[=\left.\left(\frac{c}{d}\right)\right.-\left.\left(\frac{R}{\theta}\right)\right.X=\left.\left(\frac{c-RX}{d}\right)\right.\]</span>
+注意到<span class="math inline">\(Q\)</span>为正交阵, <span
+class="math display">\[||r||_2^2=(r,r)=(Q^TQr,r)=(Qr,Qr)=||Qr||_2^2\]</span>
+<span class="math display">\[=||c-RX||_2^2+||d||_2^2\geq
+||d||_2^2\]</span> 取等条件为 <span class="math display">\[c=RX,X\in
+\R^n\]</span> 即有,当<span class="math inline">\(X^*\)</span>为<span
+class="math inline">\(RX=c\)</span>的解时,有 <span
+class="math display">\[\min_{X^*\in
+\R^n}||r||_2^2=||r^*||_2^2=||d||_2^2\neq 0\]</span> <span
+class="math display">\[\min_{X^*\in
+\R^n}||b-AX||_2^2=||b-AX^*||_2^2=||d||_2^2\neq 0\]</span></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2022/11/02/%E5%90%91%E9%87%8F%E5%8F%8A%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0/">← Next 向量及矩阵范数</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2022/11/02/Project%204/">Project 4 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E5%85%83%E6%B3%95%E4%B8%8A%E4%B8%89%E8%A7%92%E9%98%B5"><span class="toc-number">1.</span> <span class="toc-text">消元法（上三角阵）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss%E6%B6%88%E5%85%83%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">Gauss消元法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss%E5%88%97%E4%B8%BB%E5%85%83"><span class="toc-number">1.2.</span> <span class="toc-text">Gauss列主元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gauss%E5%85%A8%E4%B8%BB%E5%85%83"><span class="toc-number">1.3.</span> <span class="toc-text">Gauss全主元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E5%85%83%E6%B3%95%E5%92%8C%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">消元法和矩阵分解的关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">矩阵的三角分解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#doolittle-%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3"><span class="toc-number">2.1.</span> <span class="toc-text">Doolittle 三角分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%AF%B9%E8%A7%92%E9%98%B5%E7%9A%84%E8%BF%BD%E8%B5%B6%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">三对角阵的追赶法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%AD%A3%E4%BA%A4%E9%98%B5%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">对称正交阵的平方根法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E9%98%B5%E7%9A%84ldlt%E5%88%86%E8%A7%A3"><span class="toc-number">3.1.</span> <span class="toc-text">对称阵的\(LDL^T\)分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%AD%A3%E5%AE%9A%E9%98%B5%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9%E6%B3%95llt%E5%88%86%E8%A7%A3cholesky%E5%88%86%E8%A7%A3"><span class="toc-number">3.2.</span> <span class="toc-text">对称正定阵的平方根法(\(LL^T\)分解、Cholesky分解)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">计算流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gauss-jordan-%E6%B1%82%E9%80%86%E7%9F%A9%E9%98%B5"><span class="toc-number">4.</span> <span class="toc-text">Gauss-Jordan 求逆矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">4.1.</span> <span class="toc-text">内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E6%83%B3"><span class="toc-number">4.2.</span> <span class="toc-text">思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E4%BE%8B%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">计算例题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E6%AD%A3%E4%BA%A4%E4%B8%89%E8%A7%92%E5%8C%96%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">矩阵的正交三角化及应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E7%AD%89%E5%8F%8D%E5%B0%84%E9%98%B5%E4%B8%8E-household-%E5%8F%98%E6%8D%A2"><span class="toc-number">5.1.</span> <span class="toc-text">初等反射阵与 Household 变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">5.1.1.</span> <span class="toc-text">基本内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E5%90%91%E9%87%8F%E6%9E%84%E9%80%A0%E5%88%9D%E7%AD%89%E5%8F%8D%E5%B0%84%E9%98%B5"><span class="toc-number">5.1.2.</span> <span class="toc-text">任意向量构造初等反射阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E7%AD%89%E5%8F%8D%E5%B0%84%E9%98%B5%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="toc-number">5.1.3.</span> <span class="toc-text">初等反射阵的几何意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E7%AD%89%E5%8F%8D%E5%B0%84%E9%98%B5%E8%AE%A1%E7%AE%97%E6%84%8F%E4%B9%89"><span class="toc-number">5.1.4.</span> <span class="toc-text">初等反射阵计算意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E9%9D%A2%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%92%8Cgivens%E5%8F%98%E6%8D%A2"><span class="toc-number">5.2.</span> <span class="toc-text">平面旋转矩阵和Givens变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84qr%E5%88%86%E8%A7%A3"><span class="toc-number">5.3.</span> <span class="toc-text">矩阵的QR分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#household%E5%8F%98%E6%8D%A2%E4%B8%8B%E7%9A%84qr%E5%88%86%E8%A7%A3"><span class="toc-number">5.3.1.</span> <span class="toc-text">Household变换下的QR分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#givens%E5%8F%98%E6%8D%A2%E4%B8%8B%E7%9A%84qr%E5%88%86%E8%A7%A3"><span class="toc-number">5.3.2.</span> <span class="toc-text">Givens变换下的QR分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E8%B6%85%E5%AE%9A%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">5.4.</span> <span class="toc-text">求解超定方程组</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

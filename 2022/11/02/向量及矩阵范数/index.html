@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>向量及矩阵范数 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>向量及矩阵范数</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2022-11-01T23:33:47.000Z" id="date"> 2022-11-02</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T08:45:05.647Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><h1 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h1>
+<p><strong>定义：</strong> 设<span class="math inline">\(X\in
+\R^n\)</span>,若有非负实数<span
+class="math inline">\(||X||\)</span>满足: - <span
+class="math inline">\(||X||\geq 0\)</span>,且<span
+class="math inline">\(||X||=0\Leftrightarrow X=0\)</span>(非负性,强制性)
+- <span class="math inline">\(||\lambda
+X||=|\lambda|\cdot||X||\)</span>(正齐次性) - <span
+class="math inline">\(||X+Y||\leq||X||+||Y||\)</span>(三角不等式)
+则称<span class="math inline">\(||X||\)</span>为向量<span
+class="math inline">\(X\)</span>的范数.</p>
+<p><strong>常用的几种范数</strong> 若<span
+class="math inline">\(X=(x_1,x_2,\cdots,x_n)^T\)</span> - <span
+class="math display">\[||X||_1=\sum_{i=1}^{n}|x_i|\]</span> - <span
+class="math display">\[||X||_{\infty}=\max_{1\leq i\leq n}|x_i|\]</span>
+- <span
+class="math display">\[||X||_2=\sqrt{\sum_{i=1}^{n}|x_i|^2},\quad
+||X||^2_2=X^TX\]</span></p>
+<p><strong>定理:(范数的连续性定理)</strong> 向量范数<span
+class="math inline">\(||X||\)</span>为关于<span
+class="math inline">\(X\)</span>每个分量的一致连续函数.</p>
+<p><strong>证明:</strong> 只需证明<span class="math inline">\(\forall
+\epsilon&gt;0, \exist\delta=\delta(\epsilon)\)</span>,当<span
+class="math inline">\(\Delta x_i\)</span>满足<span
+class="math inline">\(|\Delta x_i|&lt;\delta\)</span>时,有<span
+class="math inline">\(|\,||X+\Delta X||-||X||\,|&lt;\epsilon\)</span>
+事实上,由逆三角不等式有, <span class="math display">\[|\,||X+\Delta
+X||-||X||\,|&lt;||X+\Delta X-X||&lt;||\Delta X||\]</span> 另一方面,
+<span class="math display">\[||\Delta X||=||(\Delta x_1,\Delta
+x_2,\cdots,\Delta x_n)^T||=||\Delta x_1e_1+\Delta x_2e_2+\cdots+\Delta
+x_ne_n||\]</span> <span class="math display">\[\leq||\Delta
+x_1e_1||+||\Delta x_2e_2||+\cdots+||\Delta x_ne_n|| &lt;n\delta\]</span>
+其中, <span class="math display">\[e_2=(0,1,\cdots,0)\]</span>
+以此类推</p>
+<p><strong>定理:(范数等价性定理)</strong> <span
+class="math inline">\(\R^n\)</span>中任何范数都等价,即若有范数<span
+class="math inline">\(R_1(x)\)</span>和<span
+class="math inline">\(R_2(x)\)</span>,则 <span
+class="math display">\[\exist m,M&gt;0,s.t. \quad m\leq
+\frac{R_1(x)}{R_2(x)}\leq M\]</span></p>
+<p><strong>证明:</strong> 记<span
+class="math inline">\(S=\{X|R_2(X)=1\}\)</span>,显然S为有界闭集,则连续函数<span
+class="math inline">\(R_1(X)\)</span>在S上可以达到最大(小)值,记为, <span
+class="math display">\[m=\min R_1(X), \quad M=\max R_1(X)\]</span> 对
+<span class="math display">\[\forall X\neq 0\quad \frac{X}{R_2(X)}\in
+S\]</span> 且 <span
+class="math display">\[\frac{R_1(X)}{R_2(X)}=R_1(\frac{X}{R_2(X)})\]</span>
+故有, <span
+class="math display">\[m&lt;\frac{R_1(X)}{R_2(X)}=R_1(\frac{X}{R_2(X)})&lt;M\]</span></p>
+<p><strong>定义:</strong> 若<span
+class="math inline">\(\{X^{(m)}\}_{m=1}^{\infty}\)</span> 为<span
+class="math inline">\(\R^n\)</span>上的向量序列,如果<span
+class="math inline">\(\exist \alpha\in\R^n,\quad s.t.
+\lim_{m\rightarrow\infty}||X^{(m)}-\alpha||=0\)</span>则称,序列<span
+class="math inline">\(\{X^{(m)}\}_{m=1}^{\infty}\)</span>收敛于<span
+class="math inline">\(\alpha\)</span>.</p>
+<p><strong>定理:</strong> 向量序列<span
+class="math inline">\(\{X^{(m)}\}_{m=1}^{\infty}\)</span>收敛等价于每个分量收敛.即
+<span
+class="math display">\[\lim_{m\rightarrow\infty}||X^{(m)}-\alpha||=
+\Leftrightarrow
+\lim_{m\rightarrow\infty}||x_i^{(m)}-\alpha||=\alpha_i,\forall
+i\]</span></p>
+<p>可用1范数证得.</p>
+<h1 id="矩阵范数和条件数"><a href="#矩阵范数和条件数" class="headerlink" title="矩阵范数和条件数"></a>矩阵范数和条件数</h1>
+<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2>
+<p><strong>定义:</strong> 若<span class="math inline">\(A\in \R^{m\times
+n}\)</span>满足: - （非负性） - （正齐次性） - （三角不等式） -
+(矩阵范数相容性) <span
+class="math display">\[||AB||\leq||A||||B||\]</span></p>
+<p><strong>定义:</strong> <span class="math display">\[||A||=\sup_{X\in
+\R^{n},X\neq 0}\frac{||AX||}{||X||}=\sup_{X\in
+\R^n,||X||=1}||AX||\]</span> 由定义显然可以推得,(证明是从定义显然得到的)
+<span class="math display">\[||AX||\leq||A||||X||,X\in\R^{n}\]</span>
+即,矩阵向量范数相容.
+另外,由这个定义也可以推得,<strong>矩阵范数的相容性</strong> ,只要令<span
+class="math inline">\(X&#39;=BX\)</span>,显然<span
+class="math inline">\(X&#39;\)</span>还是个向量.用矩阵向量范数的相容性,得
+<span
+class="math display">\[||AX&#39;||\leq||A||||X&#39;||\leq||A||\cdot||B||\cdot||X||,X&#39;\in\R^{n+1}\]</span>
+即,得, <span
+class="math display">\[\frac{||ABX||}{||X||}\leq||A||\cdot||B||\]</span>
+由<span class="math inline">\(X\)</span>的任意性, <span
+class="math display">\[\sup_{X\neq
+0}{\frac{||ABX||}{||X||}}\leq||A||\cdot||B||\]</span> 故, <span
+class="math display">\[||AB||=\sup_{X\neq
+0}{\frac{||ABX||}{||X||}}\leq||A||\cdot||B||\]</span></p>
+<p><strong>定理:</strong> 矩阵范数是关于<span
+class="math inline">\(n\times n\)</span>个元素的一致连续函数.</p>
+<p><strong>定理:</strong>
+矩阵范数都等价.(只要不是计算题,不必过分关心是什么范数)</p>
+<h2 id="常用的矩阵范数"><a href="#常用的矩阵范数" class="headerlink" title="常用的矩阵范数"></a>常用的矩阵范数</h2>
+<ul>
+<li>列和范数 <span class="math display">\[||A||_1=\max_{1\leq j\leq
+n}\sum_{i=1}^{n}|a_{ij}|\]</span></li>
+<li>行和范数 <span class="math display">\[||A||_{\infty}=\max_{1\leq
+i\leq n}\sum_{j=1}^{n}|a_{ij}|\]</span></li>
+<li>谱范数 <span
+class="math display">\[||A||_2=\sqrt{\rho(A^*A)}\]</span> 其中 <span
+class="math display">\[A^*=A^T,\rho(A)=\max_{i}|\lambda_i(A)|\]</span></li>
+<li>Frobenius范数 <span
+class="math display">\[||A||_F=(\sum_{j=1}^{n}\sum_{i=1}^{n}|a_{ij}|^2)^{\frac{1}{2}}\]</span></li>
+</ul>
+<p><strong>定理:(列和范数)</strong> 设<span
+class="math inline">\(A=(a_{ij})_{n\times n}\)</span>,则 <span
+class="math display">\[||A||_1=\max_{1\leq j\leq
+n}\sum_{i=1}^{n}|a_{ij}|\]</span></p>
+<p><strong>Proof:</strong> 根据矩阵范数定义 <span
+class="math display">\[||A||_1=\sup_{X\in \R^{n},X\neq
+0}\frac{||AX||_1}{||X||_1}\]</span> 记<span
+class="math inline">\(Y=AX,y_i=\sum_{j=1}^{n}a_{ij}x_{j}\)</span>,于是
+<span
+class="math display">\[||AX||_1=||Y||_1=\sum_{i=1}^{n}|y_i|=\sum_{i=1}^{n}|\sum_{j=1}^{n}a_{ij}x_{j}|\]</span>
+<span class="math display">\[\leq
+\sum_{i=1}^{n}\sum_{j=1}^{n}|a_{ij}||x_{j}|=\sum_{j=1}^{n}\sum_{i=1}^{n}|a_{ij}||x_{j}|\]</span>
+记<span class="math inline">\(c_j=\sum_{i=1}^{n}|a_{ij}|\)</span>,于是,
+<span
+class="math display">\[\sum_{j=1}^{n}\sum_{i=1}^{n}|a_{ij}||x_{j}|\leq
+||C||_{\infty}||X||_1\]</span> 其中, <span
+class="math display">\[||C||_{\infty}=\max_{1\leq j\leq
+n}|c_j|=\max_{1\leq j\leq n}|\sum_{i=1}^{n}|a_{ij}||\]</span> 即, <span
+class="math display">\[\frac{||AX||_1}{||X||_1}\leq||C||_{\infty}\]</span>
+那么有, <span class="math display">\[||A||_1=\sup_{X\neq
+0}\frac{||AX||_1}{||X||_1}\leq||C||_{\infty}=\max_{1\leq j\leq
+n}|\sum_{i=1}^{n}|a_{ij}||\]</span></p>
+<p><strong>另一方面</strong>, 记,(第k列达到最大) <span
+class="math display">\[||A||_1=\sum_{i=1}^{n}|a_{ik}|\]</span> 取<span
+class="math inline">\(X=e_k=(0,)\)</span>则, <span
+class="math display">\[||A||_1=\sup{||AX||_1}\geq
+||Ae_k||_1=\sum_{i=1}^{n}|a_{ik}|=\max_{1\leq j\leq
+n}\sum_{i=1}^{n}|a_{ij}|\]</span> 命题得证.</p>
+<p><strong>定理:(行和范数)</strong> 设<span
+class="math inline">\(A=(a_{ij})_{n\times n}\)</span>,则 <span
+class="math display">\[||A||_{\infty}=\max_{1\leq i\leq
+n}\sum_{j=1}^{n}|a_{ij}|\]</span></p>
+<p><strong>Proof:</strong> 由矩阵范数定义, <span
+class="math display">\[||A||_{\infty}=\sup_{X\neq
+0}\frac{||AX||_{\infty}}{||X||_{\infty}}\]</span> 考虑<span
+class="math inline">\(||AX||_{\infty}\)</span>, 记<span
+class="math inline">\(Y=AX,y_i=\sum_{j=1}^{n}a_{ij}x_{j}\)</span>,于是
+<span class="math display">\[||AX||_{\infty}=||Y||_{\infty}=\max_{1\leq
+i \leq n}|y_i|=\max_{1\leq i \leq n}{|\sum_{j=1}^{n}a_{ij}x_{j}|}\leq
+\max_{0\leq i\leq n}\sum_{j=1}^{n}|a_{ij}||x_{j}|\]</span> <span
+class="math display">\[\leq\max_{0\leq i\leq
+n}||d||_1||x_{j}||_{\infty}\]</span> 其中, <span
+class="math display">\[||d||_{1}=\sum_{j=1}^{n}|d_j|=\sum_{j=1}^{n}|a_{ij}|\]</span>
+即有, <span
+class="math display">\[||A||_{\infty}=\sup{\frac{||AX||_{\infty}}{||X||_{\infty}}}=\max_{1\leq
+i\leq n}\sum_{j=1}^{n}|a_{ij}|\]</span></p>
+<p><strong>另一方面，</strong> 若 <span
+class="math display">\[\max_{1\leq i\leq
+n}\sum_{j=1}^{n}|a_{ij}|=\sum_{j=1}^{n}|a_{kj}|\]</span> 取<span
+class="math inline">\(\xi=(\xi_1,\cdots,\xi_n)^T\)</span>,其中, <span
+class="math display">\[\xi_j=\begin{cases}
+    1,\quad 若a_{kj}\geq 0\\
+    -1,\quad 若a_{kj}&lt;0
+\end{cases}\]</span> 显然<span
+class="math inline">\(||\xi||_{\infty}=1\)</span>, 又由, <span
+class="math display">\[||A||_{\infty}=\sup_{||X||_{\infty}=1}||AX||_{\infty}\geq
+||A\xi||_{\infty}=\max_{1\leq i\leq
+n}\sum_{j=1}^{n}|a_{ij}\xi_j|\]</span> <strong>(下面是关键部分)</strong>
+<strong>注意:(1)<span class="math inline">\(a_{kj}\)</span>与<span
+class="math inline">\(\xi_j\)</span>同号;(2)<span
+class="math inline">\(\xi_j\)</span>只影响<span
+class="math inline">\(a_{kj}\)</span>的符号不影响绝对值</strong> <span
+class="math display">\[\max_{1\leq i\leq
+n}\sum_{j=1}^{n}|a_{ij}\xi_j|=\sum_{j=1}^{n}|a_{kj}\xi_j|=\sum_{j=1}^{n}|a_{kj}|=\max_{1\leq
+i\leq n}\sum_{j=1}^{n}|a_{ij}|\]</span></p>
+<p><strong>引理:</strong> 若<span class="math inline">\(A\in C^{n \times
+n}\)</span>,则 1. <span
+class="math inline">\(A^*A\)</span>为半正定的Hermit矩阵 2. 若<span
+class="math inline">\(A\)</span>为Hermit矩阵,即<span
+class="math inline">\(A^*=A\)</span>,则其特征根是实的 3. 若<span
+class="math inline">\(A\)</span>为Hermit矩阵,则不同特征值的特征向量正交</p>
+<p><strong>Proof:</strong></p>
+<p>(1)由Hermit矩阵定义,有<span
+class="math inline">\((A^*A)^*=A^*(A^*)^*=A^*A\)</span></p>
+<p>对<span class="math inline">\(\forall X\in C^n\)</span>,有 <span
+class="math display">\[X^*(A^*A)X=X^*A^*AX=(AX)^*AX=(AX,AX)=||AX||_2^2\geq
+0 \]</span></p>
+<p>(2)记<span class="math inline">\(AV=\lambda
+V\)</span>,两边取共轭转置,得 <span
+class="math display">\[V^*A^*=(AV)^*=(\lambda V)^*=\lambda^*V^*\]</span>
+上式两边右乘<span class="math inline">\(V\)</span>得 <span
+class="math display">\[V^*A^*V=\lambda^*V^*V\]</span> 左边有 <span
+class="math display">\[V^*A^*V=\lambda V^*V\]</span> 于是可得, <span
+class="math display">\[(\lambda-\lambda^*)V^*V=(\lambda-\lambda^*)||V||^2_2=0\]</span>
+故有, <span class="math inline">\(\lambda =
+\lambda^*=\bar{\lambda}\)</span>,即<span
+class="math inline">\(\lambda\)</span>为实数.</p>
+<p>(3)记<span class="math inline">\(AV=\lambda V,\quad AW=\mu
+W\)</span></p>
+<p>对<span class="math inline">\(AW=\mu W\)</span>,左乘<span
+class="math inline">\(V^*\)</span>,有 <span
+class="math display">\[V^*AW=V^*\mu W=\mu V^* W\]</span> 等式左边, <span
+class="math display">\[V^*AW=(A^*V)^*W=(AV)^*W=\lambda^*V^*W=\lambda
+V^*W\]</span> 故有, <span
+class="math display">\[(\lambda-\mu)V^*W=0\]</span> 由于<span
+class="math inline">\(\lambda\neq\mu\)</span>,故有, <span
+class="math display">\[V^*W=(V,W)=0\]</span></p>
+<p><strong>一个简单性质</strong> <span
+class="math display">\[(X,AY)=(A^*X,Y)\]</span> <strong>Proof:</strong>
+<span
+class="math display">\[(A^*X,Y)=(A^*X)^*Y=X^*AY=(X,AY)\]</span></p>
+<p>下面证明2范数.</p>
+<p><strong>定理:(2范数 谱范数)</strong> 设<span
+class="math inline">\(A=(a_{ij})_{n\times n}\)</span>,则 <span
+class="math display">\[||A||_2=\sqrt{\rho(A^*A)}\]</span></p>
+<p><strong>Proof:</strong> 记半正定的Hermit矩阵<span
+class="math inline">\(A^*A\)</span>的实特征根为 <span
+class="math display">\[\mu_1,\mu_2,\cdots,\mu_n\]</span> <span
+class="math inline">\(A^*A\)</span>有一组完备的单位正交的特征向量 <span
+class="math display">\[\varphi_1,\varphi_2,\cdots,\varphi_n\]</span>
+则,对<span class="math inline">\(\forall X\in C^{n}\)</span>,<span
+class="math inline">\(X=\sum^{n}_{i=1}t_i\varphi_i\)</span></p>
+<p>由 <span
+class="math display">\[||A||_2=\sup_{||X||_2=1}{||AX||_2}\]</span>
+可取<span class="math inline">\(||X||_2=1\)</span>,则, <span
+class="math display">\[1=||X||_2^2=(X,X)=(\sum^{n}_{i=1}t_i\varphi_i,\sum^{n}_{i=1}t_i\varphi_i)=\sum^{n}_{i=1}|t_i|^2||\varphi_i||_2^2=\sum^{n}_{i=1}|t_i|^2\]</span>
+由简单性质2, <span class="math display">\[
+\begin{split}
+    ||X||_2=&amp;\sqrt{(AX,AX)}=\sqrt{(A^*AX,X)}=\sqrt{(A^*A\sum^{n}_{i=1}t_i\varphi_i,\sum^{n}_{i=1}t_i\varphi_i)}\\=&amp;\sqrt{(\sum^{n}_{i=1}t_iA^*A\varphi_i,\sum^{n}_{i=1}t_i\varphi_i)}=\sqrt{(\sum^{n}_{i=1}t_i\mu_i\varphi_i,\sum^{n}_{i=1}t_i\varphi_i)}\\
+    =&amp;\sqrt{\sum^{n}_{i=1}\mu_i|t_i|^2}\leq\sqrt{\mu_{max}\sum^{n}_{i=1}|t_i|^2}=\sqrt{\mu_{max}}
+\end{split}
+\]</span> 则, <span
+class="math display">\[||A||_2=\sup_{||X||_2=1}||AX||_2\leq
+\sqrt{u_{max}}=\sqrt{\rho(A^*A)}\]</span></p>
+<p>另一方面,取<span class="math inline">\(x=\varphi_n\)</span>,则<span
+class="math inline">\(||\varphi_n||_2=1\)</span>(<span
+class="math inline">\(\varphi_n\)</span>为<span
+class="math inline">\(\mu_{max}\)</span>对应的特征向量) <span
+class="math display">\[
+\begin{split}
+    ||A\varphi_n||_2=&amp;\sqrt{(A\varphi_n,A\varphi_n)}=\sqrt{(A^*A\varphi_n,\varphi_n)}=\sqrt{(\mu_{max}\varphi_n,\varphi_n)}\\
+    =&amp;\sqrt{u_{max}}=\sqrt{\rho(A^*A)}
+\end{split}
+\]</span> 得, <span
+class="math display">\[||A||_2=\sup_{||X||_2=1}||AX||_2\geq
+||A\varphi_n||_2\geq \sqrt{u_{max}}=\sqrt{\rho(A^*A)}\]</span></p>
+<p><strong>推论:</strong> - <span
+class="math inline">\(\rho(A)\leq||A||\)</span> - 若<span
+class="math inline">\(A\)</span>是正规阵,即<span
+class="math inline">\(AA^*=A^*A\)</span> ,则<span
+class="math inline">\(\rho(A)=||A||_2\)</span></p>
+<p><strong>Proof:</strong></p>
+<ol type="1">
+<li>若<span class="math inline">\(A\varphi=\lambda\varphi\)</span>,则,
+<span class="math display">\[||A||=\sup_{||X||\neq
+0}\frac{||A\varphi||}{||X||}\geq
+\frac{||A\varphi||}{||\varphi||}=\frac{||\lambda\varphi||}{||\varphi||}=\frac{|\lambda|||\varphi||}{||\varphi||}=|\lambda|\]</span>
+由<span class="math inline">\(\lambda\)</span>的任意性, <span
+class="math display">\[
+\max_{i}|\lambda|=\rho(A)\leq ||A||
+\]</span></li>
+<li>当<span
+class="math inline">\(A\)</span>是正规阵时,可以进行酉对角化,即存在酉矩阵<span
+class="math inline">\(U^*U=UU^*=I\)</span>,使得, <span
+class="math display">\[
+U^{-1}AU=\Lambda
+\]</span> <span class="math display">\[
+\begin{split}
+A^*A&amp;=(U\Lambda U^{-1})^*U\Lambda U^{-1}\\
+&amp;=U^{**}\Lambda^* U^{*}U\Lambda U^{-1}\\
+&amp;=U\Lambda^*\Lambda U^{-1}\\&amp;=U^{**}\begin{pmatrix}
+    |\lambda_1|^2&amp;&amp;\\
+    &amp;\ddots&amp;\\
+   &amp;&amp; |\lambda_n|^2\\
+\end{pmatrix} U^{-1}
+\end{split}
+\]</span> 于是<span class="math inline">\(\rho(A^*A)=\rho^2(A)\)</span>
+<span
+class="math display">\[||A||_2=\sqrt{\rho(A^*A)}=\sqrt{\rho^2(A)}=\rho(A)\]</span></li>
+</ol>
+<h2 id="矩阵的条件数与误差分析"><a href="#矩阵的条件数与误差分析" class="headerlink" title="矩阵的条件数与误差分析"></a>矩阵的条件数与误差分析</h2>
+<p><strong>定义:</strong> 若<span
+class="math inline">\(A\)</span>非奇异,称 <span
+class="math inline">\(Cond(A)=||A||\cdot||A^{-1}||\)</span> 为<span
+class="math inline">\(A\)</span>的条件数.</p>
+<p>条件数越大,误差放大的倍数就越大,矩阵的稳定性就越差,受到微小扰动对计算结果的影响就越大.</p>
+<ul>
+<li>若<span class="math inline">\(A\)</span>的条件数较大,<span
+class="math inline">\(Cond(A)=O(n^2)\)</span>,称<span
+class="math inline">\(AX=b\)</span><strong>病态的</strong>.</li>
+<li><span class="math inline">\(1=||I||=||A^{-1}A||\leq
+||A^{-1}||||A||=Cond(A)\)</span></li>
+</ul>
+<p><strong>引理:</strong> - 若<span class="math inline">\(||B||\leq
+1\)</span>,则<span class="math inline">\(I+B\)</span>非奇异,且 <span
+class="math display">\[||(I+B^{-1}||\leq\frac{1}{1-||B||}\]</span> -
+若<span class="math inline">\(||A^{-1}||\cdot||\delta
+A||&lt;1\)</span>,则<span class="math inline">\(A+\delta
+A\)</span>可逆.</p>
+<p><strong>Proof:</strong> (1).用反证法.若<span
+class="math inline">\(I+B\)</span>奇异,则有<span
+class="math inline">\(X\neq 0\)</span>满足, <span
+class="math display">\[(I+B)X=0\]</span> 即, <span
+class="math display">\[BX=-X\]</span> 则<span
+class="math inline">\(B\)</span>有一个特征值为<span
+class="math inline">\(-1\)</span>,那么 <span
+class="math display">\[\rho(B)\geq 1\]</span> 但是我们有, <span
+class="math display">\[\rho(B)\leq ||B||&lt;1\]</span> 矛盾.故<span
+class="math inline">\(I+B\)</span>非奇异. 记<span
+class="math inline">\(C=(I+B)^{-1}\)</span>,则, <span
+class="math display">\[
+\begin{split}
+    1&amp;=||I||=||(I+B)C||\\
+    &amp;=||C+BC||\geq ||C||-||BC||\\
+    &amp;=||C||-||B||||C||=(1-||B||)||C||
+\end{split}
+\]</span> 于是就有, <span class="math display">\[
+||C||=||(I+B)^{-1}||\leq\frac{1}{1-||B||}
+\]</span></p>
+<p>(2)注意到, <span class="math display">\[
+A+\delta A=A(I+A^{-1}\delta A)
+\]</span> 记<span class="math inline">\(B=A^{-1}\delta
+A\)</span>,且注意到, <span class="math display">\[
+||B||\leq||A^{-1}||\cdot||\delta A||&lt;1
+\]</span> 故<span class="math inline">\(I+B\)</span>可逆,并且有, <span
+class="math display">\[||(I+B)^{-1}||\leq\frac{1}{1-||B||}\leq
+\frac{1}{1-||A^{-1}||||\delta A||}\]</span> 以下考虑<span
+class="math inline">\(A\rightarrow A+\delta A\)</span>,或<span
+class="math inline">\(b\rightarrow b+\delta b\)</span>对 <span
+class="math display">\[AX=b\]</span> 解的影响,</p>
+<ul>
+<li><p><span class="math inline">\(A\rightarrow A+\delta A\)</span>,
+而<span class="math inline">\(b\)</span>精确. <span
+class="math display">\[
+(A+\delta A)(X+\delta X)=b \Rightarrow \delta A X+A\delta X+\delta
+A\delta X=0
+\]</span> <span class="math display">\[
+\Rightarrow (A+\delta A)\delta X=A(I+B)\delta X=-\delta A X
+\]</span> <span class="math display">\[
+\Rightarrow \delta X =-A^{-1}(I+B)^{-1}(\delta A) X
+\]</span> 于是, <span class="math display">\[
+||\delta X||\leq||A^{-1}||\cdot||(I+B)^{-1}||\cdot||\delta A||||X||
+\]</span> <span class="math display">\[
+\begin{split}
+\Rightarrow \frac{ ||\delta X||}{ ||X||}\leq&amp;
+||A^{-1}||\cdot||(I+B)^{-1}||\cdot||\delta A||\\
+\leq &amp; \frac{ ||A^{-1}||||\delta A||}{1-||B||}\leq \frac{
+||A^{-1}||||\delta A||}{1-||A^{-1}||||\delta A||}\\
+= &amp; \frac{ ||A||||A^{-1}||\frac{||\delta
+A||}{||A||}}{1-||A||||A^{-1}||\frac{||\delta A||}{||A||}}\\
+=&amp;\frac{Cond(A)\frac{||\delta A||}{||A||}}{1-Cond(A)\frac{||\delta
+A||}{||A||}}
+\end{split}
+\]</span> 一般有<span class="math inline">\(||\delta
+A||&lt;&lt;1\)</span>,此时不等式右边分母约等于1,于是,</p>
+<p>$$ Cond(A)</p>
+<p>$$</p></li>
+<li><p><span class="math inline">\(b\rightarrow b+\delta b\)</span>,
+而<span class="math inline">\(A\)</span>精确. <span
+class="math display">\[A(X+\delta X)=b+\delta b\]</span> 于是有, <span
+class="math display">\[
+  A\delta X=\delta b \Rightarrow \delta X=A^{-1}\delta b
+  \]</span> 且, <span class="math display">\[
+  ||\delta X||=||A^{-1}\delta b||\leq ||A^{-1}||||\delta b||
+  \]</span> 另一方面, <span class="math display">\[||b||=||AX||\leq
+||A||||X||\]</span> 则, <span
+class="math display">\[||X||\geq\frac{||b||}{||A||}\]</span> 故有, <span
+class="math display">\[
+  \frac{||\delta X||}{||X||}\leq\frac{||A^{-1}||||\delta
+b||}{\frac{||b||}{||A||}}=Cond(A)\frac{||\delta b||}{||b||}
+  \]</span></p></li>
+</ul>
+<p><strong>例题</strong>:行列式小,条件数不一定大</p>
+<h1 id="收敛矩阵第三章铺垫"><a href="#收敛矩阵（第三章铺垫）" class="headerlink" title="收敛矩阵（第三章铺垫）"></a>收敛矩阵（第三章铺垫）</h1>
+<p><strong>定义:</strong> <span
+class="math inline">\(\{A^{(m)}\}_{m=1}^{\infty}\)</span>为<span
+class="math inline">\(\R^{n\times m}\)</span>上的矩阵序列,若, <span
+class="math display">\[
+\lim_{m\rightarrow \infty}||A^{(m)}-A||=0
+\]</span> 则称,<span
+class="math inline">\(\{A^{(m)}\}_{m=1}^{\infty}\)</span>是收敛的,且<span
+class="math inline">\(A\)</span>为序列的极限.</p>
+<p><strong>定理:</strong> 记<span
+class="math inline">\(A^{(m)}=(a_{ij}^{(m)})_{n\times
+n}\)</span>,则<span
+class="math inline">\(\{A^{(m)}\}_{m=1}^{\infty}\)</span>收敛, 当且仅当,
+<span class="math display">\[\lim_{m\rightarrow
+\infty}a_{ij}^{(m)}=a_{ij}\]</span></p>
+<p><strong>推论:</strong> 记<span
+class="math inline">\(A^{(m)}=(a_{ij}^{(m)})_{n\times
+n}\)</span>,则<span
+class="math inline">\(\{A^{(m)}\}_{m=1}^{\infty}\)</span>收敛到零矩阵,则,
+<span class="math display">\[\lim_{m\rightarrow
+\infty}a_{ij}^{(m)}=0\]</span></p>
+<p><strong>定义:(收敛矩阵)</strong> 记<span
+class="math inline">\(A^2=AA,A^3=A^2A,\cdots\)</span>,若<span
+class="math inline">\(A^k\)</span>收敛到零矩阵,则称<span
+class="math inline">\(A\)</span>为收敛矩阵.</p>
+<p><strong>定理:</strong> <span
+class="math inline">\(A\)</span>为收敛矩阵<span
+class="math inline">\(\quad \Leftrightarrow\quad
+\rho(A)&lt;1\)</span></p>
+<p><strong>证明:</strong> 由Jordan对角化,存在可逆矩阵<span
+class="math inline">\(S\)</span>,使得, <span class="math display">\[
+A=S^{-1}
+\begin{pmatrix}
+        J_1&amp;&amp;\\
+        &amp;\ddots&amp;\\
+       &amp;&amp; J_r\\
+    \end{pmatrix}
+S
+\]</span> 其中,Jordan块为, <span class="math display">\[
+J_i=
+\begin{pmatrix}
+        \lambda_i&amp;1&amp;&amp;\\
+      &amp;\ddots&amp;\ddots&amp;\\
+      &amp;&amp;\ddots&amp;1\\
+       &amp;&amp;&amp; \lambda_i\\
+\end{pmatrix}_{l_i\times l_i}
+\quad \sum_{i=1}^{r}l_i=n
+\]</span> 则, <span class="math display">\[
+A^k=S^{-1}
+\begin{pmatrix}
+        J_1^k&amp;&amp;\\
+        &amp;\ddots&amp;\\
+       &amp;&amp; J_r^k\\
+    \end{pmatrix}
+S
+\]</span> 其中,!!!!!!!!!!! <span class="math display">\[
+J_i=
+\begin{pmatrix}
+        \lambda_i&amp;1&amp;&amp;\\
+      &amp;\ddots&amp;\ddots&amp;\\
+      &amp;&amp;\ddots&amp;1\\
+       &amp;&amp;&amp; \lambda_i\\
+\end{pmatrix}_{l_i\times l_i}
+\quad \sum_{i=1}^{r}l_i=n
+\]</span></p>
+<ul>
+<li>对角元: <span class="math inline">\(A^k\)</span>收敛到零矩阵<span
+class="math inline">\(\Leftrightarrow|\lambda_i|&lt;1\)</span></li>
+<li>非对角元(<strong>趋于0</strong>):由<span
+class="math inline">\(C_k^j=\frac{}{j!}\approx k^r\)</span>,非对角元,
+<span class="math display">\[  \]</span></li>
+</ul>
+<p><strong>推论:</strong> 若<span
+class="math inline">\(||A||&lt;1\)</span>,则<span
+class="math inline">\(A\)</span>为收敛矩阵.(充分条件,上面的是充要)</p>
+<p>这是因为,<span class="math inline">\(\rho(A)\leq ||A||\)</span></p>
+<p><strong>例题:</strong> 设<span
+class="math inline">\(A,B\in\R^{n\times n}\)</span>,试证,当<span
+class="math inline">\(A,B\)</span>非奇异时, - <span
+class="math inline">\(Cond(A^{-1})=Cond(A)\)</span> - <span
+class="math inline">\(Cond(\alpha A)=Cond(A),\alpha\in\R\)</span> -
+<span class="math inline">\(Cond(AB)\leq Cond(A)Cond(B)\)</span></p>
+<p><strong>证明:</strong> 第一条显然.</p>
+<p>第二条, <span class="math display">\[Cond(\alpha A)
+=||\alpha A||||\alpha A^{-1}||
+=|\alpha|||A||\frac{1}{|\alpha|}||A^{-1}||
+=Cond(A),\alpha\in\R\]</span> 第三条, <span class="math display">\[
+Cond(AB)=||AB||||B^{-1}A^{-1}||\leq
+||A||||A^{-1}||||B||||B^{-1}||=Cond(A)Cond(B)
+\]</span></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2022/11/12/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86/">← Next 数值积分</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2022/11/02/%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%B3%95/">解线性方程组的直接法 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">向量范数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">矩阵范数和条件数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">矩阵范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">常用的矩阵范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%95%B0%E4%B8%8E%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.3.</span> <span class="toc-text">矩阵的条件数与误差分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E7%9F%A9%E9%98%B5%E7%AC%AC%E4%B8%89%E7%AB%A0%E9%93%BA%E5%9E%AB"><span class="toc-number">3.</span> <span class="toc-text">收敛矩阵（第三章铺垫）</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>数值积分 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>数值积分</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2022-11-12T04:58:36.000Z" id="date"> 2022-11-12</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T08:36:13.597Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1>
+<h1 id="数值积分的概念"><a href="#数值积分的概念" class="headerlink" title="数值积分的概念"></a>数值积分的概念</h1>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2>
+<p>数值积分的基本思想是：用多项式函数<span
+class="math inline">\(p\)</span>去逼近函数<span
+class="math inline">\(f\)</span>,然后用近似多项式的积分值去代替原来函数的积分值.
+<span class="math display">\[
+\int_{a}^{b}f\,dx\approx\int_{a}^{b}p\,dx
+\]</span></p>
+<p>&lt;______________________假装是图片_______________________________&gt;</p>
+<p>最常用的逼近多项式就是前面所学的<strong>插值多项式</strong>.</p>
+<p><span class="math display">\[
+\int_{a}^{b}f\,dx\approx\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> - <span
+class="math inline">\(A_i\)</span>为求积系数,它只与节点选取有关,与函数<span
+class="math inline">\(f\)</span>无关. - <span
+class="math inline">\(I_n(f)\)</span>为数值求积公式.</p>
+<h2 id="代数精度"><a href="#代数精度" class="headerlink" title="代数精度"></a>代数精度</h2>
+<p><strong>定义:</strong> 如求积公式对被积函数<span
+class="math inline">\(f(x)=1,x,\cdots,x^m\)</span>都能精确成立,即 <span
+class="math display">\[
+\int_{a}^{b}f\,dx=\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> 但对<span
+class="math inline">\(f(x)=x^{m+1}\)</span>不能精确成立,即 <span
+class="math display">\[
+\int_{a}^{b}x^{m+1}\,dx\neq\sum_{i=0}^{n}A_ix^{m+1}_i
+\]</span> 则称求积公式有<span
+class="math inline">\(m\)</span>次代数精度.</p>
+<p>若 <span class="math display">\[
+I_n(f)=\sum_{i=0}^{n}A_if(x_i)
+\]</span> 具有<span class="math inline">\(n\)</span>次代数精度,问:<span
+class="math inline">\(A_i=?\)</span> 实际上,分别令<span
+class="math inline">\(f=1,x,\cdots,x^n\)</span>,有 <span
+class="math display">\[
+\int_{a}^{b}f\,dx=\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> 将这<span
+class="math inline">\(n+1\)</span>个方程写成线性方程组的形式, <span
+class="math display">\[
+\left(\begin{array}{cccc}
+1 &amp; 1 &amp; \cdots &amp; 1 \\
+x_{0} &amp; x_{1} &amp; \cdots &amp; x_{n} \\
+\vdots &amp; \vdots &amp; &amp; \vdots \\
+x_{0}^{n} &amp; x_{1}^{n} &amp; \cdots &amp; x_{n}^{n}
+\end{array}\right)\left(\begin{array}{c}
+A_{0} \\
+A_{1} \\
+\vdots \\
+A_{n}
+\end{array}\right)=\left(\begin{array}{c}
+b-a \\
+\frac{b^{2}-a^{2}}{2} \\
+\vdots \\
+\frac{b^{n+1}-a^{n+1}}{n+1}
+\end{array}\right)
+\]</span> 由于这<span
+class="math inline">\(n+1\)</span>个节点互异,所以求积系数<span
+class="math inline">\(A_i\)</span>是存在且唯一的.通过解上面的线性方程组得到求积系数的方法被称为<strong>待定系数法</strong>.
+结合上面的描述,我们可以很容易得到下面的定理. <strong>定理:</strong>
+给定<span
+class="math inline">\(n+1\)</span>个互异节点,那么总存在相应的求积系数<span
+class="math inline">\(A_i\)</span>使得求积公式 <span
+class="math display">\[
+\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> 至少具有<span
+class="math inline">\(n\)</span>次的代数精度.</p>
+<h2 id="插值型求积公式"><a href="#插值型求积公式" class="headerlink" title="插值型求积公式"></a>插值型求积公式</h2>
+<p>基本想法: <span class="math display">\[
+f(x)\approx L_n(x)=\sum_{i=0}^{n}l_{i,n}f(x_i)\\
+\int_{a}^{b}f(x)\,dx\approx\int_{a}^{b}\sum_{i=0}^{n}l_{i,n}f(x_i)\,dx=\sum_{i=0}^{n}\int_{a}^{b}l_{i,n}(x)\,dxf(x_i)
+\]</span></p>
+<p><strong>定义:</strong> 若 <span class="math display">\[
+\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> 其中, <span class="math display">\[
+A_i=\int_{a}^{b}l_{i,n}(x)\,dx
+\]</span> 则称<span
+class="math inline">\(I_n(x)\)</span>为插值型求积公式.</p>
+<p><strong>误差:</strong> <span class="math display">\[
+\begin{split}
+R_n(f)&amp;=\int_{a}^{b}f(x)\,dx-\int_{a}^{b}l_{i,n}(x)\,dx\\
+&amp;=\int_{a}^{b}(f(x)-l_{i,n}(x))\,dx\\
+&amp;=\int_{a}^{b}\frac{f^{(n+1)}{(\xi_n)}}{(n+1)!}\pi_{n+1}(x)\,dx
+\end{split}
+\]</span></p>
+<p><strong>定理:</strong> 求积公式 <span class="math display">\[
+\sum_{i=0}^{n}A_if(x_i)=I_n(f)
+\]</span> 为插值型求积公式的<strong>充要条件</strong>为:<span
+class="math inline">\(I_n(x)\)</span>至少具有n次代数精度.</p>
+<p><strong>Proof:</strong> (必要性) (充分性)</p>
+<h1 id="newton-cotes-求积公式"><a href="#Newton-Cotes-求积公式" class="headerlink" title="Newton-Cotes-求积公式"></a>Newton-Cotes 求积公式</h1>
+<p>节点为等距节点 <span class="math display">\[
+x_i=x_0+ih,\quad h=\frac{b-a}{n}
+\]</span> 变形, <span class="math display">\[
+\begin{split}
+    I_n(f)&amp;=\sum_{i=0}^{n}A_if(x_i)\\
+    &amp;=(b-a)\sum_{i=0}^{n}\frac{A_i}{b-a}f(x_i)\\
+    &amp;=(b-a)\sum_{i=0}^{n}C_{i,n}f(x_i)\\
+\end{split}
+\]</span> 由<span class="math inline">\(x=x_0+th,(0\leq t\leq
+n)\)</span>,可知, <span class="math display">\[
+\begin{split}
+    C_{i,n}&amp;=\frac{1}{b-a}A_i\\
+    &amp;=\frac{1}{b-a}\int_{a}^{b}l_{i,n}(x)\,dx\\
+    &amp;=\frac{1}{b-a}\int_{a}^{b}\prod^{n}_{j=0,i\neq
+i}\frac{x-x_j}{x_i-x_j}\,dx\\
+    &amp;=\frac{1}{b-a}\int_{a}^{b}\prod^{n}_{j=0,i\neq
+i}\frac{t-j}{i-j}h\,dx\\
+    &amp;=\frac{h}{b-a}\int_{a}^{b}\prod^{n}_{j=0,i\neq
+i}\frac{t-j}{i-j}\,dx\\
+    &amp;=\frac{1}{n}\int_{a}^{b}\prod^{n}_{j=0,i\neq
+i}\frac{t-j}{i-j}\,dx\\
+\end{split}
+\]</span> 而<span
+class="math inline">\(C_{i,n}\)</span>被称为Cotes系数(只与<span
+class="math inline">\(i,n\)</span>有关) 当<span
+class="math inline">\(n=1\)</span>时, <span class="math display">\[
+C_{0,1}=\frac{1}{2},C_{1,1}=\frac{1}{2}\\
+I_1(f)=(b-a)(\frac{f(b)+f(a)}{2})
+\]</span> 称为梯形公式. 当<span class="math inline">\(n=2\)</span>时,
+<span class="math display">\[
+C_{0,2}=\frac{1}{6},C_{1,2}=\frac{4}{6},C_{2,2}=\frac{1}{6}\\
+I_1(f)=(b-a)(\frac{f(b)+f(a)+4f(\frac{a+b}{2})}{6})
+\]</span> 称为Simpson(辛普森)求积公式.</p>
+<h2 id="cotes系数的性质"><a href="#Cotes系数的性质:" class="headerlink" title="Cotes系数的性质:"></a>Cotes系数的性质:</h2>
+<ul>
+<li>Cotes系数的代数和为1 <span
+class="math display">\[\sum_{i=0}^{n}C_{i,n}=1 \]</span>
+由于NC求积公式至少具有<span class="math inline">\(n\)</span>阶代数精度,
+<span class="math display">\[Let\ f(x)\equiv 1,so\,we\,have\\
+\int_{a}^{b}f(x)\,dx=b-a=(b-a)\sum_{i=0}^{n}C_{i,n}f(x_i)=(b-a)\sum_{i=0}^{n}C_{i,n}\]</span></li>
+<li>中心对称性质. <span class="math display">\[C_{i,n}=C_{n-i,n}
+\]</span></li>
+</ul>
+<h2 id="newton-cotes-公式的误差"><a href="#Newton-Cotes-公式的误差" class="headerlink" title="Newton-Cotes-公式的误差"></a>Newton-Cotes 公式的误差</h2>
+<p>Simpson求积公式具有3次代数精度.</p>
+<p><strong>定理:</strong>
+Newton-Cotes公式当n为奇数时,有n次代数精度;当n为偶数时,有n+1次代数精度.</p>
+<p><strong>Proof:</strong></p>
+<p>n为奇数,显然.</p>
+<p>n为偶数.<span class="math inline">\(f(x)=x^{n+1}\)</span> <span
+class="math display">\[
+\begin{split}
+    &amp;\int_{a}^{b}f(x)\,dx-(b-a)\sum_{i=0}^{n}C_{i,n}f(x_i)\\
+    &amp;=\int_{a}^{b}[f(x)-L_n(x)]\,dx\\
+    &amp;=\int_{a}^{b}\frac{f^{(n+1)}(\xi)}{(n+1)!}\pi_{n+1}(x)\,dx\\
+    &amp;=\int_{a}^{b}\frac{(n+1)!}{(n+1)!}\pi_{n+1}(x)\,dx\\
+    &amp;=\int_{a}^{b}\pi_{n+1}(x)\,dx\\
+    &amp;=\int_{a}^{b}(x-x_0)\cdots(x-x_n)\,dx
+\end{split}
+\]</span> 由于是等距节点,所以有,！！！！！！！！！！！！！！！！！！！！
+<span class="math display">\[
+\begin{split}
+    &amp;\int_{a}^{b}\pi_{n+1}(x)\,dx\\
+    &amp;=\int_{a}^{b}(x-x_0)\cdots(x-x_n)\,dx\\
+    &amp;=\int_{a}^{b}(x-x_0)\cdots(x-x_n)\,dx
+\end{split}
+\]</span></p>
+<h2 id="newton-cotes公式的稳定性"><a href="#Newton-Cotes公式的稳定性" class="headerlink" title="Newton-Cotes公式的稳定性"></a>Newton-Cotes公式的稳定性</h2>
+<p><strong>定义:(数值稳定性)</strong></p>
+<p><strong>定理:</strong> 数值求积公式<span
+class="math inline">\(I_n(f)=\sum_{i=0}^{n}A_if(x_i)\)</span><strong>为数值稳定的</strong>充分必要条件是:<span
+class="math inline">\(A_i\geq 0,i=0,\cdots,n\)</span>.</p>
+<p><strong>Proof</strong></p>
+<p><span class="math display">\[
+\forall
+\epsilon&gt;0,\qquad|\sum_{i=0}^{n}A_if(x_i)-\sum_{i=0}^{n}{A_i}\tilde{f}(x_i)|\leq
+\sum_{i=0}^{n}|A_if(x_i)-\sum_{i=0}^{n}{A_i}\tilde{f}(x_i)|\\ \leq
+M\sum_{i=0}^{n}{A_i}&lt;\epsilon,as\ long\ as\
+M&lt;\delta=\frac{\epsilon}{\sum_{i=0}^{n}{A_i}}
+\]</span></p>
+<h1 id="复合求积公式"><a href="#复合求积公式" class="headerlink" title="复合求积公式"></a>复合求积公式</h1>
+<p>为了避免高阶求积公式的弊端，就要用到插值中的分段思想，即把积分区间分段，再在各个区间上应用低阶的求积公式，称为复合求积公式。</p>
+<h2 id="复合梯形求积公式"><a href="#复合梯形求积公式" class="headerlink" title="复合梯形求积公式"></a>复合梯形求积公式</h2>
+<p><span class="math display">\[
+\begin{split}
+    \int_{a}^{b}f(x)\,dx&amp;=\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx\\
+    &amp;\approx\sum_{i=0}^{n-1}\frac{x_{i+1}-x_i}{2}(f(x_i)+f(x_{i+1}))
+\end{split}
+\]</span></p>
+<p>特别地，考虑等距节点的情况，间距为<span
+class="math inline">\(h\)</span>, <span class="math display">\[
+\begin{split}
+    \int_{a}^{b}f(x)\,dx&amp;=\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx\\
+    &amp;\approx \frac{h}{2}(f(x_0)+2\sum_{i=1}^{n-1}f(x_i)+f(x_n))
+\end{split}
+\]</span></p>
+<h2 id="复合梯形求积公式的误差"><a href="#复合梯形求积公式的误差" class="headerlink" title="复合梯形求积公式的误差"></a>复合梯形求积公式的误差</h2>
+<p>上面得出的复合梯形求积公式记为<span
+class="math inline">\(T_n(x)\)</span>.</p>
+<p><span class="math display">\[
+\begin{split}
+    \Big|\int_{a}^{b}f(x)\,dx-T_n(x)\Big|&amp;=\Big|\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx-T_n(x)\Big|\\
+    &amp;=\Big|\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx-\sum_{i=0}^{n-1}\frac{x_{i+1}-x_i}{2}(f(x_i)+f(x_{i+1}))\Big|\\
+    &amp;\leq
+\sum_{i=0}^{n-1}\Big|\int_{x_i}^{x_i+1}f(x)\,dx-\frac{x_{i+1}-x_i}{2}(f(x_i)+f(x_{i+1}))\Big|\\
+    &amp;=\sum_{i=0}^{n-1}\Big|+\frac{(x_{i+1}-x_i)^3}{12}f&#39;&#39;(\xi_i)\Big|\\
+    &amp;=\frac{M}{12}\sum_{i=0}^{n-1}\Big|(x_{i+1}-x_i)^3\Big| \qquad
+M=\max{f&#39;&#39;(\xi_i)}\\
+    &amp;=\frac{M}{12}h^3\sum_{i=0}^{n-1}(1) \qquad
+h=\max{(x_{i+1}-x_i)}\\
+    &amp;=\frac{M}{12}h^2(hn)=\frac{M}{12}h^2(b-a)\qquad
+if\  nodes\  spaced\  equally
+\end{split}
+\]</span></p>
+<h2 id="复合simpson求积公式"><a href="#复合Simpson求积公式" class="headerlink" title="复合Simpson求积公式"></a>复合Simpson求积公式</h2>
+<p><span class="math display">\[
+\begin{split}
+    \int_{a}^{b}f(x)\,dx&amp;=\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx\\
+    &amp;\approx\sum_{i=0}^{n-1}\frac{x_{i+1}-x_i}{6}(f(x_i)+4f(\frac{x_i+x_{i+1}}{2})+f(x_{i+1}))
+\end{split}
+\]</span></p>
+<p>特别地，考虑等距节点的情况，间距为<span
+class="math inline">\(h\)</span>, <span class="math display">\[
+\begin{split}
+    \int_{a}^{b}f(x)\,dx&amp;=\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx\\
+    &amp;\approx
+\frac{h}{6}(f(x_0)+2\sum_{i=1}^{n-1}f(x_i)+f(x_n)+4\sum_{i=1}^{n-1}f(\frac{x_i+x_{i+1}}{2}))
+\end{split}
+\]</span></p>
+<h2 id="复合simpson求积公式的误差"><a href="#复合Simpson求积公式的误差" class="headerlink" title="复合Simpson求积公式的误差"></a>复合Simpson求积公式的误差</h2>
+<p>上面得出的复合Simpson求积公式记为<span
+class="math inline">\(S_n(x)\)</span>.</p>
+<p><span class="math display">\[
+\begin{split}
+    &amp;\Big|\int_{a}^{b}f(x)\,dx-S_n(x)\Big|\\
+    &amp;=\Big|\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx-S_n(x)\Big|\\
+    &amp;=\Big|\sum_{i=0}^{n-1}\int_{x_i}^{x_i+1}f(x)\,dx-\sum_{i=0}^{n-1}\frac{x_{i+1}-x_i}{6}(f(x_i)+4f(\frac{x_i+x_{i+1}}{2})+f(x_{i+1}))\Big|\\
+    &amp;\leq
+\sum_{i=0}^{n-1}\Big|\int_{x_i}^{x_i+1}f(x)\,dx-\frac{x_{i+1}-x_i}{6}(f(x_i)+4f(\frac{x_i+x_{i+1}}{2})+f(x_{i+1}))\Big|\\
+    &amp;=\sum_{i=0}^{n-1}\Big|-\frac{(x_{i+1}-x_i)^5}{2880}f^{(4)}(\xi_i)\Big|\\
+    &amp;=\frac{M}{2880}\sum_{i=0}^{n-1}\Big|(x_{i+1}-x_i)^5\Big| \qquad
+M=\max{f^{(4)}(\xi_i)}\\
+    &amp;=\frac{M}{2880}h^5\sum_{i=0}^{n-1}(1) \qquad
+h=\max{(x_{i+1}-x_i)}\\
+    &amp;=\frac{M}{2880}h^4(hn)=\frac{M}{2880}h^4(b-a)\qquad
+if\  nodes\  spaced\  equally
+\end{split}
+\]</span></p>
+<h1 id="richardson-外插值法和romberg-算法">Richardson 外插值法和Romberg
+算法</h1>
+<p>上一节得到了复合求积公式，通过外插值方法可以进一步提高复合求积公式的效率，即由低阶求积公式构造高阶求积公式。</p>
+<h2 id="richardson-外插值法"><a href="#Richardson-外插值法" class="headerlink" title="Richardson-外插值法"></a>Richardson 外插值法</h2>
+<p>通项公式</p>
+<p><span class="math display">\[
+\begin{cases}
+    R(j,0)=\Phi(\frac{h}{2^j}),\quad j\geq 0\\
+    \\
+    R(j,k)=\frac{2^kR(j,k-1)-R(j,k-1)}{2^{k}-1},\quad j\geq k&gt; 0
+\end{cases}
+\]</span></p>
+<h2 id="romberg-算法"><a href="#Romberg-算法" class="headerlink" title="Romberg-算法"></a>Romberg 算法</h2>
+<h3 id="euler-maclaurin展开式"><a href="#Euler-Maclaurin展开式" class="headerlink" title="Euler-Maclaurin展开式"></a>Euler-Maclaurin展开式</h3>
+<p>设<span class="math inline">\(f\in C^{2m}([a,b])\)</span>，那么，</p>
+<p><span class="math display">\[
+\begin{split}
+    \int_{a}^{b}f(x)\,dx-T_n(f)&amp;=\sum_{r=1}^{n-1}C_rh^{2r}[f^{(2r-1)}(b)-f^{(2r-1)}(a)]+O(h^{2r})\\
+    &amp;C_r=\frac{}{}
+\end{split}
+\]</span></p>
+<p>注意，当<span class="math inline">\(f\)</span>为周期函数时，</p>
+<p><span class="math display">\[
+\begin{split}
+    f(b)&amp;=f(a)\\
+    f^{(2r-1)}(b)&amp;=f^{(2r-1)}(a)\\
+    \int_{a}^{b}f(x)\,dx-T_n(f)&amp;=O(h^{2r})\\
+\end{split}
+\]</span></p>
+<p>精度已经很高了.</p>
+<h3 id="梯形加速公式"><a href="#梯形加速公式" class="headerlink" title="梯形加速公式"></a>梯形加速公式</h3>
+<h3 id="simpson加速公式"><a href="#Simpson加速公式" class="headerlink" title="Simpson加速公式"></a>Simpson加速公式</h3>
+<h3 id="romberg-算法的误差"><a href="#Romberg-算法的误差" class="headerlink" title="Romberg-算法的误差"></a>Romberg 算法的误差</h3>
+<p><strong>定理</strong>：设<span class="math inline">\(f\in
+C^{2m+2}([a,b])\)</span>，那么Romberg 算法的误差估计为：</p>
+<p><span class="math display">\[
+\int_{a}^{b}f(x)\,dx-T_k^m(f)=O(h^{2m+2}),\qquad k\geq 0,m\geq 0
+\]</span></p>
+<h3 id="romberg-算法的数值稳定性"><a href="#Romberg-算法的数值稳定性" class="headerlink" title="Romberg-算法的数值稳定性"></a>Romberg 算法的数值稳定性</h3>
+<p><strong>定理</strong>：若Romberg 算法可以展开为</p>
+<p><span class="math display">\[
+T_k^m(f)=\sum_{i=0}^{2^k}c_{i,m}f(x_i),\qquad k\geq m,m=1,2\cdots
+\]</span></p>
+<p>则所有系数<span class="math inline">\(c_{i,m}\)</span>为正数。</p>
+<h1 id="gauss-求积公式"><a href="#Gauss-求积公式" class="headerlink" title="Gauss-求积公式"></a>Gauss 求积公式</h1>
+<p>为了简化处理过程,前面都是使用的等距节点作为求积节点,实际上,节点的选取也会影响代数精度.本节将介绍具有更高代数精度的求积方法.</p>
+<p>考虑定积分 <span class="math display">\[
+\int_{a}^{b}\rho(x)f(x)\,dx\approx\sum_{i=0}^{n}A_{i}f(x_i)
+\]</span></p>
+<p><strong>定理</strong>: 求积公式<span
+class="math inline">\(\sum_{i=0}^{n}A_{i}f(x_i)\)</span>的代数精度最高不超过<span
+class="math inline">\(2n+1\)</span>.</p>
+<p><strong>Proof</strong>: 只要找到一个<span
+class="math inline">\(2n+2\)</span>次的多项式求积公式,求积公式不能精确成立.
+设 <span class="math display">\[
+p(x)=\pi_(n+1)^2(x)=\prod_{i=0}^{n}(x-x_i)\in P_{2n+2}
+\]</span></p>
+<p><span class="math display">\[
+\int_{a}^{b}\rho(x)p(x)\,dx=\int_{a}^{b}\rho(x)\prod_{i=0}^{n}(x-x_i)\,dx&gt;0
+\]</span></p>
+<p>令一方面,</p>
+<p><span class="math display">\[
+\sum_{i=0}^{n}A_{i}p(x_i)=0
+\]</span></p>
+<p>故,求积公式对<span
+class="math inline">\(p(x)\)</span>不能精确成立.</p>
+<p><strong>定义</strong>: 若由一组节点<span
+class="math inline">\(x_i,i=0,\cdots,n\)</span>使得<span
+class="math inline">\(\sum_{i=0}^{n}A_{i}f(x_i)\)</span>具有<span
+class="math inline">\(2n+1\)</span>次代数精度,则称这组节点为Gauss点,相应的求积公式为Guass求积公式.</p>
+<h3 id="常用gauss求积公式"><a href="#常用Gauss求积公式" class="headerlink" title="常用Gauss求积公式"></a>常用Gauss求积公式</h3>
+<ul>
+<li>Gauss-Legendre 求积公式</li>
+<li>Gauss-Chebyshev 求积公式</li>
+</ul>
+<h3 id="gauss-求积公式的误差估计"><a href="#Gauss-求积公式的误差估计" class="headerlink" title="Gauss-求积公式的误差估计"></a>Gauss 求积公式的误差估计</h3>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2022/11/15/Project%205/">← Next Project 5</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2022/11/02/%E5%90%91%E9%87%8F%E5%8F%8A%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0/">向量及矩阵范数 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">数值积分的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-number">2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="toc-number">2.2.</span> <span class="toc-text">代数精度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%80%BC%E5%9E%8B%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">插值型求积公式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#newton-cotes-%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">Newton-Cotes 求积公式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cotes%E7%B3%BB%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.1.</span> <span class="toc-text">Cotes系数的性质:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#newton-cotes-%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">3.2.</span> <span class="toc-text">Newton-Cotes 公式的误差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#newton-cotes%E5%85%AC%E5%BC%8F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-number">3.3.</span> <span class="toc-text">Newton-Cotes公式的稳定性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">复合求积公式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E6%A2%AF%E5%BD%A2%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">复合梯形求积公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E6%A2%AF%E5%BD%A2%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">4.2.</span> <span class="toc-text">复合梯形求积公式的误差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88simpson%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">4.3.</span> <span class="toc-text">复合Simpson求积公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88simpson%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">4.4.</span> <span class="toc-text">复合Simpson求积公式的误差</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#richardson-%E5%A4%96%E6%8F%92%E5%80%BC%E6%B3%95%E5%92%8Cromberg-%E7%AE%97%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">Richardson 外插值法和Romberg
+算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#richardson-%E5%A4%96%E6%8F%92%E5%80%BC%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">Richardson 外插值法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#romberg-%E7%AE%97%E6%B3%95"><span class="toc-number">5.2.</span> <span class="toc-text">Romberg 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#euler-maclaurin%E5%B1%95%E5%BC%80%E5%BC%8F"><span class="toc-number">5.2.1.</span> <span class="toc-text">Euler-Maclaurin展开式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%8A%A0%E9%80%9F%E5%85%AC%E5%BC%8F"><span class="toc-number">5.2.2.</span> <span class="toc-text">梯形加速公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simpson%E5%8A%A0%E9%80%9F%E5%85%AC%E5%BC%8F"><span class="toc-number">5.2.3.</span> <span class="toc-text">Simpson加速公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#romberg-%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">5.2.4.</span> <span class="toc-text">Romberg 算法的误差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#romberg-%E7%AE%97%E6%B3%95%E7%9A%84%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-number">5.2.5.</span> <span class="toc-text">Romberg 算法的数值稳定性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gauss-%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">Gauss 求积公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8gauss%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">6.0.1.</span> <span class="toc-text">常用Gauss求积公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F%E7%9A%84%E8%AF%AF%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="toc-number">6.0.2.</span> <span class="toc-text">Gauss 求积公式的误差估计</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

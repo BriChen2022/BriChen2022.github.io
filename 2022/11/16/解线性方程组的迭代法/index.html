@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>解线性方程组的迭代法 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>解线性方程组的迭代法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2022-11-15T21:49:27.000Z" id="date"> 2022-11-16</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T08:45:04.192Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><p>直接法的好处，除了舍入误差外没有引入额外的误差。但坏处在于，计算比较复杂。为此我们引入额外的误差设计迭代法。</p>
+<h1 id="本章概要"><a href="#本章概要" class="headerlink" title="本章概要"></a>本章概要</h1>
+<p>迭代法分为两大步：</p>
+<ul>
+<li>方程的改写(矩阵分裂)
+<ul>
+<li><span class="math inline">\(AX=b\)</span>等价变形为<span
+class="math inline">\(X=BX+d\)</span></li>
+<li>若 <span class="math inline">\(A=M-N\)</span>,则<span
+class="math inline">\(MX=NX+b\)</span>,若<span
+class="math inline">\(M\)</span>可逆就有, <span
+class="math inline">\(X=M^{-1}NX+M^{-1}b\)</span></li>
+</ul></li>
+<li>真解换成数值解
+<ul>
+<li><span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span></li>
+</ul></li>
+</ul>
+<p>注意:<span
+class="math inline">\(B\)</span>的选取极为关键,它绝对了收敛性.</p>
+<p># 迭代法</p>
+<p><strong>定义</strong>:若<span
+class="math inline">\(X=BX+d\)</span>是<span
+class="math inline">\(AX=b\)</span>的同解方程组,对<span
+class="math inline">\(\forall X^{(0)}\in \R^{n}\)</span>,迭代<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span>,得到的<span
+class="math inline">\(\{X^{(k)}\}\)</span>有极限,称迭代是收敛的.</p>
+<p><strong>定理</strong>:(迭代收敛判定定理)迭代<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span>收敛,等价于<span
+class="math inline">\(B\)</span>为收敛矩阵,或者说<span
+class="math inline">\(B^k\rightarrow 0\)</span>,即<span
+class="math inline">\(\rho(B)&lt;1\)</span>.</p>
+<p><strong>Proof</strong>: 记<span
+class="math inline">\(X^*\)</span>为迭代方程<span
+class="math inline">\(X=BX+d\)</span>的解,即 <span
+class="math display">\[X^*=BX^*+d\]</span> 误差 <span
+class="math display">\[e^{(k)}=X^*-X^{(k)}\]</span> 由<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span>,知
+<span
+class="math display">\[e^{(k+1)}=X^*-X^{(k+1)}=B(X^*-X^{(k)})=Be^{(k)}\]</span>
+于是 <span class="math display">\[e^{(k+1)}=B^{(k+1)}e^{(0)}\]</span>
+因为<span class="math inline">\(e^{(0)}\)</span>为有界向量,则 <span
+class="math display">\[e^k\rightarrow 0\Leftrightarrow B^k\rightarrow
+0\]</span> 由第一章定理知,<span class="math inline">\(B^k\rightarrow
+0\)</span>等价于<span class="math inline">\(\rho(B)&lt;1\)</span>.</p>
+<p><strong>推论</strong>:(充分条件)若<span
+class="math inline">\(||B||&lt;1\)</span>,则迭代<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span>收敛.</p>
+<p><strong>Proof</strong>:由第一章推论知道, <span
+class="math display">\[\rho(B)\leq||B||&lt;1\]</span> 收敛.</p>
+<h1 id="jacobi-迭代"><a href="#Jacobi-迭代" class="headerlink" title="Jacobi-迭代"></a>Jacobi 迭代</h1>
+<h2 id="jacobi-迭代公式分量形式用于计算">Jacobi
+迭代公式(分量形式,用于计算)</h2>
+<p>对<span class="math inline">\(AX=b\)</span>的分量形式: <span
+class="math display">\[\sum_{j=1}^n
+a_{ij}x_j=b_i,i=1,2,\cdots,n\]</span></p>
+<ol type="1">
+<li>方程改写:若<span class="math inline">\(a_{ii}\neq
+0\)</span>,则可等价改写成 <span
+class="math display">\[a_{ii}x_i=b_i-\sum_{j\neq i}^n a_{ij}x_j\]</span>
+即 <span class="math display">\[x_i=\frac{1}{a_{ii}}(b_i-\sum_{j\neq
+i}^n a_{ij}x_j)\]</span></li>
+<li>真解改数值解 任取<span class="math inline">\(X^{(0)}\in
+\R^{n}\)</span>,迭代方程. <span
+class="math display">\[x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum_{j\neq i}^n
+a_{ij}x_j^{(k)})\]</span> 即, <span class="math display">\[
+\left\{\begin{aligned}
+x_{1}^{(k+1)} &amp;=\frac{-1}{a_{11}}\left(\qquad a_{12}
+x_{2}^{(k)}+a_{13} x_{3}^{(k)}+\cdots+a_{1 n} x_{n}^{(k)}-b_{1}\right)
+\\
+x_{2}^{(k+1)} &amp;=\frac{-1}{a_{22}}\left(a_{21} x_{1}^{(k)}
+\qquad+a_{23} x_{3}^{(k)}+\cdots+a_{2 n} x_{n}^{(k)}-b_{2}\right) \\
+&amp; \vdots \\
+x_{n}^{(k+1)} &amp;=\frac{-1}{a_{n n}}\left(a_{n 1} x_{1}^{(k)}+a_{n 2}
+x_{2}^{(k)}+\cdots+a_{n n-1} x_{n-1}^{(k)} \qquad-b_{n}\right)
+\end{aligned}\right.
+\]</span></li>
+</ol>
+<h2 id="迭代矩阵及收敛定理"><a href="#迭代矩阵及收敛定理" class="headerlink" title="迭代矩阵及收敛定理"></a>迭代矩阵及收敛定理</h2>
+<p>记<span class="math inline">\(A=D-L-U\)</span>,其中 <span
+class="math display">\[
+D=\left(\begin{array}{llll}
+a_{11} &amp; &amp; &amp; \\
+&amp; a_{22} &amp; &amp; \\
+&amp; &amp; \ddots &amp; \\
+&amp; &amp; &amp; a_{n n}
+\end{array}\right)
+\]</span> <span class="math display">\[
+L=\left(\begin{array}{ccc}
+0 &amp; &amp; \\
+a_{21} &amp; 0 &amp; \\
+\vdots &amp;  &amp; \\
+a_{n 1}&amp;\cdots &amp; a_{n n-1} &amp; 0
+\end{array}\right)
+\]</span> <span class="math display">\[
+U=\begin{pmatrix}  
+  0&amp; a_{12}&amp; \cdots  &amp; a_{1n} \\  
+  0&amp; 0&amp;  &amp; \vdots \\  
+  \vdots &amp; \vdots &amp;  &amp; a_{n-1n} \\  
+  0&amp; 0&amp; \cdots  &amp; 0  
+\end{pmatrix}  
+\]</span> 于是<span class="math inline">\(AX=b\)</span>,等价于<span
+class="math inline">\((D-L-U)X=b\)</span>,推出 <span
+class="math display">\[DX=(L+U)X+b\]</span> 即有, <span
+class="math display">\[
+X=D^{-1}(L+U)X+D^{-1}b
+\]</span> 从而Jacobi迭代矩阵为 <span
+class="math display">\[B_J=D^{-1}(L+U)=D^{-1}(D-A)\\=I-D^{-1}A\]</span></p>
+<p><strong>命题</strong>:(对角占优性质)若<span
+class="math inline">\(A\)</span>是严格对角占优,则<span
+class="math inline">\(A\)</span>非奇异.</p>
+<p><strong>Proof</strong>:仅考虑<span
+class="math inline">\(A\)</span>为严格<strong>行</strong>对角占优情形(对于列占优,只需考虑<span
+class="math inline">\(A^T\)</span>即可). 用反证,若<span
+class="math inline">\(A\)</span>奇异,则齐次方程组<span
+class="math inline">\(AX=0\)</span>有非零解,记为<span
+class="math inline">\(X=(x_1,\cdots,x_n)^T\neq 0\)</span>记<span
+class="math inline">\(|x_k|=\max_{i}|x_i|\neq 0\)</span>, 考虑<span
+class="math inline">\(AX=0\)</span>的第<span
+class="math inline">\(看\)</span>个方程, <span
+class="math display">\[a_{k 1} x_{1}+a_{k2} x_{2}+\cdots+a_{k n} x_{n}=0
+\]</span> 有 <span class="math display">\[a_{kk}=-\sum_{j\neq
+k}a_{kj}x_j\]</span> 于是有, <span class="math display">\[
+\begin{split}
+|a_{kk}||x_k|&amp;=|a_{kk}x_k|\\&amp;=|-\sum_{j\neq
+k}a_{kj}x_j|\\&amp;=\sum_{j\neq k}|a_{kj}||x_j|\\&amp;=\sum_{j\neq
+k}|a_{kj}||x_k|
+\end{split}
+\]</span> 从而有 <span class="math display">\[|a_{kk}|\leq \sum_{j\neq
+k}|a_{kj}|\]</span> 矛盾.</p>
+<p><strong>定理</strong>:(Jacodbi 迭代收敛判断定理)若<span
+class="math inline">\(AX=b\)</span>的系数矩阵<span
+class="math inline">\(A\)</span>满足一下的任意一条, - <span
+class="math inline">\(A\)</span>为严格行对角占优 <span
+class="math display">\[|a_{ii}|&gt;\sum_{j\neq
+i}|a_{ij}|,i=1,\cdots,n\]</span> - <span
+class="math inline">\(A\)</span>为严格列对角占优 <span
+class="math display">\[|a_{jj}|&gt;\sum_{i\neq
+j}|a_{ij}|,j=1,\cdots,n\]</span> - <span
+class="math inline">\(A\)</span>的元素满足: <span
+class="math display">\[\sum_{i\neq
+j}\frac{|a_{ij}|}{|a_{ii}|}&lt;1,j=1,\cdots,n\]</span></p>
+<p><strong>Proof</strong>: 1. 考虑Jacobi的迭代矩阵<span
+class="math inline">\(B_J=I-D^{-1}A\)</span>则, <span
+class="math display">\[
+B_{J}=\left(\begin{array}{ccc}
+1 &amp; &amp; \\
+&amp; \ddots &amp; \\
+&amp; &amp; 1
+\end{array}\right)-\left(\begin{array}{cccc}
+1 &amp; \frac{a_{12}}{a_{11}} &amp; \cdots &amp; \frac{a_{1 n}}{a_{11}}
+\\
+&amp; &amp; &amp; \\
+\frac{a_{21}}{a_{22}} &amp; 1 &amp; \cdots &amp; \frac{a_{2 n}}{a_{22}}
+\\
+\vdots &amp; &amp; &amp; \\
+\frac{a_{n n}}{a_{n n}} &amp; &amp; \frac{a_{n n-1}}{a_{n n}} &amp; 1
+\end{array}\right)
+\]</span></p>
+<p><span class="math display">\[
+B_J=
+\left(\begin{array}{cccc}
+0 &amp; -\frac{a_{12}}{a_{11}} &amp; \cdots &amp; -\frac{a_{1
+n}}{a_{11}} \\
+-\frac{a_{21}}{a_{22}} &amp; 0 &amp; \cdots &amp; -\frac{a_{2
+n}}{a_{22}} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+-\frac{a_{n 1}}{a_{n n}} &amp; -\frac{a_{n 2}}{a_{n n}} &amp; \cdots
+&amp; 0
+\end{array}\right)
+\]</span></p>
+<p>即<span class="math inline">\((B_J)_{ij}=-\frac{a_{ij}}{a_{ii}},j\neq
+i,\quad (B_J)_{ii}=0,i=1,\cdots,n\)</span> 于是, <span
+class="math display">\[||B_J||_{\infty}=\max_{1\leq i\leq
+n}\]</span></p>
+<ol start="3" type="1">
+<li>考虑Jacobi迭代矩阵<span
+class="math inline">\(B_J=I-D^{-1}(L+U)\)</span>,其特征多项式为:</li>
+</ol>
+<p><span class="math display">\[
+\begin{split}
+  P_{B_J}(\lambda)&amp;=|\lambda I-B_J|=|\lambda I-D^{-1}(L+U)|\\
+  &amp;=|D^{-1}\lambda D-D^{-1}(L+U)|\\
+  &amp;=|D^{-1}||\lambda D-L-U|
+\end{split}
+\]</span></p>
+<p>因<span class="math inline">\(A\)</span>严格列对角占优,则<span
+class="math inline">\(|a_{jj}|&gt;\)</span> ????????????????????</p>
+<h1 id="gauss-seidel-迭代"><a href="#Gauss-Seidel-迭代" class="headerlink" title="Gauss-Seidel-迭代"></a>Gauss-Seidel 迭代</h1>
+<h2 id="guass-seidel-迭代公式"><a href="#Guass-Seidel-迭代公式" class="headerlink" title="Guass-Seidel-迭代公式"></a>Guass-Seidel 迭代公式</h2>
+<h2 id="迭代矩阵及收敛定理-1"><a href="#迭代矩阵及收敛定理" class="headerlink" title="迭代矩阵及收敛定理"></a>迭代矩阵及收敛定理</h2>
+<p><strong>定理</strong>:若<span
+class="math inline">\(A\)</span>为严格的行或者列对角占优,则Guass-Seidel迭代收敛.</p>
+<p><strong>Proof:</strong> 若<span
+class="math inline">\(A\)</span>为严格行对角占优,考虑Guass-Seidel的迭代矩阵,
+<span class="math display">\[B_G=(D-L)^{-1}U\]</span> 其特征多项式为
+<span class="math display">\[\begin{split}
+  P_{B_G}(\lambda)&amp;=|\lambda I-B_G|=|\lambda I-(D-L)^{-1}U|\\
+  &amp;=|\lambda (D-L)^{-1}(D-L)-(D-L)^{-1}U|\\
+  &amp;=|(D-L)^{-1}(\lambda D-\lambda L-U)|\\
+  &amp;=|(D-L)^{-1}||\lambda D-\lambda L-U|
+\end{split}\]</span> 因为<span
+class="math inline">\(D-L\)</span>为下三角矩阵,显然<span
+class="math inline">\(|D-L|=a_{11}\cdots a_{nn}\)</span> 记<span
+class="math inline">\(C=\lambda D-\lambda L-U\)</span>, <span
+class="math display">\[
+C=\begin{pmatrix}  
+  \lambda a_{11}&amp; a_{12}&amp; \cdots  &amp; a_{1n} \\  
+  \lambda a_{21}&amp; \lambda a_{22}&amp;  &amp; \vdots \\  
+  \vdots &amp; \vdots &amp;  &amp; a_{n-1n} \\  
+  \lambda a_{n1}&amp; \lambda a_{n2}&amp; \cdots  &amp; \lambda a_{nn}  
+\end{pmatrix}  
+\]</span> 于是<span class="math inline">\(|C|=0\)</span>的根就是<span
+class="math inline">\(B_G\)</span>的特征值.由收敛矩阵的判定定理,当<span
+class="math inline">\(|C|=0\)</span>时,有<span
+class="math inline">\(|\lambda| &lt; 1\)</span>,因为,如果有<span
+class="math inline">\(|\lambda|\geq 1\)</span>,则 <span
+class="math display">\[
+\begin{split}
+|C_{ii}|&amp;=|\lambda||a_{ii}|&gt;|\lambda|(\sum_{j=1}^{i-1}|a_{ij}|+\sum_{j=i+1}^{n}|a_{ij}|)\\
+&amp;\geq \sum_{j=1}^{i-1}|\lambda
+a_{ij}|+\sum_{j=i+1}^{n}|a_{ij}|=\sum_{j\neq i}|C_{ii}|
+\end{split}
+\]</span> 于是可得<span
+class="math inline">\(C\)</span>为严格对角占优矩阵,那么由之前的命题可知<span
+class="math inline">\(C\)</span>为非奇异阵,即<span
+class="math inline">\(|C|\neq 0\)</span>,矛盾.</p>
+<p><strong>定理</strong>:若<span
+class="math inline">\(A\)</span>为对称正定阵,则Guass-Seidel迭代收敛.</p>
+<p><strong>Proof</strong>: 记<span
+class="math inline">\(v\)</span>为<span
+class="math inline">\(B_G=(D-L)^{-1}U\)</span>从属于特征值<span
+class="math inline">\(\lambda\)</span>的特征向量,即 <span
+class="math display">\[(D-L)^{-1}Uv=\lambda v\]</span> 变形 <span
+class="math display">\[Uv=\lambda (D-L)v\]</span> 因为<span
+class="math inline">\(A\)</span>对称,所以有<span
+class="math inline">\(U=L^T\)</span>,于是 <span
+class="math display">\[L^T v=\lambda (D-L)v\]</span> 上式左乘<span
+class="math inline">\(v^*=\bar{v}^T\)</span>,得 <span
+class="math display">\[v^*L^Tv=\lambda v^*(D-L)v\]</span> <span
+class="math display">\[v^*L^Tv=\lambda v^*Dv-\lambda v^*Lv\qquad
+(*)\]</span> 记<span
+class="math inline">\(\delta=v^*Dv=\sum_{i=1}^{n}\bar{v_i}a_{ii}v_i=\sum_{i=1}^{n}a_{ii}|v_i|^2&gt;0\)</span>(因为<span
+class="math inline">\(A\)</span>正定,其对角线元素大于零) 记<span
+class="math inline">\(v^*Lv=\alpha+i\beta\)</span>可以发现, <span
+class="math inline">\(v^*L^Tv=v^*L^*v=(Lv)^*v=(Lv,v)=\bar{(v,Lv)}=\bar{v^*Lv}=\bar{\alpha+i\beta}=\alpha-i\beta\)</span>
+则<span class="math inline">\((*)\)</span>式化为, <span
+class="math display">\[
+\lambda(\delta-\alpha-i\beta)=\alpha-i\beta
+\]</span> 两边取模的平方得, <span class="math display">\[
+|\lambda|^2((\delta-\alpha)^2+\beta^2)=\alpha^2+\beta^2
+\]</span> 因为<span class="math inline">\(A\)</span>正定,则有 <span
+class="math display">\[\begin{split}
+0&lt;v^*Av&amp;=v^*(D-L-U)v\\
+&amp;=v^*Dv-v^*Lv-v^*L^Tv\\
+&amp;=\delta-(\alpha+i\beta)-(\alpha-i\beta)\\
+&amp;=\delta-2\alpha
+\end{split}\]</span> 考虑到, <span class="math display">\[\begin{split}
+&amp;((\delta-\alpha)^2+\beta^2)-(\alpha^2+\beta^2)\\
+&amp;=\delta^2-2\delta\alpha\\
+&amp;=\delta(\delta-2\alpha)\\
+&amp;&gt;0
+\end{split}\]</span> 即,<span
+class="math inline">\(((\delta-\alpha)^2+\beta^2)&gt;\alpha^2+\beta^2\)</span>
+从而应有<span
+class="math inline">\(|\lambda|&lt;1\)</span>,迭代收敛性得证.</p>
+<h1 id="逐次超松驰迭代sor"><a href="#逐次超松驰迭代(SOR)" class="headerlink" title="逐次超松驰迭代(SOR)"></a>逐次超松驰迭代(SOR)</h1>
+<p>SOR是Gauss-Seidel迭代的加速.</p>
+<h1 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h1>
+<h1 id="迭代矩阵"><a href="#迭代矩阵" class="headerlink" title="迭代矩阵"></a>迭代矩阵</h1>
+<p><span class="math display">\[B_{SOR}=(D-\omega
+L)^{-1}((1-\omega)D+\omega U)\]</span></p>
+<h1 id="收敛定理"><a href="#收敛定理" class="headerlink" title="收敛定理"></a>收敛定理</h1>
+<p><strong>定理</strong>:SOR迭代的 <strong>必要条件</strong>是: <span
+class="math display">\[0&lt;\omega&lt;2\]</span></p>
+<p><strong>Proof</strong>: 若SOR迭代收敛,则有<span
+class="math inline">\(\rho(B_{SOR})&lt;1\)</span>,记SOR迭代矩阵的特征值为,
+<span class="math display">\[\lambda_1,\cdots,\lambda_n\]</span>
+则,<span
+class="math inline">\(det(B_{SOR})=\lambda_1\cdots\lambda_n\)</span>
+于是, <span
+class="math display">\[|det(B_{SOR})|=|\lambda_1\cdots\lambda_n|\leq
+\rho^n(B_{SOR})\]</span> 即, <span
+class="math display">\[|det(B_{SOR})|^{\frac{1}{n}}\leq
+\rho(B_{SOR})&lt;1\]</span> 另一方面, <span class="math display">\[
+det(B_{SOR})=det((D-\omega L)^{-1})det((1-\omega)D+\omega U)
+\]</span> 而, <span class="math display">\[det((D-\omega
+L)^{-1})=1/(a_{11}\cdots a_{nn})\]</span> <span
+class="math display">\[det((1-\omega)D+\omega U)=(1-\omega)^n
+(a_{11}\cdots a_{nn})\]</span> 于是得到, <span
+class="math display">\[det(B_{SOR})=det((D-\omega
+L)^{-1})det((1-\omega)D+\omega U)=(1-\omega)^n\]</span> 故有, <span
+class="math display">\[
+|(1-\omega)^n|^{\frac{1}{n}}&lt;1
+\]</span> <span class="math display">\[0&lt;\omega&lt;2\]</span></p>
+<p><strong>注记</strong>：<span
+class="math inline">\(det(A)=\lambda_1\cdots\lambda_n\)</span>
+<strong>证明:</strong> 记<span
+class="math inline">\(A=TJT^{-1}\)</span>,其中<span
+class="math inline">\(T\)</span>为可逆矩阵,<span
+class="math inline">\(J\)</span>为若尔当阵. <span
+class="math display">\[det(A)=det(J)=det(J_1)\cdots
+det(J_r)=\lambda_1^{n_1}\cdots\lambda^{n_r}_r\]</span> 其中<span
+class="math inline">\(n_1+\cdots+n_r=n\)</span>,重根按重数算即得,<span
+class="math inline">\(det(A)=\lambda_1\cdots\lambda_n\)</span>.</p>
+<p><strong>定理</strong>:若<span
+class="math inline">\(A\)</span>为对称正定阵,<span
+class="math inline">\(0&lt;\omega&lt;2\)</span>,则SOR迭代收敛.</p>
+<p><strong>Proof</strong>:与上面的定理证明类似,只需要考虑, <span
+class="math display">\[B_{SOR}=(D-\omega L)^{-1}((1-\omega)D+\omega
+U)\]</span> 的谱半径.</p>
+<h1 id="迭代停止准则及收敛速度"><a href="#迭代停止准则及收敛速度" class="headerlink" title="迭代停止准则及收敛速度"></a>迭代停止准则及收敛速度</h1>
+<h2 id="迭代停止准则"><a href="#迭代停止准则" class="headerlink" title="迭代停止准则"></a>迭代停止准则</h2>
+<p><strong>定理</strong>:若<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d,k=0,1,\cdots\)</span>,满足
+<span class="math display">\[||B||\overset{\Delta}{=}L&lt;1\]</span>
+则有, <span class="math display">\[
+\begin{split}
+(1&amp;)||X^*-X^{(k)}||\leq\frac{L}{1-L}||X^{(k)}-X^{(k-1)}||\\
+(2&amp;)||X^*-X^{(k)}||\leq\frac{L^k}{1-L}||X^{(1)}-X^{(0)}||
+\end{split}
+\]</span> 其中<span class="math inline">\(X^*\)</span>为<span
+class="math inline">\(AX=b\)</span>的精确解.</p>
+<p><strong>Proof</strong>:考虑<span
+class="math inline">\(||X^{(k+1)}-X^{(k)}||\)</span>,</p>
+<p><span class="math display">\[\begin{split}
+||X^{(k+1)}-X^{(k)}||&amp;=||X^*-X^{(k)}-(X^*-X^{(k+1)})||\\
+&amp;\geq||X^*-X^{(k)}||-||X^*-X^{(k+1)}||\\
+&amp;=||X^*-X^{(k)}||-||(BX^{*}+d)-(BX^{(k)}+d)||\\
+&amp;=||X^*-X^{(k)}||-||B(X^{*}-X^{(k)})||\\
+&amp;\geq ||X^*-X^{(k)}||-||B||||X^{*}-X^{(k)}||
+\end{split}\]</span></p>
+<p>于是, <span
+class="math display">\[||X^*-X^{(k)}||\leq\frac{1}{1-L}||X^{(k+1)}-X^{(k)}||\\\]</span>
+<span class="math display">\[=
+\frac{1}{1-L}||B(X^{(k)}-X^{(k-1)})||\leq\frac{L}{1-L}||X^{(k)}-X^{(k-1)}||\]</span>
+(1)得证.又容易发现, <span
+class="math display">\[\frac{L}{1-L}||X^{(k)}-X^{(k-1)}||=\frac{L}{1-L}||B(X^{(k-1)}-X^{(k-2)})||\leq\frac{L^2}{1-L}||X^{(k-1)}-X^{(k-2)}||\]</span>
+如此反复就可以得到(2).</p>
+<h2 id="迭代收敛速度"><a href="#迭代收敛速度" class="headerlink" title="迭代收敛速度"></a>迭代收敛速度</h2>
+<p><span class="math display">\[
+e^{(k+1)}=X^*-X^{(k+1)}=B(X^*-X^{(k)})=Be^{(k)}=\cdots=B^{k+1}e^{(0)}
+\]</span> 即, <span class="math display">\[
+||e^{(k)}||=||B^{k}e^{(0)}||\leq
+||B^{k}||||e^{(0)}||\leq||B||^k||e^{(0)}||&lt;\delta
+\]</span> 当迭代收敛时只需考虑<span
+class="math inline">\(||B||^k&lt;\delta\)</span>, 因<span
+class="math inline">\(B^k=TJ^kT^{-1}\)</span>反映了特征值<span
+class="math inline">\(\lambda_i\)</span> 可考虑<span
+class="math inline">\(\rho^k(B)&lt;\delta\)</span>且<span
+class="math inline">\(\rho(B)&lt;1,k\)</span>为迭代次数, 取对数有,<span
+class="math inline">\(k\lg\rho(B)&lt;\lg\delta\)</span>,即<span
+class="math inline">\(k&gt;\frac{\lg\delta}{\rho(B)}=\frac{-\lg\delta}{-\rho(B)}\)</span>
+称,<span class="math inline">\(R(B)=-\lg\rho(B)\)</span>为迭代法<span
+class="math inline">\(X^{(k+1)}=BX^{(k)}+d\)</span>的收敛速度.</p>
+<h1 id="最速下降法及共轭梯度法"><a href="#最速下降法及共轭梯度法" class="headerlink" title="最速下降法及共轭梯度法"></a>最速下降法及共轭梯度法</h1>
+<h2 id="对称正定方程组的求解"><a href="#对称正定方程组的求解" class="headerlink" title="对称正定方程组的求解"></a>对称正定方程组的求解</h2>
+<h2 id="等价性定理"><a href="#等价性定理" class="headerlink" title="等价性定理"></a>等价性定理</h2>
+<p>对<span class="math inline">\(AX=b\)</span>,考虑二次型 <span
+class="math display">\[f(X)=\frac{1}{2}(AX,X)-(b,X)=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j-\sum_{j=1}^{n}b_jx_j\]</span>
+其中<span class="math inline">\(A\)</span>对称正定,<span
+class="math inline">\((X,Y)=X^TY\)</span></p>
+<p><strong>引理</strong>:若<span
+class="math inline">\(A\)</span>对称正定,则 (1)<span
+class="math inline">\((AX,Y)=(AY,X)\)</span> (2)<span
+class="math inline">\(\forall x,y\in R^{n}\)</span>及<span
+class="math inline">\(r\in R\)</span>,有 <span
+class="math display">\[f(X+tY)=\frac{t^2}{2}(AY,Y)-t(b-AX,Y)+f(X)\]</span>
+(3)<span class="math inline">\(\nabla
+f(X)=AX-b\overset{\Delta}{=}-r\)</span>,其中<span
+class="math inline">\(r=-\nabla f(X)=b-AX\)</span>.</p>
+<p><strong>Proof</strong>: (1) <span class="math display">\[
+(AX,Y)=X^TA^TY=X^TAY=(X^TAY)^T=Y^TA^TX=(AY,X)
+\]</span> (2) <span class="math display">\[
+\begin{split}
+f(X+tY)=&amp;\frac{1}{2}(A(X+tY),X+tY)-(b,X+tY)\\
+=&amp;\frac{1}{2}(AX,X)+\frac{t}{2}(AY,X)+\frac{t}{2}(AX,Y)+\frac{t^2}{2}(AY,Y)-(b,X)-t(b,Y)\\
+=&amp;\frac{1}{2}(AX,X)-(b,X)+t(AX,Y)-t(b,Y)+\frac{t^2}{2}(AY,Y)\\
+=&amp;f(X)+\frac{t^2}{2}(AY,Y)-t(b-AX,Y)
+\end{split}
+\]</span> (3) <span
+class="math display">\[f(X)=\frac{1}{2}(AX,X)-(b,X)=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j-\sum_{j=1}^{n}b_jx_j\]</span>
+而, <span class="math display">\[
+\nabla f(X)=\begin{pmatrix}
+\frac{\partial f}{\partial x_1} \\
+\vdots\\
+\frac{\partial f}{\partial x_n}
+\end{pmatrix}=AX-b
+\]</span> 验证起来是简单的.</p>
+<p><strong>定理</strong>:(等价性定理)若<span
+class="math inline">\(A\)</span>对称正定,则求<span
+class="math inline">\(AX=b\)</span>的解<span
+class="math inline">\(X^*\)</span><strong>等价于</strong>求 <span
+class="math display">\[f(X)=\frac{1}{2}(AX,X)-(b,X)\]</span>
+的最小点<span class="math inline">\(X^*\)</span>.</p>
+<p><strong>证明</strong>:</p>
+<h2 id="最速下降法"><a href="#最速下降法" class="headerlink" title="最速下降法"></a>最速下降法</h2>
+<p><span class="math inline">\(\nabla
+f(X)=AX-b\overset{\Delta}{=}-r,\quad\)</span><span
+class="math inline">\(r=-\nabla f(X)=b-AX\)</span>. <span
+class="math inline">\(\nabla f(X)\)</span>为函数增长最快的方向, <span
+class="math inline">\(r=-\nabla
+f(X)\)</span>为函数下降最快的方向,所以写成这种形式。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/02/18/%E6%8A%A5%E5%91%8A/">← Next 报告</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2022/11/15/Project%205/">Project 5 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E6%A6%82%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">本章概要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3"><span class="toc-number">2.</span> <span class="toc-text">Jacobi 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jacobi-%E8%BF%AD%E4%BB%A3%E5%85%AC%E5%BC%8F%E5%88%86%E9%87%8F%E5%BD%A2%E5%BC%8F%E7%94%A8%E4%BA%8E%E8%AE%A1%E7%AE%97"><span class="toc-number">2.1.</span> <span class="toc-text">Jacobi
+迭代公式(分量形式,用于计算)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">迭代矩阵及收敛定理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gauss-seidel-%E8%BF%AD%E4%BB%A3"><span class="toc-number">3.</span> <span class="toc-text">Gauss-Seidel 迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#guass-seidel-%E8%BF%AD%E4%BB%A3%E5%85%AC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">Guass-Seidel 迭代公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86-1"><span class="toc-number">3.2.</span> <span class="toc-text">迭代矩阵及收敛定理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%90%E6%AC%A1%E8%B6%85%E6%9D%BE%E9%A9%B0%E8%BF%AD%E4%BB%A3sor"><span class="toc-number">4.</span> <span class="toc-text">逐次超松驰迭代(SOR)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">计算公式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%9F%A9%E9%98%B5"><span class="toc-number">6.</span> <span class="toc-text">迭代矩阵</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">收敛定理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%81%9C%E6%AD%A2%E5%87%86%E5%88%99%E5%8F%8A%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="toc-number">8.</span> <span class="toc-text">迭代停止准则及收敛速度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%81%9C%E6%AD%A2%E5%87%86%E5%88%99"><span class="toc-number">8.1.</span> <span class="toc-text">迭代停止准则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="toc-number">8.2.</span> <span class="toc-text">迭代收敛速度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E5%8F%8A%E5%85%B1%E8%BD%AD%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">最速下降法及共轭梯度法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%AD%A3%E5%AE%9A%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%B1%82%E8%A7%A3"><span class="toc-number">9.1.</span> <span class="toc-text">对称正定方程组的求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E6%80%A7%E5%AE%9A%E7%90%86"><span class="toc-number">9.2.</span> <span class="toc-text">等价性定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-number">9.3.</span> <span class="toc-text">最速下降法</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

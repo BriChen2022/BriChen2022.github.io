@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hilbert 空间 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Hilbert 空间</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-04-22T16:00:00.000Z" id="date"> 2023-04-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T08:40:35.550Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><p>在调和分析、偏微分方程和量子力学中自然出现的许多空间是
+Hilbert空间。容易看到，Hilbert空间是欧氏空间从有限维到无限维最直接的抽象和推广。Hilbert空间的出现和
+Fourier 级数理论的发展密切相连，Fourier
+变换为我们在本章将要研究的<strong>共轭理论</strong>和<strong>正交展开理论</strong>提供了无限维情形下最直接的例子.
+# 内积空间 ## 定义 ### 内积 - 线性（注意复数域的情况） -
+对称（复数域注意是共轭对称） - 非负 ### Hilbert空间 设<span
+class="math inline">\(H\)</span>为内积空间，定义范数(验证这个定义符合范数定义)</p>
+<p><span class="math display">\[
+||x||=&lt;x,x&gt;^{\frac{1}{2}}
+\]</span></p>
+<p>称此范数为<strong>内积诱导的范数</strong>，<span
+class="math inline">\(H\)</span>成为赋范空间，如果这个范数完备，则称<span
+class="math inline">\(H\)</span>为Hilbert空间。 ## 例子 ### 常见内积空间
+### 常见Hilbert空间 ## 定理 ### Cauchy-Schwarz 不等式 设<span
+class="math inline">\(H\)</span>为数域<span
+class="math inline">\(\mathbb{K}\)</span>上的内积空间，则对任意的<span
+class="math inline">\(x,y\in H\)</span>有，</p>
+<p><span class="math display">\[
+|&lt;x,y&gt;|^2\leq&lt;x,x&gt;&lt;y,y&gt;
+\]</span></p>
+<p>等号成立当且仅当x,y成比例。 变形：<span
+class="math inline">\(\left&lt;x,y\right&gt;\leq||x||||y||\)</span>
+<strong>proof</strong>：（利用二次函数判别式）</p>
+<p><span class="math display">\[
+\forall\lambda\in\mathbb{K},\left&lt;x+\lambda y,x+\lambda
+y\right&gt;\geq 0
+\]</span></p>
+<p>复数域时，取<span class="math inline">\(\lambda=t\cdot?\)</span> ###
+极化恒等式 设<span class="math inline">\(H\)</span>为数域<span
+class="math inline">\(\mathbb{K}\)</span>上的内积空间，那么 - <span
+class="math inline">\(\mathbb{K}=\mathbb{R}\)</span>，则</p>
+<p><span
+class="math inline">\(&lt;x,y&gt;=\frac{1}{2}(||x+y||^2-||x||^2-||y||^2)\)</span>
+- <span class="math inline">\(\mathbb{K}=\mathbb{C}\)</span>，则</p>
+<p><span
+class="math inline">\(&lt;x,y&gt;=\frac{1}{4}\sum_{k=0}^3i^k||x+i^ky||^2\)</span></p>
+<p><strong>proof</strong>:由定义展开验证。
+<strong>注</strong>：由极化恒等式可以验证，两个内积空间中的线性等距映射<span
+class="math inline">\(u:H\to K\)</span>是保内积的。即， <span
+class="math display">\[
+&lt;u(x),u(y)&gt;=&lt;x,y&gt;
+\]</span></p>
+<h3 id="平行四边形公式"><a href="#平行四边形公式" class="headerlink" title="平行四边形公式"></a>平行四边形公式</h3>
+<p>设<span class="math inline">\(H\)</span>为内积空间，<span
+class="math inline">\(\forall x,y\in H\)</span>有，</p>
+<p><span class="math display">\[
+||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)
+\]</span></p>
+<p>或者,</p>
+<p><span class="math display">\[
+\frac{1}{2}(||x+y||^2+||x-y||^2)=||x||^2+||y||^2
+\]</span></p>
+<h3 id="范数可以由内积导出"><a href="#范数可以由内积导出" class="headerlink" title="范数可以由内积导出"></a>范数可以由内积导出</h3>
+<p>设<span
+class="math inline">\(H\)</span>为<strong>赋范</strong>空间，如果范数满足平行四边形公式，那么范数可以用内积导出，也即<span
+class="math inline">\(H\)</span>可以成为内积空间。</p>
+<p><strong>proof</strong>：证明分四步。设内积如下（只证明实数域情形，内积实际就是先设极化恒等式），</p>
+<p><span class="math display">\[
+\left&lt;x,y\right&gt;=\frac{1}{2}(||x+y||^2-||x||^2-||y||^2)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{K}=\mathbb{C}\)</span>
+(1)非负、对称性显然。 (2)下证线性。</li>
+<li><span
+class="math inline">\(\left&lt;x,2y\right&gt;=2\left&lt;x,y\right&gt;\)</span></li>
+<li><span
+class="math inline">\(\left&lt;x+x&#39;,y\right&gt;=\left&lt;x,y\right&gt;+\left&lt;x&#39;,y\right&gt;\)</span></li>
+<li><span class="math inline">\(\lambda\in\mathbb{Q},\left&lt;\lambda
+x,y\right&gt;=\lambda\left&lt;x,y\right&gt;\)</span></li>
+<li><span class="math inline">\(\lambda\in\mathbb{R},\left&lt;\lambda
+x,y\right&gt;=\lambda\left&lt;x,y\right&gt;\)</span> # 投影算子 ## 定义
+### 正交和正交补 设<span
+class="math inline">\(H\)</span>为内积空间，若<span
+class="math inline">\(\left&lt;x,y\right&gt;=0,x,y\in
+H\)</span>则称<span class="math inline">\(x\)</span>与<span
+class="math inline">\(y\)</span>正交(<span class="math inline">\(x\bot
+y\)</span>)。若<span class="math inline">\(A\subset H\)</span>,称</li>
+</ul>
+<p><span class="math display">\[
+A^{\bot}=\{x\in H:x\bot y,\forall y\in A\}
+\]</span></p>
+<p>为A再H中的正交补。 <strong>注</strong>： 1. <span
+class="math inline">\(x\bot y\Rightarrow
+||x+y||^2=||x||^2+||y||^2\)</span> 2. 定义夹角：<span
+class="math inline">\(\cos\theta=\frac{Re\left&lt;x,y\right&gt;}{||x||||y||},x,y\neq
+0\)</span> 3. 由内积<strong>连续性</strong>可知，对任意 <span
+class="math inline">\(A \subset H\)</span>, <span
+class="math inline">\(A^{\perp}\)</span> 是 H 的闭向量子空间, 并有</p>
+<p><span class="math display">\[
+A^{\perp}=(\bar{A})^{\perp}=(\operatorname{span}
+A)^{\perp}=(\overline{\operatorname{span} A})^{\perp}
+\]</span></p>
+<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2>
+<h3 id="投影定理"><a href="#投影定理" class="headerlink" title="投影定理"></a>投影定理</h3>
+<p>设<span class="math inline">\(H\)</span>为Hilbert空间，<span
+class="math inline">\(C\)</span>是<span
+class="math inline">\(H\)</span>的非空闭凸子集，那么， - 对任意<span
+class="math inline">\(x\in H\)</span>存在唯一的<span
+class="math inline">\(y\in C\)</span>使得 <span class="math display">\[
+||x-y||=d(x,C)=\inf_{y\in C}d(x,y)
+\]</span> 则称 <span class="math inline">\(y\)</span> 是<span
+class="math inline">\(x\)</span>在<span
+class="math inline">\(C\)</span>上的投影，记作<span
+class="math inline">\(P_C(x)\)</span>. - 设<span
+class="math inline">\(y\in H\)</span>,则<span
+class="math inline">\(y=P_C(x)\Leftrightarrow
+Re\left&lt;x-y,z-y\right&gt;\leq 0,\forall z\in C\)</span> - 映射<span
+class="math inline">\(x\to
+P_C(x)\)</span>是常数为1的Lipschitz映射，即</p>
+<p><span class="math display">\[
+||P_C(x)-P_C(x&#39;)||\leq||x-x&#39;||
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P_C\circ P_C=P_C\)</span>且<span
+class="math inline">\(P_C(H)=C\)</span>,即投影算子是幂等算子。</li>
+</ul>
+<p><strong>proof</strong>：（1.下确界定义 Cauchy列 完备性
+平行四边形公式）（2.取凸组合）（3.用2的结论和Cauchy不等式）（4. 定义）
+<strong>注</strong>：证明只用到C的完备性.因此,若<strong>H是任意内积空间且C是完备的凸集</strong>，则定理的结论也成立.</p>
+<h3
+id="当上面定理的凸集c是向量子空间时其投影有下面的简单刻画">当上面定理的凸集C是向量子空间时,其投影有下面的简单刻画</h3>
+<p>设<span class="math inline">\(H\)</span>为Hilbert空间，<span
+class="math inline">\(E\)</span>为<span
+class="math inline">\(H\)</span>的闭的向量子空间。那么任意<span
+class="math inline">\(x\in H\)</span>，它的投影<span
+class="math inline">\(P_E(x)\)</span>是<span
+class="math inline">\(E\)</span>中满足<span
+class="math inline">\(x-y\perp E\)</span>的唯一元素<span
+class="math inline">\(y\)</span>，并且<span
+class="math inline">\(P_E\)</span>是<span
+class="math inline">\(H\)</span>到<span
+class="math inline">\(E\)</span>的线性算子，<span
+class="math inline">\(||P_E||\leq 1\)</span>。
+<strong>proof</strong>：投影定理的第二条、第三条 ### 正交分解 设 <span
+class="math inline">\(H\)</span> 是 Hilbert 空间, <span
+class="math inline">\(E\)</span> 是 <span
+class="math inline">\(H\)</span> 的向量子空间, 则有</p>
+<p><span class="math display">\[
+H=\bar{E} \oplus E^{\perp}
+\]</span></p>
+<p>也就是说, 任取 <span class="math inline">\(x \in H\)</span> ,
+存在<strong>唯一的分解</strong> <span
+class="math inline">\(x=y+z\)</span> , 这里 <span
+class="math inline">\((y, z) \in \bar{E} \times E^{\perp}\)</span> ,
+并有</p>
+<p><span class="math display">\[
+\|x\|^{2}=\|y\|^{2}+\|z\|^{2}
+\]</span></p>
+<p><strong>proof</strong>:书中唯一性证明好像有误。</p>
+<p><strong>推论</strong>：设 <span class="math inline">\(H\)</span> 是
+Hilbert 空间, <span class="math inline">\(E\)</span> 是 <span
+class="math inline">\(H\)</span> 的向量子空间, 则有</p>
+<p><span class="math display">\[
+(E^{\perp})^{\perp}=\bar{E}
+\]</span></p>
+<p><strong>proof</strong>：（提示：<span class="math inline">\(x\in
+E^{\perp},P_E(x)=0\)</span>,E为向量空间） # 对偶和共轭 !!!
+一般来说,我们很难描述一个赋范空间的对偶空间.Riesz表示定理说明Hilbert空间的对偶空间<strong>是它本身</strong>.
+## 定义 ### 酉算子 映射 <span class="math inline">\(u \in
+\mathcal{B}(H)\)</span> 被称为酉算子, 若 <span
+class="math inline">\(u^{*} u=u u^{*}=\mathrm{I}_{H}\)</span>.
+<strong>注</strong>：<span
+class="math inline">\(\mathcal{B}(H)\)</span>在所有酉算子构成一个群。 ##
+定理 ### Riesz 表示定理 设<span
+class="math inline">\(H\)</span>为数域<span
+class="math inline">\(\mathbb{K}\)</span>上的Hilbert空间，那么<span
+class="math inline">\(\varphi:H\to\mathbb{K}\)</span>是一个连续线性泛函的充要条件是存在向量<span
+class="math inline">\(y\in H\)</span>，使得</p>
+<p><span class="math display">\[
+\varphi(x)=\left&lt;x,y\right&gt;,\forall x\in H
+\]</span></p>
+<p>而且如此得到的向量<span
+class="math inline">\(y\)</span>是唯一的且满足<span
+class="math inline">\(||y||=||\varphi||\)</span> <strong>proof</strong>:
+<strong>注</strong>:定理结论表明了 ### 伴随算子 设<span
+class="math inline">\(H,K\)</span>为两个的Hilbert空间，<span
+class="math inline">\(u\in\mathcal{B}(H,K)\)</span>，那么存在唯一的<span
+class="math inline">\(u^*\in\mathcal{B}(K,H)\)</span>使得，</p>
+<p><span class="math display">\[
+\left&lt;u^*(x),y\right&gt;=\left&lt;x,u(y)\right&gt;,\forall x\in
+K,\forall y\in H
+\]</span></p>
+<p>并且<span class="math inline">\(||u||=||u^*||\)</span>.称<span
+class="math inline">\(u^*\)</span>为<span
+class="math inline">\(u\)</span>的伴随。 <strong>proof</strong>：
+<strong>注</strong>：有如下几个结论 - <span
+class="math inline">\((u^*)^*=u,u\in \mathcal{B}(H,K)\)</span> - 123 -
+123阿巴阿巴</p>
+<h1 id="正交基"><a href="#正交基" class="headerlink" title="正交基"></a>正交基</h1>
+<p>这节将证明<strong>任一Hilbert空间均有正交基</strong>，这是Hilbert空间特有的性质;正交基是处理Hilbert空间的有效工具.
+## 定义 设<span class="math inline">\(H\)</span>为Hilbert空间。 -
+<strong>向量族的正交</strong> 两两正交。 - <strong>规范正交</strong>
+两两正交且各个向量的范数等于1。 - <strong>完全的</strong>
+向量族的线性扩张（<span class="math inline">\(span\{(e_i)_{i\in
+I}\}\)</span>,<span class="math inline">\(I\)</span>指标集）在<span
+class="math inline">\(H\)</span>中稠密。 - <strong>规范正交基</strong>
+<span class="math inline">\((e_i)_{i\in I}\)</span>在<span
+class="math inline">\(H\)</span>中<strong>规范正交</strong>且<strong>完全的</strong>，称为<span
+class="math inline">\(H\)</span>的规范正交基。</p>
+<h2 id="定理-1"><a href="#定理" class="headerlink" title="定理"></a>定理</h2>
+<h3 id="section"><a href="#1" class="headerlink" title="1"></a>1</h3>
+<p>设 <span class="math inline">\(H\)</span> 是 Hilbert 空间, <span
+class="math inline">\(\left(e_{1}, \cdots, e_{n}\right)\)</span> 是
+<span class="math inline">\(H\)</span> 中的规范正交序列, 令 <span
+class="math inline">\(E=\operatorname{span}\left(e_{1}, \cdots,
+e_{n}\right)\)</span>. 那么对任意 <span class="math inline">\(x \in
+H\)</span>, 有</p>
+<p><span class="math display">\[
+P_{E}(x)=\sum_{i=1}^{n}\left\langle x, e_{i}\right\rangle e_{i}
+\]</span></p>
+<p>且</p>
+<p><span class="math display">\[
+\|x\|^{2}=\left\|x-P_{E}(x)\right\|^{2}+\sum_{i=1}^{n}\left|\left\langle
+x, e_{i}\right\rangle\right|^{2}
+\]</span></p>
+<h3 id="section-1"><a href="#2" class="headerlink" title="2"></a>2</h3>
+<p>设 <span class="math inline">\(H\)</span> 是 Hilbert 空间, <span
+class="math inline">\(\left(e_{n}\right)_{n \geqslant 1}\)</span> 是
+<span class="math inline">\(H\)</span> 中的规范正交序列. 则
+下面命题等价: (1) <span class="math inline">\(\left(e_{n}\right)_{n
+\geqslant 1}\)</span> 是完全的 (即 <span
+class="math inline">\(\left(e_{n}\right)_{n \geqslant 1}\)</span> 是
+<span class="math inline">\(H\)</span> 中的规范正交基). (2) 任取 <span
+class="math inline">\(x \in H\)</span>, 存在唯一的序列 <span
+class="math inline">\(\left(x_{n}\right) \subset \mathbb{K}\)</span>,
+使得级数 <span class="math inline">\(\sum_{n \geqslant 1} x_{n}
+e_{n}\)</span> 收敛到 <span class="math inline">\(x\)</span>. ###
+Bessel不等式 ### Parseval恒等式 ### Gram-Schmidt 正交化</p>
+<h3
+id="任一可分的hilbert空间具有一列可为有限规范正交基.">任一可分的Hilbert空间具有一列(可为有限)规范正交基.</h3>
+<p>设<span
+class="math inline">\(H\)</span>是可分的非零Hilbert空间，则<span
+class="math inline">\(H\)</span>有规范正交基.(这里提醒:一个拓扑空间是可分的,若它有最多可数的稠密子集.)</p>
+<p>.jpg</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/15/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">← Next 数据链路层的功能</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/02/18/%E6%8A%A5%E5%91%8A/">报告 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%8C%E5%9B%9B%E8%BE%B9%E5%BD%A2%E5%85%AC%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">平行四边形公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E6%95%B0%E5%8F%AF%E4%BB%A5%E7%94%B1%E5%86%85%E7%A7%AF%E5%AF%BC%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">范数可以由内积导出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-number"></span> <span class="toc-text">定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%95%E5%BD%B1%E5%AE%9A%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">投影定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E4%B8%8A%E9%9D%A2%E5%AE%9A%E7%90%86%E7%9A%84%E5%87%B8%E9%9B%86c%E6%98%AF%E5%90%91%E9%87%8F%E5%AD%90%E7%A9%BA%E9%97%B4%E6%97%B6%E5%85%B6%E6%8A%95%E5%BD%B1%E6%9C%89%E4%B8%8B%E9%9D%A2%E7%9A%84%E7%AE%80%E5%8D%95%E5%88%BB%E7%94%BB"><span class="toc-number">2.</span> <span class="toc-text">当上面定理的凸集C是向量子空间时,其投影有下面的简单刻画</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E4%BA%A4%E5%9F%BA"><span class="toc-number"></span> <span class="toc-text">正交基</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-number"></span> <span class="toc-text">定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#section"><span class="toc-number">1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#section-1"><span class="toc-number">2.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E4%B8%80%E5%8F%AF%E5%88%86%E7%9A%84hilbert%E7%A9%BA%E9%97%B4%E5%85%B7%E6%9C%89%E4%B8%80%E5%88%97%E5%8F%AF%E4%B8%BA%E6%9C%89%E9%99%90%E8%A7%84%E8%8C%83%E6%AD%A3%E4%BA%A4%E5%9F%BA."><span class="toc-number">3.</span> <span class="toc-text">任一可分的Hilbert空间具有一列(可为有限)规范正交基.</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
