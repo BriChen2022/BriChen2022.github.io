@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1></h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-16T13:29:00.000Z" id="date"> 2023-05-16</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-05-16T14:37:57.606Z" id="updated"> 2023-05-16</time></div></span></div></div><hr><div id="post-content"><p><strong>定理</strong> 设 <span class="math inline">\(E\)</span>
+为Banach空间， <span class="math inline">\(F\)</span> 为赋范空间，<span
+class="math inline">\((u_i)_{i\in I}\)</span> 为一族从<span
+class="math inline">\(E\)</span>到<span
+class="math inline">\(F\)</span>的有界线性算子，即<span
+class="math inline">\((u_i)_{i\in I}\subset
+\mathcal{B}(E,F)\)</span>。若对<span
+class="math inline">\(E\)</span>中任意点<span
+class="math inline">\(x\)</span>，有<span
+class="math inline">\(\sup_{i\in I}\vert\vert u_i(x)\vert\vert
+&lt;\infty\)</span> ，则有</p>
+<p><span class="math display">\[
+\sup_{i\in I}\vert\vert u\vert\vert &lt;\infty
+\]</span></p>
+<p>即算子族 <span class="math inline">\((u_i)_{i\in I}\)</span> 在 <span
+class="math inline">\(\mathcal{B}(E,F)\)</span>在有界，该算子族是有界集。</p>
+<p><strong>proof</strong>
+证明前先说点别的，这个定理（命题）的逆否命题又叫做“共鸣定理”。Banach-Steinhaus
+定理通常也称作“一致有界原理”，而这个定理的发现者称他为 principal of
+concentration of singularity
+（奇性聚集定理），也就是似乎它的发现者也是从这个命题的反向来理解的，总之这个命题的逆否命题是很重要的。比如，我们可以用来它说明Fourier级数的发散。下面回归正题：</p>
+<p>设 <span class="math display">\[
+M(x)=\sup_{i\in I}||u_i(x) ||
+\]</span> <span class="math display">\[
+F_n=\{x\in E:M(x)\leq n\}
+\]</span> 由<span class="math inline">\(u_i\)</span>连续可知， <span
+class="math display">\[
+\{x\in E:||u_i(x) ||\leq n\}
+\]</span> 是<span class="math inline">\(E\)</span>中闭集，那么， <span
+class="math display">\[
+F_n=\bigcap_{i\in I}\{x\in E:||u_i(x) ||\leq n\}
+\]</span> 也是闭集。 由定理假设，<span class="math inline">\(\forall
+x\in E\)</span>，有<span class="math inline">\(M(x)&lt;\infty\)</span>
+，因此，对任意<span class="math inline">\(x\)</span>必定属于某个<span
+class="math inline">\(F_n\)</span> 于是有， <span
+class="math display">\[
+E=\bigcup_{n\geq 1}F_n
+\]</span> 由Baire定理，<span
+class="math inline">\(E\)</span>是Banach空间，故<span
+class="math inline">\(E\)</span>是Baire空间。由Baire空间的性质可知，
+<span class="math inline">\(\bigcup_{n\geq 1}\mathring{F_n}\)</span>
+在<span class="math inline">\(E\)</span>中稠密，故存在某个<span
+class="math inline">\(n\)</span>，使得<span
+class="math inline">\(\mathring{F_n}\neq\varnothing\)</span>
+。因此存在开球<span
+class="math inline">\(B(x_0,r)\subset\mathring{F_n}\)</span> 即对<span
+class="math inline">\(\forall x\in B(x_0,r)\)</span> 有， <span
+class="math display">\[
+M(x)=\sup_{i\in I}||u_i(x) ||\leq n
+\]</span> 等价地，若<span class="math inline">\(\forall x\in
+B(0,r)\)</span> 有， <span class="math display">\[
+M(x+x_0)=\sup_{i\in I}||u_i(x+x_0) ||\leq n
+\]</span> 于是，由线性算子的线性， <span class="math display">\[
+||u_i(x+x_0-x_0)||\leq||u_i(x+x_0||+||u_i(x_0)||\leq n+M(x_0)
+\]</span> 还是因为线性，对<span class="math inline">\(\forall x\in
+B(0,1)\)</span> <span class="math display">\[
+||u_i(x)||\leq \frac{n+M(x_0)}{r}=Constant
+\]</span> 故，<span class="math inline">\(\sup_{i\in I}\vert\vert
+u\vert\vert &lt;\infty\)</span>。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/17/23.5.17%20%E7%90%B4%E7%94%9F%E4%B8%8D%E7%AD%89%E5%BC%8F%EF%BC%88Jenssen%EF%BC%89/">← Next </a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/15/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%92%8C%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95/"> Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
