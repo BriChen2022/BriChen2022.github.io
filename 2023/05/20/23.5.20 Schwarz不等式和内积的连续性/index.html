@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.5.20 Schwarz不等式和内积的连续性 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.5.20 Schwarz不等式和内积的连续性</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-19T17:01:00.000Z" id="date"> 2023-05-20</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-05-20T17:14:42.842Z" id="updated"> 2023-05-21</time></div></span></div></div><hr><div id="post-content"><p><strong>Schwarz不等式</strong> <span class="math inline">\(\forall
+x,y\in H\)</span> ,<span
+class="math inline">\(H\)</span>是Hilbert空间，有 <span
+class="math display">\[
+|(x,y)|^2\leq(x,x)(y,y)
+\]</span></p>
+<p><strong>Proof</strong> 对任意的<span
+class="math inline">\(\lambda\in\mathbb{C},x,y\in H\)</span> <span
+class="math display">\[
+(x+\lambda y,x+\lambda
+y)=(x,x)+|\lambda|^2(y,y)+\lambda(y,x)+\bar{\lambda}(x,y)\geq0
+\]</span> 若<span class="math inline">\(y=0\)</span>，则不等式显然成立。
+若<span class="math inline">\(y\neq 0\)</span>，则令 <span
+class="math display">\[
+\lambda=\frac{-(x,y)}{(y,y)}
+\]</span> 代入上式得， <span class="math display">\[
+(x,y)+|\frac{-(x,y)}{(y,y)}|^2(y,y)+\frac{-(x,y)}{(y,y)}(y,x)+\overline{\frac{-(x,y)}{(y,y)}}(x,y)\geq
+0
+\]</span> <span class="math display">\[
+(x,y)+\frac{|(x,y)|^2}{(y,y)}+\frac{-|(x,y)|^2}{(y,y)}+\frac{-|(x,y)|^2}{(y,y)}\geq
+0
+\]</span> <span class="math display">\[
+(x,y)\geq\frac{(x,y)^2}{(y,y)}
+\]</span> 故有， <span class="math display">\[
+|(x,y)|^2\leq(x,x)(y,y)=||x||\cdot||y||
+\]</span></p>
+<p><strong>内积的连续性</strong> <span
+class="math inline">\(H\)</span>是Hilbert空间,内积<span
+class="math inline">\((x,y）\)</span>是关于<span
+class="math inline">\(x,y\)</span>的连续函数，即 <span
+class="math display">\[
+(x,y)=(\lim_{n\to\infty}x_n,\lim_{n\to\infty}y_n)=lim_{n\to\infty}(x_n,y_n)
+\]</span></p>
+<p><strong>Proof</strong> 要证明内积连续，即要说明 <span
+class="math display">\[
+|(x_n,y_n)-(x,y)|\to 0
+\]</span> 考察， <span class="math display">\[
+\begin{aligned}
+|(x_n,y_n)-(x_n+x-x_n,y)|&amp;=|(x_n,y_n)-(x_n,y)-(x-x_n,y)|\\
+&amp;\leq|(x_n,y_n)-(x_n,y)|+|(x-x_n,y)|\\
+&amp;=|(x_n,y_n-y)|+|(x-x_n,y)|
+\end{aligned}
+\]</span> 有Schwartz不等式得， <span class="math display">\[
+|(x_n,y_n-y)|+|(x-x_n,y)|\leq||x_n||\cdot||y_n-y||+||x_n-x||\cdot||y||
+\]</span> 又因为<span class="math inline">\(x_n\to x,y_n\to
+y\quad(n\to\infty)\)</span> ,所以有<span
+class="math inline">\(||x_n||\)</span>有界，以及 <span
+class="math display">\[
+||y_n-y||\to0,||x_n-x||\to0
+\]</span> 所以就有， <span class="math display">\[
+|(x_n,y_n)-(x,y)|\to 0
+\]</span> 即内积是连续函数。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/19/23.5.19%20Parserval%20%E6%81%92%E7%AD%89%E5%BC%8F/">23.5.19 Parserval 恒等式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.5.19 Parserval 恒等式 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.5.19 Parserval 恒等式</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-19T08:55:00.000Z" id="date"> 2023-05-19</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-05-20T17:03:12.312Z" id="updated"> 2023-05-21</time></div></span></div></div><hr><div id="post-content"><p><strong>Parserval恒等式</strong> 设<span
+class="math inline">\(H\)</span>是Hilbert空间，<span
+class="math inline">\((e_n)_{n\geq 1}\)</span>是<span
+class="math inline">\(H\)</span>中的规范正交<strong>基</strong>，则对任意<span
+class="math inline">\(x\in H\)</span>，有， <span
+class="math display">\[
+\sum_{n=1}^{\infty}|\langle x, e_n \rangle|^2=||x||^2
+\]</span> 更一般地，<span class="math inline">\(x，y\in H\)</span>，有，
+<span class="math display">\[
+\langle x, y \rangle=\sum_{n=1}^{\infty}\langle x, e_n \rangle\langle
+e_n, y \rangle
+\]</span></p>
+<p><strong>Proof</strong> 由Bessel不等式的证明过程可以发现，<a
+href="23.5.18%20Bessel不等式与Parserval恒等式.md">23.5.18
+Bessel不等式与Parserval恒等式</a> <span class="math display">\[
+\begin{aligned}
+||x-\sum_{k=1}^{n}\langle x, e_k \rangle
+e_k||^2&amp;=||x||^2-\sum_{k=1}^{n}\langle x, e_k \rangle^2
+\end{aligned}
+\]</span> 即， <span class="math display">\[
+\begin{aligned}
+||x||^2-||x-\sum_{k=1}^{n}\langle x, e_k \rangle
+e_k||^2&amp;=\sum_{k=1}^{n}\langle x, e_k \rangle^2
+\end{aligned}
+\]</span> 我们先从直观感觉上看一下下面这个式子， <span
+class="math display">\[
+\sum_{k=1}^{n}\langle x, e_k \rangle e_k
+\]</span> 由于定理条件<span class="math inline">\((e_n)_{n\geq
+1}\)</span>是<span
+class="math inline">\(H\)</span>中的规范正交<strong>基</strong>，<span
+class="math inline">\(\langle x, e_k \rangle\)</span>相当于<span
+class="math inline">\(x\)</span>在<span
+class="math inline">\(e_k\)</span>上的投影，设<span
+class="math inline">\(E_n=span\{e_1,\cdots,e_n\}\)</span>,那么 <span
+class="math display">\[
+P_{E_{n}}(x)=\sum_{k=1}^{n}\langle x, e_k \rangle e_k\quad x\in H
+\]</span> 即这个式子表达的含义为<span
+class="math inline">\(x\)</span>在<span
+class="math inline">\(E_n\)</span>上的投影,也就是<span
+class="math inline">\(P_{E_n}(x)\)</span>，同时还注意到， <span
+class="math display">\[
+||P_{E_n}(x)||^2=\langle P_{E_n}(x),P_{E_n}(x)
+\rangle=\langle\sum_{k=1}^{n}\langle x, e_k \rangle
+e_k,\sum_{k=1}^{n}\langle x, e_k \rangle e_k \rangle
+\]</span> 即有， <span class="math display">\[
+||P_{E_n}(x)||^2=\sum_{k=1}^{n}|\langle x, e_k \rangle|^2
+\]</span> 于是原来得到的恒等式就变成了， <span class="math display">\[
+\begin{aligned}
+||x||^2-||x-P_{E_n}(x)||^2&amp;=||P_{E_n}(x)||^2
+\end{aligned}
+\]</span>
+这样一来这个等式就更“清晰”了，因为它有着很“直观的”几何意义，有点类似于勾股定理：</p>
+<blockquote>
+<p>投影的长度<sup>2=向量长度</sup>2+(向量长度-投影长度)^2</p>
+</blockquote>
+<p>这件事情在二维和三维空间上都是很直观的。这个恒等式也说明了在更高维度空间这件事情也是存在的。</p>
+<p>但是实际上，上面的论证是很不严谨的，因为我们一开始并没有严格的给出投影的定义，仅从直观的角度出发去想象这样一个事实，由于严格论证需要很大篇幅，不符合我写这个专栏的目的相悖，今后可能会补充说明有关投影的事实，但今天的证明就先承认上面的等式。</p>
+<p>下面回归正题，要证明这个恒等式，实际上就是要证明当n趋于无穷大时，
+<span class="math display">\[
+||x-P_{E_n}(x)||^2\to 0
+\]</span> 或者说，<span class="math inline">\(x\)</span>在<span
+class="math inline">\(E_n\)</span>上的投影是依范数收敛到<span
+class="math inline">\(x\)</span>的，这其实在二维，三维情形上是很直观的事实。</p>
+<p>由于<span class="math inline">\((e_n)_{n\geq 1}\)</span>是<span
+class="math inline">\(H\)</span>中的规范正交<strong>基</strong>，即这个序列张成的线性空间在<span
+class="math inline">\(H\)</span>中是稠密的，于是有 <span
+class="math display">\[
+\forall \epsilon&gt;0\forall x\in H,\exists y\in
+span\{e_1,\cdots,e_n\}=E,\quad s.t. ||x-y||\leq\epsilon
+\]</span> 因而， <span class="math display">\[
+||x-P_{E_n}(x)||\leq||x-y||+||y-P_{E_n}(y)||+||P_{E_n}(y)-P_{E_n}(x)||
+\]</span> 由于投影算子是常数为1的Lipschitz映射，即(这个性质以后会证明)
+<span class="math display">\[
+||P_{E_n}(y)-P_{E_n}(x)||\leq 1\cdot||x-y||
+\]</span> 所以有， <span class="math display">\[
+||x-P_{E_n}(x)||\leq2||x-y||+||y-P_{E_n}(y)||\leq
+2\epsilon+||y-P_{E_n}(y)||
+\]</span> 而对<span class="math inline">\(y\in
+span\{e_1,\cdots,e_n\}=E\)</span>,存在<span class="math inline">\(N\geq
+1\)</span>和一系列数<span
+class="math inline">\(\alpha_i,i=1,\cdots,N\)</span>使得， <span
+class="math display">\[
+y=\sum_{i=1}^{N}\alpha_ie_i
+\]</span> 则有， <span class="math display">\[
+P_{E_N}(y)=\sum_{i=1}^{N}\langle y, e_k \rangle
+e_i=\sum_{i=1}^{N}\langle \sum_{i=1}^{N}\alpha_ie_i, e_i \rangle
+e_i=\sum_{i=1}^{N}\alpha_ie_i=y
+\]</span> 因此，当<span class="math inline">\(n\geq N\)</span>时，就有，
+<span class="math display">\[
+||x-P_{E_n}(x)||\leq 2\epsilon+||y-P_{E_n}(y)||=2\epsilon
+\]</span> 也就有了 <span class="math display">\[
+\limsup_{n\to\infty}||x-P_{E_n}(x)||=0
+\]</span> 故， <span class="math display">\[
+\begin{aligned}
+\lim_{n\to\infty}(||x||^2-||x-P_{E_n}(x)||^2)&amp;=\lim_{n\to\infty}||P_{E_n}(x)||^2\\
+||x||^2+0&amp;=||P_{E}(x)||^2\\
+\end{aligned}
+\]</span> 即， <span class="math display">\[
+||x||^2=||\sum_{n=1}^{\infty}\langle x,e_n\rangle e_n||^2
+\]</span> 这就是Parserval恒等式。</p>
+<p>注意，上面取极限的过程用到了范数的连续性，并且<span
+class="math inline">\(E=\cup_{n=1}^{\infty}E_n\)</span> 。
+尽管补充了这些，但其实证明还是不严谨的，因为，我们并没有说明，极限 <span
+class="math display">\[
+\lim_{n\to\infty}P_{E_n}(x)
+\]</span> 是一定存在的，且它的极限就等于<span
+class="math inline">\(x\)</span>在<span
+class="math inline">\(E\)</span>上的投影，这些事实看似显然或者不显然，但都是需要论证的，碍于篇幅，以后有机会再补充。</p>
+<p>至于下边的那个等式的证明其实很简单，但是因为为了简化上面恒等式省略了很多篇幅，导致说明起来不那么容易，这其实也是追求直观感受的“代价”吧。还是有机会再补充。</p>
+<p>不过这里也可以提示一下，如果承认了下面事实 <span
+class="math display">\[
+x=\lim_{n\to\infty}P_{E_n}(x)=\sum_{i=1}^{\infty}\langle x,e_i\rangle
+e_i
+\]</span> 等式是不是显然成立的？</p>
+<p>另外，Parserval最常见的使用场景是再Fourier级数上，定义平方可积空间上的内积，我们就得到了经常可以看到的Parserval恒等式。
+<span class="math display">\[
+\frac{a_0^2}{4}+\frac{1}{2}\sum_{n=1}^{\infty}(a_n^2+b_n^2)=\frac{1}{2\pi}\int_{0}^{2\pi}|f(x)|^2dx
+\]</span></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/20/23.5.20%20Schwarz%E4%B8%8D%E7%AD%89%E5%BC%8F%E5%92%8C%E5%86%85%E7%A7%AF%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/">← Next 23.5.20 Schwarz不等式和内积的连续性</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/18/23.5.18%20Bessel%E4%B8%8D%E7%AD%89%E5%BC%8F%E4%B8%8EParserval%E6%81%92%E7%AD%89%E5%BC%8F/">23.5.18 Bessel不等式与Parserval恒等式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
