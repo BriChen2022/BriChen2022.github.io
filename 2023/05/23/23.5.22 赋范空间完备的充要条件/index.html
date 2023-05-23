@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.5.22 赋范空间完备的充要条件 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.5.22 赋范空间完备的充要条件</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-22T17:14:00.000Z" id="date"> 2023-05-23</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-05-22T17:15:15.400Z" id="updated"> 2023-05-23</time></div></span></div></div><hr><div id="post-content"><p><strong>定理内容</strong></p>
+<p>赋范空间<span
+class="math inline">\((E,||\cdot||)\)</span>是完备的，等价于此空间中的绝对收敛级数必收敛。</p>
+<p><strong>Proof</strong> <span
+class="math inline">\((\Leftarrow)\)</span> 任取该空间中Cauchy列<span
+class="math inline">\((x_n)\)</span>，可以选择子列<span
+class="math inline">\((x_{n_k})\)</span>满足， <span
+class="math display">\[
+||x_{n_{k+1}}-x_{n_k}||\leq2^{-k}
+\]</span> 那么可以知道（柯西判别法），数项级数， <span
+class="math display">\[
+\sum_{k\geq1}||x_{n_{k+1}}-x_{n_k}||
+\]</span> 是收敛的，即，级数 <span class="math display">\[
+\sum_{k\geq1}(x_{n_{k+1}}-x_{n_k})
+\]</span>
+绝对收敛。由充分性假设（空间中的绝对收敛级数必收敛），可得，级数 <span
+class="math display">\[
+\lim_{k\to\infty}x_{n_k}=\sum_{k\geq1}(x_{n_{k+1}}-x_{n_k})
+\]</span> 是收敛的，即子列<span
+class="math inline">\((x_{n_k})\)</span>收敛。故而原柯西列也是收敛的，即证明了空间完备。</p>
+<p><span class="math inline">\((\Rightarrow)\)</span> 设级数 <span
+class="math display">\[
+\sum_{k\geq1}x_k,\quad S_n=\sum_{k=1}^nx_k
+\]</span> 是绝对收敛的，那么， <span class="math display">\[
+||S_{n+p}-S_n||=||\sum_{k=n+1}^{n+p}x_k||\leq\sum_{k=n+1}^{n+p}||x_k||\to0,\forall
+n,p\in\mathbb{N}^+
+\]</span> 即<span class="math inline">\((S_n)\)</span>为<span
+class="math inline">\(E\)</span>中Cauchy列，由于必要性假设（空间是完备的），故空间中的Cauchy列收敛，<span
+class="math inline">\((S_n)\)</span>收敛，也就是级数 <span
+class="math display">\[
+\sum_{k\geq1}x_k
+\]</span> 是收敛的。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/21/23.5.21%20Lp%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E4%B8%8D%E7%AD%89%E5%BC%8F/">23.5.21 Lp空间上的几个重要不等式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
