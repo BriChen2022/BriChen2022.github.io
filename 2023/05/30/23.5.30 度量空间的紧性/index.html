@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.5.30 度量空间的紧性 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.5.30 度量空间的紧性</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-30T12:31:00.000Z" id="date"> 2023-05-30</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-05-30T14:09:50.416Z" id="updated"> 2023-05-30</time></div></span></div></div><hr><div id="post-content"><h2 id="紧性的定义"><a href="#紧性的定义" class="headerlink" title="紧性的定义"></a>紧性的定义</h2>
+<p>紧性，是很多数学学科中的基础概念，出现频率特别高。分析学中一些基本定理的成立，本质上是因为其拓扑的紧性。</p>
+<p>简单地说，“紧的”指的就是任意开覆盖都有有限子覆盖，数学专业的学生应该在学习实数系的基本定理的时候就接触过这个概念，什么是覆盖，什么是开覆盖，什么是有限覆盖定理。<strong>有限覆盖定理</strong>揭示了闭区间的一个本质属性也就是“紧致性”（简称为紧性）。</p>
+<p>紧性是一种拓扑概念，一个集合是不是紧的依赖其所在空间的拓扑结构，下面是紧性的定义:</p>
+<p>设 <span class="math inline">\(E\)</span> 是拓扑空间. (1) 若 <span
+class="math inline">\(E\)</span> 上的开集族 <span
+class="math inline">\(\left(O_{i}\right)_{i \in I}\)</span> 满足 <span
+class="math inline">\(E=\bigcup_{i \in I} O_{i}\)</span>, 则称 <span
+class="math inline">\(\left(O_{i}\right)_{i \in I}\)</span> 是 <span
+class="math inline">\(E\)</span> 的开覆盖. (2) 若 <span
+class="math inline">\(E\)</span> 的任意一个开覆盖 <span
+class="math inline">\(\left(O_{i}\right)_{i \in I}\)</span>
+中都可取出有限个子集覆盖, 则称 <span class="math inline">\(E\)</span> 是
+紧的 (也就是说, 存在 <span class="math inline">\(I\)</span> 的有限子集
+<span class="math inline">\(J\)</span>, 使得 <span
+class="math inline">\(\bigcup_{i \in J} O_{i}=E\)</span> ).</p>
+<h2 id="紧性的刻画"><a href="#紧性的刻画" class="headerlink" title="紧性的刻画"></a>紧性的刻画</h2>
+<p>在度量空间中，紧性有着更加丰富的刻画，特别是可以同序列来刻画紧性。</p>
+<p>今晚介绍的度量空间中的紧性刻画定理，是在泛函分析中经常使用到的，提到紧性要能够很自然的想起这几种紧性的刻画。（当然要限定在度量空间中使用）</p>
+<p><strong>紧性刻画定理</strong> 设 <span class="math inline">\((E,
+d)\)</span> 是度量空间, 则下面的命题等价: (1) <span
+class="math inline">\((E, d)\)</span> 是紧空间. (2) 任一 <span
+class="math inline">\(E\)</span> 中的无限子集必有凝聚点 (称这样的 <span
+class="math inline">\(E\)</span> 是列紧的). (3) 任一 <span
+class="math inline">\(E\)</span> 中的序列有收敛的子列 (称这样的 <span
+class="math inline">\(E\)</span> 是序列紧的). (4) <span
+class="math inline">\((E, d)\)</span> 是完备的且预紧的 (预紧性是指:
+对任意 <span class="math inline">\(\varepsilon&gt;0, E\)</span>
+可被有限个以 <span class="math inline">\(\varepsilon\)</span>
+为半径的开球覆盖).</p>
+<p><strong>Proof</strong> <span
+class="math inline">\((1)\Rightarrow(2)\)</span> 反证法。假设<span
+class="math inline">\(E\)</span>中有无限集<span
+class="math inline">\(F\)</span>没有凝聚点，即 <span
+class="math display">\[
+\forall x\in E,\exists\ open\ ball\  B(x,\epsilon_x),\
+s.t.B(x,\epsilon_x)\cap (F\backslash\{x\})=\emptyset
+\]</span> 显然， <span class="math display">\[
+E=\bigcup_{x \in E} B(x,\epsilon_x)
+\]</span> 即<span class="math inline">\(\bigcup_{x \in E}
+B(x,\epsilon_x)\)</span>是<span
+class="math inline">\(E\)</span>的开覆盖，又 <span
+class="math inline">\((E, d)\)</span>
+是紧空间，则由紧性的定义，可取出有限个子集覆盖，记成 <span
+class="math display">\[
+\bigcup_{1\leq k\leq n} B(x_k,\epsilon_k)=E
+\]</span> 注意， <span class="math display">\[
+\begin{aligned}
+&amp;B(x,\epsilon_x)\cap F=\{x\}&amp;x\in F\\
+&amp;B(x,\epsilon_x)\cap F=\emptyset&amp;x\notin F
+\end{aligned}
+\]</span> 因此， <span class="math display">\[
+\bigcup_{1\leq k\leq n} B(x_k,\epsilon_k)
+\]</span> 最多只能包含<span class="math inline">\(F\)</span>中的<span
+class="math inline">\(n\)</span>个点，而 <span class="math display">\[
+F\subset E=\bigcup_{1\leq k\leq n} B(x_k,\epsilon_k)
+\]</span> 即<span class="math inline">\(F\)</span>是<span
+class="math inline">\(\bigcup_{1\leq k\leq n}
+B(x_k,\epsilon_k)\)</span>的子集（应该包含<span
+class="math inline">\(F\)</span>的全部点，也就是说应该包含无限个点），这与<span
+class="math inline">\(F\)</span>是无限集矛盾。</p>
+<p><span class="math inline">\((2)\Rightarrow(3)\)</span>
+设无限序列<span class="math inline">\((x_n)\in
+E\)</span>。若序列中只有有限个<strong>不同的值</strong>，则容易取出收敛子列。若序列是无限个不同的值，则由”
+任一 <span class="math inline">\(E\)</span>
+中的无限子集必有凝聚点“，知序列有凝聚点，由凝聚点的定义容易取出一收敛子列。</p>
+<p>设序列有凝聚点<span class="math inline">\(x\)</span>，任取开球<span
+class="math inline">\(B(x,\frac{1}{k})\)</span>, 都有 <span
+class="math display">\[
+(B(x,\frac{1}{k}) \cap (x_n)) \backslash\{x\} \neq \varnothing
+\]</span> 在上面的集合中取一点<span
+class="math inline">\(x_{n_k}\)</span>，且<span
+class="math inline">\(x_{n_k}\neq
+x_{n_{k-1}}\)</span>，如此就得到了一收敛子列。</p>
+<p><span class="math inline">\((3)\Rightarrow(4)\)</span> 任取<span
+class="math inline">\(E\)</span>中柯西列<span
+class="math inline">\((x_n)\)</span>，由” 任一 <span
+class="math inline">\(E\)</span> 中的序列有收敛的子列“，可知柯西列<span
+class="math inline">\((x_n)\)</span>有收敛子列，那么这个柯西列就是收敛的（柯西列的简单性质）。故空间<span
+class="math inline">\(E\)</span>是完备的。下面证明预紧性。</p>
+<p>假设<span class="math inline">\(E\)</span>不是预紧的，即存在 <span
+class="math inline">\(\varepsilon&#39;&gt;0, E\)</span> 不可被有限个以
+<span class="math inline">\(\varepsilon&#39;\)</span>
+为半径的开球覆盖。此时任取<span
+class="math inline">\(x_1\)</span>，必有<span
+class="math inline">\(E\subsetneq B(x_1,\epsilon&#39;)\)</span>
+，任取<span class="math inline">\(x_2\in E\backslash
+B(x_1,\epsilon&#39;)\)</span>，有<span class="math inline">\(E\subsetneq
+(B(x_1,\epsilon&#39;)\cup B(x_2,\epsilon&#39;))\)</span>
+。如此反复可得一无穷序列<span
+class="math inline">\((x_n)\)</span>，且这个序列的任意两个元素间的距离（或者说度量）
+<span class="math display">\[
+d(x_n,x_m)\geq \epsilon&#39; \quad \forall n\neq m
+\]</span> 那么这个序列不存在收敛子列，矛盾，E是预紧的。</p>
+<p><span class="math inline">\((4)\Rightarrow(3)\)</span> <span
+class="math inline">\((E, d)\)</span> 是完备的且预紧的。因为<span
+class="math inline">\(E\)</span>是完备的，要说明任一 <span
+class="math inline">\(E\)</span>
+中的序列有收敛的子列，我们只要说明<strong>任一 <span
+class="math inline">\(E\)</span> 中的序列有柯西子列</strong>。 首先取
+<span class="math inline">\(\varepsilon_{1}=\frac{1}{2}\)</span>, 由于
+<span class="math inline">\(E\)</span> 是预紧空间,
+故存在<strong>有限子集</strong> <span class="math inline">\(F \subset
+E\)</span>, 使得 <span class="math inline">\(E=\)</span> <span
+class="math inline">\(\bigcup_{x \in F} B\left(x,
+\varepsilon_{1}\right)\)</span>, 则无穷序列 <span
+class="math inline">\(\left(x_{n}\right)\)</span>
+必有一个无穷子序列包含于某个开球 <span class="math inline">\(B\left(x,
+\varepsilon_{1}\right)\)</span>. 我 们记该子序列为 <span
+class="math inline">\(\left(x_{1_{i}}\right)_{i \geqslant 1}\)</span>;
+再令 <span
+class="math inline">\(\varepsilon_{2}=\frac{1}{2^{2}}\)</span>, 则又有
+<span class="math inline">\(\left(x_{1_{i}}\right)_{i \geqslant
+1}\)</span> 的无穷子列 <span
+class="math inline">\(\left(x_{2_{i}}\right)_{i \geqslant 1}\)</span> 包
+含于某个以 <span class="math inline">\(\varepsilon_{2}\)</span>
+为半径的开球中; 依此类推, 对任一个整数 <span class="math inline">\(n \in
+\mathbb{N}^{*}\)</span>, 取 <span
+class="math inline">\(\varepsilon_{n}=\frac{1}{2^{n}}\)</span>,
+可以给出一个无穷序列 <span
+class="math inline">\(\left(x_{n_{i}}\right)_{i \geqslant 1}\)</span>,
+它是 <span class="math inline">\(\left(x_{(n-1)_{i}}\right)_{i \geqslant
+1}\)</span> 的子序列, 并且满足: 对任意 <span class="math inline">\(i, j
+\geqslant 1\)</span>, 有 <span class="math display">\[
+d\left(x_{n_{i}}, x_{n_{j}}\right)&lt;\frac{1}{2^{n-1}}
+\]</span> 接下来运用 “对角线选择法”, 可以得到 <span
+class="math inline">\(\left(x_{n}\right)\)</span> 的子列 <span
+class="math inline">\(\left(x_{i_{i}}\right)_{i \geqslant 1}\)</span>,
+该序列满足: 当 <span class="math inline">\(i, j \geqslant n\)</span> 时,
+<span class="math inline">\(d\left(x_{i_{i}},
+x_{j_{j}}\right)&lt;\frac{1}{2^{n-1}}\)</span>. 故 <span
+class="math inline">\(\left(x_{i_{i}}\right)_{i \geqslant 1}\)</span> 是
+<span class="math inline">\(\left(x_{n}\right)\)</span> 的一个 Cauchy
+子序列。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/29/23.5.29%20%E6%9C%89%E7%95%8C%E7%BA%BF%E6%80%A7%E7%AE%97%E5%AD%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8/">23.5.29 有界线性算子的基本性质 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A7%E6%80%A7%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">紧性的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A7%E6%80%A7%E7%9A%84%E5%88%BB%E7%94%BB"><span class="toc-number">2.</span> <span class="toc-text">紧性的刻画</span></a></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
