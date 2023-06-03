@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.1 压缩映射定理的进一步讨论 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.1 压缩映射定理的进一步讨论</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-06-01T18:24:00.000Z" id="date"> 2023-06-02</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-06-01T18:25:01.768Z" id="updated"> 2023-06-02</time></div></span></div></div><hr><div id="post-content"><h2 id="定理回顾"><a href="#定理回顾" class="headerlink" title="定理回顾"></a>定理回顾</h2>
+<p>23.5.25 压缩映射的不动点</p>
+<blockquote>
+<p><strong>定理内容</strong> 设<span
+class="math inline">\((E,d)\)</span>是<strong>完备的度量空间</strong>，<span
+class="math inline">\(f:E\to E\)</span>是压缩映射，则<span
+class="math inline">\(f\)</span>有唯一的不动点，即 <span
+class="math display">\[
+f(x)=x,\quad\exists ! x\in E
+\]</span> 注：<span class="math inline">\(\quad\exists !\)</span>
+表示"存在唯一的"</p>
+</blockquote>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2>
+<p><strong>（1）压缩映射的条件能不能去掉或改变。</strong></p>
+<blockquote>
+<p>压缩映射的定义就是指满足：<span class="math inline">\(\exists\lambda
+&lt;1,\forall x,y\in E\)</span>,总有<br />
+<span class="math display">\[
+d(f(x),f(y))\leq \lambda d(x,y)
+\]</span> 的映射<span
+class="math inline">\(f\)</span>，称为压缩映射。</p>
+</blockquote>
+<p>如果映射<span class="math inline">\(f\)</span>只满足， <span
+class="math display">\[
+d(f(x),f(y))&lt; d(x,y)
+\]</span> 或者说<span class="math inline">\(\lambda =
+1\)</span>且把<span
+class="math inline">\(\leq\)</span>换做＜时，压缩映射定理能不能成立？这样的改动看似变化不大，毕竟
+"小于1"和"小于等于一个小于1的常数"，这两件事给我们的感觉是有点相似的。但是这里还是有些区别。</p>
+<p>问题的答案是不能做这样的变动。因为有如下面的反例： <span
+class="math display">\[
+f(x)=x^2+1,\ \forall x\in(0,1)
+\]</span> <span class="math display">\[
+f(x)=\sqrt{x^2+1},\ \forall x\in(0,\infty)
+\]</span>
+它们都满足我们改变后的条件，但是显然在各自的定义域内找不到一点使得<span
+class="math inline">\(f(x)=x\)</span>。</p>
+<p><strong>（2）能不能再加上什么限制，减弱的条件也能有类似的结果呢？</strong></p>
+<p>这是可以的。如果<span
+class="math inline">\((E,d)\)</span>是<strong>紧的</strong>度量空间，那么压缩映射的条件就可以减弱为，
+<span class="math display">\[
+d(f(x),f(y))&lt; d(x,y)\quad \forall x\neq y,\ x,y\in E
+\]</span></p>
+<p><strong>Proof</strong> 设<span
+class="math inline">\(g(x)=d(x,f(x))\)</span>，因为<span
+class="math inline">\(f\)</span>和<span
+class="math inline">\(d\)</span>都是连续映射，故<span
+class="math inline">\(g\)</span>也连续。由于<span
+class="math inline">\(E\)</span>紧的，所以<span
+class="math inline">\(g(E)\)</span>紧。
+于是在紧空间上的连续函数可以取得最小值，记作<span
+class="math inline">\(\lambda\)</span> 。</p>
+<p>我们假设取得最小值时<span
+class="math inline">\(\lambda&gt;0\)</span>，也就是此时仍是<span
+class="math inline">\(d(x_{min},f(x_{min})&gt;0\)</span>，也就是说，
+<span class="math display">\[
+x_{\min}\neq f(x_{min})
+\]</span> 实际上我们就是在假设不动点不存在。</p>
+<p>那么， <span class="math display">\[
+d(f(x_{min},f^2(x_{min})))&lt;d(x_{min},f(x_{min}))=\lambda
+\]</span> 这与<span class="math inline">\(\lambda\)</span>是<span
+class="math inline">\(g\)</span>的最小值矛盾，因为我们发现在假设下，
+<span class="math display">\[
+g(f(x_{min}))&lt;g(x_{min})
+\]</span> 于是假设不成立。故$。（注意距离函数d是非负的）</p>
+<p>不动点的唯一性的证明就容易了。 假设存在两个不动点<span
+class="math inline">\(x,y\)</span>，那么 <span class="math display">\[
+d(f(x),f(y))=d(x,y)
+\]</span> 与 <span class="math display">\[
+d(f(x),f(y))&lt; d(x,y)\quad \forall x\neq y,\ x,y\in E
+\]</span> 矛盾。</p>
+<p>（3）设<span
+class="math inline">\((E,d)\)</span>是<strong>完备的度量空间</strong>，如果<span
+class="math inline">\(f,g\)</span>是可交换的压缩映射，这两个映射有相同唯一的不动点。</p>
+<p><span class="math inline">\(f,g\)</span>是可交换，是指<span
+class="math inline">\(fg=gf\)</span>。证明是容易的。因为设<span
+class="math inline">\(f(x_0)=x_0\)</span> <span class="math display">\[
+g(x_0)=g(f(x_0))=f(g(x_0))
+\]</span> 所以<span class="math inline">\(g(x_0)\)</span>是<span
+class="math inline">\(f\)</span>的不动点。由于不动点是唯一的，所以 <span
+class="math display">\[
+g(x_0)=x_0
+\]</span> 现在我们如果把可交换的条件去掉会怎么样？
+此时，两个映射的不动点没有必然联系，可以相同可以不同。 比如取， <span
+class="math display">\[
+f\equiv 1,g\equiv0
+\]</span> <span class="math display">\[
+f(x)=(x-1)^2+1,g(x)=x^2,x\in(0,\infty)
+\]</span>
+上面的两个不可换有不同的不动点，下面的不可换但有相同不动点。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/06/02/23.6.2%20%E5%A4%84%E5%A4%84%E8%BF%9E%E7%BB%AD%E4%B8%94%E5%A4%84%E5%A4%84%E4%B8%8D%E5%8F%AF%E5%BE%AE%E7%9A%84%E5%87%BD%E6%95%B0%E6%98%AF%E5%BE%88%E5%A4%9A%E7%9A%84/">← Next 23.6.2 处处连续且处处不可微的函数是很多的</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/31/23.5.31%20%E5%8F%AF%E5%88%86%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4/">23.5.31 可分度量空间 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.</span> <span class="toc-text">定理回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A8%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">讨论</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

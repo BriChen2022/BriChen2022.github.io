@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.2 处处连续且处处不可微的函数是很多的 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.2 处处连续且处处不可微的函数是很多的</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-06-02T12:16:00.000Z" id="date"> 2023-06-02</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-06-02T13:12:31.560Z" id="updated"> 2023-06-02</time></div></span></div></div><hr><div id="post-content"><h2 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h2>
+<h3 id="barie空间"><a href="#Barie空间" class="headerlink" title="Barie空间"></a>Barie空间</h3>
+<p>定义：称拓扑空间<span class="math inline">\(E\)</span>是一个 Baire
+空间,若<span class="math inline">\(E\)</span>中<strong>任意</strong> 、
+<strong>可数多个</strong> 、 <strong>稠密</strong> 、
+<strong>开</strong>集的交仍然在<span
+class="math inline">\(E\)</span>中稠密。</p>
+<h3 id="barie定理"><a href="#Barie定理" class="headerlink" title="Barie定理"></a>Barie定理</h3>
+<p>定理(Baire)：设 <span class="math inline">\((E, d)\)</span>
+是完备度量空间, <span class="math inline">\(\left(O_{n}\right)_{n
+\geqslant 1}\)</span> 是一列在 <span class="math inline">\(E\)</span> 中
+稠密的开子集, 则 <span class="math inline">\(O=\bigcap_{n \geqslant 1}
+O_{n}\)</span> 在 <span class="math inline">\(E\)</span> 中稠密.
+换句话说就是，完备度量空间是<strong>第二纲的</strong>。</p>
+<p>定理：局部紧的 Hausdorff 空间是 Baire 空间. 定理：设 <span
+class="math inline">\(E\)</span> 是 Baire 空间, 则 (1) <span
+class="math inline">\(E\)</span> 的任意开子集也是一个 Baire 空间. (2) 设
+<span class="math inline">\(\left(F_{n}\right)_{n \geqslant 1}\)</span>
+是 <span class="math inline">\(E\)</span> 的一列闭子集, 并且 <span
+class="math inline">\(E=\bigcup_{n \geqslant 1} F_{n}\)</span> , 那么
+<span class="math inline">\(\bigcup_{n \geqslant 1}
+\stackrel{\circ}{F}_{n}\)</span> 在 <span
+class="math inline">\(E\)</span> 中 稠密。</p>
+<h3 id="第一纲集贫集疏集"><a href="#第一纲集（贫集、疏集）" class="headerlink" title="第一纲集（贫集、疏集）"></a>第一纲集（贫集、疏集）</h3>
+<p>设 <span class="math inline">\(E\)</span> 是拓扑空间. (1) 称 <span
+class="math inline">\(E\)</span>
+中可数多个<strong>开</strong>子集的<strong>交</strong>集为 <span
+class="math inline">\(\mathcal{G}_{\delta}\)</span> 集, 称 <span
+class="math inline">\(E\)</span>
+中可数多个<strong>闭</strong>子集的<strong>并</strong>集 为 <span
+class="math inline">\(\mathcal{F}_{\sigma}\)</span> 集. (2) 称 <span
+class="math inline">\(A \subset E\)</span> 为贫集 (或第一纲集), 若 <span
+class="math inline">\(A\)</span> 为某个<strong>无内点</strong>的 <span
+class="math inline">\(\mathcal{F}_{\sigma}\)</span> 集的子集; 称 <span
+class="math inline">\(A \subset E\)</span> 为剩余集（第二纲集）, 若
+<span class="math inline">\(A\)</span> 包含一个稠密的 <span
+class="math inline">\(\mathcal{G}_{\delta}\)</span> 集.</p>
+<p>注： (1) <span class="math inline">\(A\)</span> 是 <span
+class="math inline">\(\mathcal{G}_{\delta}\)</span> 集等价于 <span
+class="math inline">\(A^{c}\)</span> 是 <span
+class="math inline">\(\mathcal{F}_{\sigma}\)</span> 集. (2) <span
+class="math inline">\(A\)</span> 是贫集等价于 <span
+class="math inline">\(A^{c}\)</span> 是剩余集, 这是因为集合 <span
+class="math inline">\(A\)</span> 是<strong>稠密的当且仅当</strong> <span
+class="math inline">\(A^{c}\)</span> <strong>无内点</strong>, 从而 <span
+class="math inline">\(A\)</span> 是稠密的 <span
+class="math inline">\(\mathcal{G}_{\delta}\)</span> 集当且仅当 <span
+class="math inline">\(A^{c}\)</span> 是无内点的 <span
+class="math inline">\(\mathcal{F}_{\sigma}\)</span> 集. (3) 设 <span
+class="math inline">\(E\)</span> 是 Baire 空间, 则 <span
+class="math inline">\(E\)</span> 中可数多个贫集的并集仍然是贫集;
+可数多个剩余集的交仍然是剩余集. (4) 贫集和剩余集的概念描述了子集的大小.
+如果和测度论中的概念相比较, 我们可以把贫集对应着零测度集,
+剩余集对应于与全集几乎处处相等的集合, 它们的性质极为类似.</p>
+<h2 id="今日份的定理"><a href="#今日份的定理" class="headerlink" title="今日份的定理"></a>今日份的定理</h2>
+<p>在<span
+class="math inline">\(C[0,1]\)</span>中处处不可微的函数集合<span
+class="math inline">\(E\)</span>是非空的，并且E的余集是第一纲集（贫集）。</p>
+<p><strong>Proof</strong> 取 <span
+class="math inline">\(\mathcal{H}=C[0,1]\)</span>, 设 <span
+class="math inline">\(A_{n}\)</span> 表示 <span
+class="math inline">\(\mathcal{H}\)</span> 中特定元素 <span
+class="math inline">\(f\)</span> 的集合，如下： <span
+class="math display">\[
+A_n=\{f\in \mathcal{H}:\left|\frac{f(s+h)-f(s)}{h}\right| \leqslant
+n,\exists s\in [0,1],\forall |h|\leq\frac{1}{n},s+h\in [0,1] \}
+\]</span> 从<span
+class="math inline">\(A_n\)</span>的构造我们可以知道，若 <span
+class="math inline">\(f\)</span> 在某个点 <span
+class="math inline">\(s\)</span> 处可微, 则必有正整数 <span
+class="math inline">\(n\)</span>, 使得 <span class="math inline">\(f \in
+A_{n}\)</span>, 于是 <span class="math display">\[
+\mathcal{H} \backslash E \subset \bigcup_{n=1}^{\infty} A_{n}
+\]</span> 下面我们证明每个 <span class="math inline">\(A_{n}\)</span>
+<strong>是贫集</strong>，为此先证 <span
+class="math inline">\(A_{n}\)</span>
+是闭的。为此，我们去证明其补集是开的。</p>
+<p>事实上, 若 <span class="math inline">\(f \in \mathscr{X} \backslash
+A_{n}\)</span>, 则 <span class="math inline">\(\forall s \in[0,1],
+\exists |h_{s}|\leqslant \frac{1}{n}\)</span>, 使得 <span
+class="math display">\[
+\left|f\left(s+h_{s}\right)-f(s)\right|&gt;n\left|h_{s}\right|
+\]</span> 又由 <span class="math inline">\(f\)</span> 的连续性, <span
+class="math inline">\(\exists \varepsilon_{s}&gt;0\)</span>, 以及 <span
+class="math inline">\(s\)</span> 的某个适当的邻域 <span
+class="math inline">\(J_{s}\)</span>, 使得对 <span
+class="math inline">\(\forall \sigma \in J_{s}\)</span>, 有 <span
+class="math display">\[
+\left|f\left(\sigma+h_{s}\right)-f(\sigma)\right|&gt;n\left|h_{s}\right|+2
+\varepsilon_{s}
+\]</span> 根据有限覆盖定理, 可设 <span class="math inline">\(J_{s_{1}},
+J_{s_{2}}, \cdots, J_{s_{m}}\)</span> 覆盖 <span
+class="math inline">\([0,1]\)</span>, 并设 <span class="math display">\[
+\varepsilon=\min \left\{\varepsilon_{s_{1}}, \varepsilon_{s_{2}},
+\cdots, \varepsilon_{s_{m}}\right\}
+\]</span> 若 <span class="math inline">\(g \in \mathcal{H}\)</span> 适合
+<span class="math inline">\(\|g-f\|&lt;\varepsilon\)</span>, 则由 <span
+class="math display">\[
+\left|f\left(\sigma+h_{s}\right)-f(\sigma)\right|&gt;n\left|h_{s}\right|+2
+\varepsilon_{s}
+\]</span> 对 <span class="math inline">\(\forall \sigma \in
+J_{s_{k}}(k=\)</span> <span class="math inline">\(1,2, \cdots,
+m\)</span> ) 有 <span class="math display">\[
+\left|g\left(\sigma+h_{s_{k}}\right)-g(\sigma)\right|
+\geqslant\left|f\left(\sigma+h_{s_{k}}\right)-f(\sigma)\right|-2
+\varepsilon&gt;n\left|h_{s_{k}}\right|
+\]</span> 于是证明了 <span class="math inline">\(\mathcal{H} \backslash
+A_{n}\)</span> 是开集，从而 <span class="math inline">\(A_{n}\)</span>
+是闭集。</p>
+<p>再证 <span class="math inline">\(A_{n}\)</span>
+<strong>没有内点</strong>。 <span class="math inline">\(\forall f \in
+A_{n}, \forall \varepsilon&gt;0\)</span>, 由 Weierstrass 逼近定理,
+存在多项式 <span class="math inline">\(p\)</span>, 使得 <span
+class="math display">\[
+\|f-p\|&lt;\frac{\varepsilon}{2}
+\]</span> 由于<span class="math inline">\(p\)</span> 的导数在 <span
+class="math inline">\([0,1]\)</span> 上是有界的, 因此根据中值定理, <span
+class="math inline">\(\exists M&gt;0\)</span>, 使得 对 <span
+class="math inline">\(\forall s \in[0,1]\)</span> 及 <span
+class="math inline">\(|h|&lt;1 / n\)</span>, 成立 <span
+class="math display">\[
+|p(s+h)-p(s)| \leqslant M|h|
+\]</span> 设 <span class="math inline">\(g(s) \in C[0,1]\)</span>
+是一个分段线性函数, 满足 <span
+class="math inline">\(\|g\|&lt;\varepsilon / 2\)</span>.
+并且各条线段斜率的绝对值都大于 <span class="math inline">\(M+n\)</span>,
+那么 <span class="math display">\[
+p+g \in B(f, \varepsilon), \text { 而 } p+g \bar{\epsilon} A_{n}
+\]</span> 这样, 我们证明了每个 <span
+class="math inline">\(A_{n}\)</span> 是贫集, 从而 <span
+class="math inline">\(\bigcup_{n=1}^{\infty} A_{n}\)</span>
+是第一纲集。而 <span class="math inline">\(\mathcal{H}\)</span>
+是完备的, 由 Baire 定理 <span class="math inline">\(\mathcal{H}\)</span>
+是第二纲集, 由此根据 <span class="math display">\[
+\mathcal{H} \backslash E \subset \bigcup_{n=1}^{\infty} A_{n}
+\]</span> 可知<span class="math inline">\(E\)</span> 也是第二纲集。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/06/02/23.6.1%20%E5%8E%8B%E7%BC%A9%E6%98%A0%E5%B0%84%E5%AE%9A%E7%90%86%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%AE%A8%E8%AE%BA/">23.6.1 压缩映射定理的进一步讨论 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">前置概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#barie%E7%A9%BA%E9%97%B4"><span class="toc-number">1.1.</span> <span class="toc-text">Barie空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#barie%E5%AE%9A%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">Barie定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%BA%B2%E9%9B%86%E8%B4%AB%E9%9B%86%E7%96%8F%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">第一纲集（贫集、疏集）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E6%97%A5%E4%BB%BD%E7%9A%84%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">今日份的定理</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
