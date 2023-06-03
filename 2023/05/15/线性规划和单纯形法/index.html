@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
  menuSettings: {
    zoom: "None"
  },
@@ -34,69 +34,307 @@ if (window.localStorage.getItem('theme-mode') === 'dark') document.documentEleme
 }</style><style>:root {
   --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
   --light-background: url('/img/bk.jpg');
-}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1></h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-05-15T11:03:00.000Z" id="date"> 2023-05-15</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-15T11:33:36.274Z" id="updated"> 2023-05-15</time></div></span></div></div><hr><div id="post-content"><h1 id="线性规划问题及数学模型"><a href="#线性规划问题及数学模型" class="headerlink" title="线性规划问题及数学模型"></a>线性规划问题及数学模型</h1>
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Contact</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1></h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-05-15T11:03:00.000Z" id="date"> 2023-05-15</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-06-03T08:29:04.857Z" id="updated"> 2023-06-03</time></div></span></div></div><hr><div id="post-content"><h1 id="线性规划问题及数学模型"><a href="#1.线性规划问题及数学模型" class="headerlink" title="1.线性规划问题及数学模型"></a>1.线性规划问题及数学模型</h1>
 <blockquote>
 <p>在线性约束条件下，寻找目标函数的最优化问题</p>
 </blockquote>
-<h1 id="线性规划几何意义"><a href="#线性规划几何意义" class="headerlink" title="线性规划几何意义"></a>线性规划几何意义</h1>
-<table style="border-collapse: collapse; border: none; border-spacing: 0px;">
-<tr>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-1 <br>
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-2
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-4
-</td>
-</tr>
-<tr>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-1
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-2
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-</tr>
-<tr>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-2
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-</tr>
-<tr>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-33
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-3
-</td>
-<td style="padding-right: 3pt; padding-left: 3pt;">
-33
-</td>
-</tr>
-</table>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/16/23.5.16%20Banach-Steinhaus%20%E5%AE%9A%E7%90%86/">← Next 23.5.16 Banach-Steinhaus 定理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/15/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%BD%91%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">计算机网络概述 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">线性规划问题及数学模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">线性规划几何意义</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2>
+<ul>
+<li>CPF:corner-point feasible 角点可行解</li>
+<li>可行解、非可行解</li>
+<li>目标函数、约束函数</li>
+<li>松弛变量（slack variables）</li>
+</ul>
+<h2 id="问题形式"><a href="#问题形式" class="headerlink" title="问题形式"></a>问题形式</h2>
+<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3>
+<p><span class="math display">\[\begin{array}{c}
+\max (\min ) z=\sum_{j=1}^{\mathrm{n}} c_{\mathrm{j}} x_{j} \\
+\text { s.t. }\left\{\begin{array}{l}
+\sum_{j=1}^{\mathrm{n}} \mathrm{a}_{\mathrm{ij}} \mathrm{x}_{\mathrm{j}}
+\leq(=, \geq) b_{i}(i=1,2, \ldots, m) \\
+x_{\mathrm{j}} \geq 0 \qquad(j=1,2, \ldots, n)
+\end{array} \right.
+\end{array}\]</span> ### 矩阵形式 <span
+class="math display">\[\begin{array}{r}
+m \alpha x(\min ) z=C X \\
+\text { s.t. }\left\{\begin{array}{l}
+A X \leq(=, \geq) b \\
+X \geq 0
+\end{array}\right.
+\end{array}\]</span> ## 线性规划的标准化
+原因:在求解模型时，需要将数学语言转化为机器语言（任意一条语句都有明确且唯一的意义)，这涉及到一个转化的过程，即标准化。
+### 线性规划模型的标准形式 <span class="math display">\[\begin{array}{c}
+\max z=\sum_{j=1}^{\mathrm{n}} c_{\mathrm{j}} x_{j} \\
+\text { s.t. }\left\{\begin{array}{l}
+\sum_{j=1}^{\mathrm{n}} \mathrm{a}_{\mathrm{ij}} \mathrm{x}_{\mathrm{j}}
+= b_{i}\ (i=1,2, \ldots, m) \\
+x_{\mathrm{j}} \geq 0 \qquad\qquad(j=1,2, \ldots, n)
+\end{array} \right.
+\end{array}\]</span></p>
+<ul>
+<li>目标函数最大(max)</li>
+<li>约束条件为等式</li>
+<li>资源限量非负</li>
+<li>决策向量非负</li>
+</ul>
+<p>非标准形式可以转化为标准形式: - min ---&gt; max :取相反数 - 不等式
+---&gt; 等式:加减非负变量 - 决策变量无约束: 转化成两非负向量的差</p>
+<h2 id="有关线性规划的假设"><a href="#有关线性规划的假设" class="headerlink" title="有关线性规划的假设"></a>有关线性规划的假设</h2>
+<h3 id="比例性"><a href="#比例性" class="headerlink" title="比例性"></a>比例性</h3>
+<ul>
+<li>假设针对对象:目标函数和约束函数</li>
+<li>内容:一个活动的贡献值与这个活动级别成比例,或者说方程中不会出现二次及其以上次数的项</li>
+</ul>
+<h3 id="可加性"><a href="#可加性" class="headerlink" title="可加性"></a>可加性</h3>
+<ul>
+<li>对象:模型中的每一个函数</li>
+<li>内容:就是假设每个函数中不会出现交叉项,或者说不同活动做的贡献不是简单的相加关系</li>
+</ul>
+<h3 id="可分性"><a href="#可分性" class="headerlink" title="可分性"></a>可分性</h3>
+<ul>
+<li>对象:决策变量</li>
+<li>内容:感觉就是说假设决策变量是实数域上的连续函数</li>
+</ul>
+<h3 id="确定性"><a href="#确定性" class="headerlink" title="确定性"></a>确定性</h3>
+<ul>
+<li>对象:模型参数</li>
+<li>内容:模型中的参数假设为已知常量</li>
+<li>注意:实际应用中,确定性假设很少完全满足,使用的参数值可能是将来条件的一种预期,不可避免地带有一定程度的不确定性。
+出于这一原因,在假设的参数下确定的最优解被找到后,通常要进行灵敏度分析(sensitivity
+analysis)。目的之一是识别灵敏度参数(<strong>该参数的改变必然导致最优解的变化)</strong>,因为灵敏度参数值的变化需要立即去改变正在使用的解。</li>
+</ul>
+<h3 id="正确地假设assumption-in-perspective">正确地假设(assumption in
+perspective)</h3>
+<p><strong>感觉中文译本中这个标题（‘前景假设’）翻译的不好.</strong>
+这一节是想告诉读者假设有时候并不会全都满足,但是我们可以通过其他的方式进行弥补.如:不满足确定性假设时,我们为此对灵敏度参数进行了<strong>灵敏度分析</strong>,这就是对不满足假设时的弥补.</p>
+<p>当四个假设中某个不满足时,要怎么处理问题.</p>
+<h2 id="图解法"><a href="#图解法" class="headerlink" title="图解法"></a>图解法</h2>
+<p>图解法可以解决具有两个变量的任何线性规划问题。在增加一些难度的情况下,可以对它进行扩展来解决三个变量但不能多于三个变量的问题(下一章我们将研究用单纯形法解决较大规模的问题)。</p>
+<h2 id="运筹学求解软件包"><a href="#运筹学求解软件包" class="headerlink" title="运筹学求解软件包"></a>运筹学求解软件包</h2>
+<ul>
+<li>lingo/lindo</li>
+<li>excel solver</li>
+<li>mpl cplex</li>
+</ul>
+<h1 id="线性规划几何意义"><a href="#2.线性规划几何意义" class="headerlink" title="2.线性规划几何意义"></a>2.线性规划几何意义</h1>
+<h2 id="图解法-1"><a href="#图解法" class="headerlink" title="图解法"></a>图解法</h2>
+<p>(画个表格) 图解法难以解决高维问题。</p>
+<h2 id="解的情况"><a href="#解的情况" class="headerlink" title="解的情况"></a>解的情况</h2>
+<ul>
+<li>唯一</li>
+<li>无穷多</li>
+<li>无界解（可行域不封闭、无界）</li>
+<li>无解（没有可行域）</li>
+</ul>
+<p>出现后两者就有可能是数学建模出现了问题，如缺乏必要的约束条件、出现矛盾的约束条件。</p>
+<h1 id="解的概念"><a href="#3.解的概念" class="headerlink" title="3.解的概念"></a>3.解的概念</h1>
+<h1 id="单纯形法原理"><a href="#4.单纯形法原理" class="headerlink" title="4.单纯形法原理"></a>4.单纯形法原理</h1>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2>
+<p><strong>凸集</strong>
+（通俗版本）集合中任意两点的连线仍在集合中。</p>
+<p>（严格定义）设n维度欧式空间中点集<span
+class="math inline">\(\mathbb{K}\)</span>，<span
+class="math inline">\(X_1,X_2\)</span>为集合中任意两点，若对任意实数<span
+class="math inline">\(\alpha\in [0,1]\)</span>，满足： <span
+class="math display">\[
+\alpha X_1+(1-\alpha)X_2\in\mathbb{K}
+\]</span> 则称该集合<span
+class="math inline">\(\mathbb{K}\)</span>为凸集。</p>
+<p><strong>凸组合</strong> 设n维度欧式空间中点集<span
+class="math inline">\(\mathbb{K}\)</span>，<span
+class="math inline">\(X_1,\cdots,X_k\)</span>为集合中任意<span
+class="math inline">\(k\)</span>个点，若存在<span
+class="math inline">\(k\)</span>个实数<span
+class="math inline">\(0\leq\alpha_i\leq 1,i=1,\cdots,k\)</span>并且<span
+class="math inline">\(\sum_{i=1}^{k}\alpha_i =1\)</span>，满足： <span
+class="math display">\[
+X=\sum_{i=1}^{k}\alpha_i X_i
+\]</span> 则称<span class="math inline">\(X\)</span>为<span
+class="math inline">\(X_1,\cdots,X_k\)</span>的凸组合。<span
+class="math inline">\(0 &lt;\alpha_i&lt;
+1,i=1\)</span>，称为严格凸组合。</p>
+<p><strong>顶点</strong> 设<span
+class="math inline">\(\mathbb{K}\)</span>凸集，<span
+class="math inline">\(X\in\mathbb{K}\)</span>,如果<span
+class="math inline">\(X\)</span>不能用<span
+class="math inline">\(\mathbb{K}\)</span>中不同两点的严格凸组合表示，则称<span
+class="math inline">\(X\)</span>为<span
+class="math inline">\(\mathbb{K}\)</span>的一个顶点。</p>
+<p>也即，对<span class="math inline">\(0 &lt;\alpha&lt; 1\)</span>有，
+<span class="math display">\[
+X\neq \alpha X_1+(1-\alpha)X_2,\forall X_1,X_2\in\mathbb{K},X_1\neq X_2
+\]</span> ## 前置定理</p>
+<p><strong>定理1</strong>（线性规划问题的可行域为凸集）
+若线性规划问题存在可行域， <span class="math display">\[
+D=\{\textbf{X}\vert \sum_{i=1}^{n}\textbf{P}_ix_i=\textbf{b},x_i\geq 0\}
+\]</span> 是凸集。（小写的x代表<span
+class="math inline">\(X\)</span>的分量）</p>
+<p><strong>proof</strong> 设<span
+class="math inline">\(X_1,X_2\)</span>为<span
+class="math inline">\(D\)</span>中任意两个相异的点，<span
+class="math inline">\(A\)</span>是以<span
+class="math inline">\(P_i\)</span>为行向量的矩阵。 则有， <span
+class="math display">\[
+AX_1=b,AX_2=b
+\]</span> 于是，两点连线上任意一点<span
+class="math inline">\(X\)</span>满足， <span class="math display">\[
+\begin{align*}
+AX=&amp; A(\alpha X_1+(1-\alpha)X_2)\\
+=&amp;\alpha AX_1+AX_2-\alpha AX_2\in\mathbb{K}\\
+=&amp; \alpha b+b-\alpha b\\
+=&amp; b
+\end{align*}
+\]</span> 故<span class="math inline">\(X\in D\)</span>，<span
+class="math inline">\(D\)</span>凸集。</p>
+<p><strong>定理2</strong> 若<span
+class="math inline">\(\mathbb{K}\)</span>为有界凸集，则集合内任意一点可以表示为<span
+class="math inline">\(\mathbb{K}\)</span>的顶点的凸组合。</p>
+<p><strong>proof</strong> 对于二维的情况比较形象。
+已知三角形为有界凸集。任何有界凸集可以用凸多边形逼近，而任意凸多边形可以划分成可数个三角形。承认上诉逻辑，我们只需要证明：<strong>三角形的任意一点可以用顶点的凸组合表出</strong>。</p>
+<p>设<span
+class="math inline">\(X_1,X_2,X_3\)</span>为三角形的三个顶点。<span
+class="math inline">\(X\)</span>为三角形内任意一点。若<span
+class="math inline">\(X\)</span>在三条边上（即落在任意两个顶点的连线上），由凸集定义显然有顶点的凸组合表示。
+若不在三条边上，做过<span class="math inline">\(X\)</span>与<span
+class="math inline">\(X_1\)</span>的射线交另外两点的连线于<span
+class="math inline">\(X&#39;\)</span>，于是有， <span
+class="math display">\[
+X&#39;=\alpha X_2+(1-\alpha)X_3
+\]</span> <span class="math display">\[
+X=\lambda X&#39;+(1-\lambda)X_1
+\]</span> <span class="math display">\[
+\lambda,\alpha\in(0,1)
+\]</span> 代入即得， <span class="math display">\[
+X=(1-\lambda)X_1+\lambda\alpha X_2+\lambda(1-\alpha)X_3
+\]</span> 将三个系数相加不难发现和为<span
+class="math inline">\(1\)</span>。 至此，我们得到了<span
+class="math inline">\(X\)</span>用顶点的凸组合的表示。</p>
+<p>但是对于二维以上的情形，就没有这么直观了，我们需要将三角形换成所谓的“单纯形”。</p>
+<blockquote>
+<p>单纯形是二维的三角形，三维的四面体，在任意维度的推广。n-维单纯形是一个有
+n+1 个顶点，n+1 个面 (facet) 的多面体。这个词译自英语
+simplex，「单纯」其实意味着基本，因为他是组成更复杂结构（复形
+complex）的基本构件。</p>
+</blockquote>
+<h2 id="迭代定理"><a href="#迭代定理" class="headerlink" title="迭代定理"></a>迭代定理</h2>
+<p>整个迭代过程的基本思想是:先寻找到初始基可行解，然后判断其是否最优、非最优，寻找到单位变动能创造更大收益的非基变量作为入基变量，然后确定入基变量变动后<strong>最先</strong>因资源受限而<strong>降为0的</strong>基变量作<strong>为出基变量</strong>，通过换基得到一个更接近最优值的解，不断重复，直到目标函数取到最优。</p>
+<h1 id="单纯形法的计算步骤"><a href="#5.单纯形法的计算步骤" class="headerlink" title="5.单纯形法的计算步骤"></a>5.单纯形法的计算步骤</h1>
+<h2 id="单纯形法的计算步骤-1"><a href="#单纯形法的计算步骤" class="headerlink" title="单纯形法的计算步骤"></a>单纯形法的计算步骤</h2>
+<h3 id="寻找初始基可行解"><a href="#寻找初始基可行解" class="headerlink" title="寻找初始基可行解"></a>寻找初始基可行解</h3>
+<h3 id="最优性检验入基变量选取"><a href="#最优性检验&amp;入基变量选取" class="headerlink" title="最优性检验&amp;入基变量选取"></a>最优性检验&amp;入基变量选取</h3>
+<p>由迭代原理可知，<strong>基变量对应的检验数必为0</strong>，非基变量则存在如下几种情况:
+1.
+所有非基变量的检验数<strong>均小于0</strong>，代表达到最优，任何变动都会使得目标值往更小的方向变化。
+2.
+<strong>部分</strong>非基变量的检验数<strong>小于0</strong>，<strong>其余</strong>非基变量的检验数<strong>等于0</strong>。代表已经达到最优，但存在部分约束，它们的变动并不会导致目标函数值发生变化，即模型存在无穷多最优解。
+3.
+<strong>部分</strong>非基变量的检验数<strong>大于0</strong>，代表现有的生产组合并<strong>没有</strong>达到最优，存在部分约束，它们的变动能使目标函数值往更大的方向变化，根据单纯形法，选择单位变动使目标函数值<strong>变化量最大的变量</strong>作为入基变量。</p>
+<h3 id="出基变量选取"><a href="#出基变量选取" class="headerlink" title="出基变量选取"></a>出基变量选取</h3>
+<p class='item-img' data-src='images/IMG_20230531_154249.jpg'><img src="images/IMG_20230531_154249.jpg" /> ###
+换基&amp;更新单纯形表</p>
+<h2 id="单纯形法的变形"><a href="#单纯形法的变形" class="headerlink" title="单纯形法的变形"></a>单纯形法的变形</h2>
+<h3 id="大m法人工变量法"><a href="#大M法(人工变量法)" class="headerlink" title="大M法(人工变量法)"></a>大M法(人工变量法)</h3>
+<p>考虑如下线性规划问题: <span class="math display">\[
+\begin{array}{c}
+\max z=-3 x_{1}+x_{3} \\
+\text { s.t. }\left\{\begin{array}{r}
+x_{1}+x_{2}+x_{3} \leq 4 \\
+-2 x_{1}+x_{2}-x_{3} \geq 1 \\
+3 x_{2}+x_{3}=9 \\
+x_{1}, x_{2}, x_{3} \geq 0
+\end{array}\right.
+\end{array}
+\]</span> 化为标准形式: <span class="math display">\[
+\max z=-3 x_{1}+0 x_{2}+x_{3}+0 x_{4}+0 x_{5}
+\]</span> <span class="math display">\[
+\text { s.t. }\left\{\begin{array}{r}
+x_{1}+x_{2}+x_{3}+x_{4}=4 \\
+-2 x_{1}+x_{2}-x_{3}-x_{5}=1 \\
+3 x_{2}+x_{3}=9 \\
+x_{1}, x_{2}, x_{3}, x_{4}, x_{5} \geq 0
+\end{array}\right.
+\]</span>
+有时我们并不能<strong>很方便地找出一组基</strong>来，为了更好地找到初始基，我们需要引入人工变量来构造一组基。
+<span class="math display">\[
+\mathbf{A}=\left(\begin{array}{ccccc}
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+-2 &amp; 1 &amp; -1 &amp; 0 &amp; -1 \\
+0 &amp; 3 &amp; 1 &amp; 0 &amp; 0
+\end{array}\right), \quad \mathbf{b}=\left(\begin{array}{l}
+4 \\
+1 \\
+9
+\end{array}\right)
+\]</span>
+人工变量法的目的是为了构造一组基，原模型中只有一个单位列向量，但基的秩为
+3 ，即应找到三个单位列向量， 由此我们引入人工变量 <span
+class="math inline">\(x_{6}\)</span> 和 <span
+class="math inline">\(x_{7}\)</span> 。 由于这是我们人工引入
+(实际上并不存在的产品)，我们需要控制它最终的值只能为 0
+，所以在目标函数中，它的价值系数为 <span
+class="math inline">\(-M\)</span> (其中 <span
+class="math inline">\(M\)</span>
+是个<strong>足够大</strong>的数，并假设其能参与运算)，代表它每生产一件，都会导致目标函数变得足够小，由此，新的模型标准式为:
+<span class="math display">\[
+\begin{array}{c}
+\max z=-3 x_{1}+0 x_{2}+x_{3}+0 x_{4}+0 x_{5}-M x_{6}-M x_{7} \\
+\text { s.t. }\left\{\begin{array}{c}
+x_{1}+x_{2}+x_{3}+x_{4}=4 \\
+-2 x_{1}+x_{2}-x_{3}-x_{5}+x_{6}=1 \\
+3 x_{2}+x_{3}+x_{7}=9 \\
+x_{j} \geq 0(j=1,2, \ldots, 7)
+\end{array}\right.
+\end{array}
+\]</span></p>
+<p>由于人工变量是我们构建的，实际并不存在，所以要求它最终取值为0，若是单纯形表迭代到所有非基变量检验数均小于0，但<strong>基变量中含非0的人工变量时，说明该线性规划问题无解</strong>。</p>
+<h3 id="两阶段法"><a href="#两阶段法" class="headerlink" title="两阶段法"></a>两阶段法</h3>
+<p>模型求解的过程一般都靠计算机完成，需要将数学语言转化为含义明确唯一的程序语言，使用人工变量法虽然可以帮助寻找初始基，但M这个<strong>足够大的数含义并非明确</strong>，在不同问题中，“足够”有不同的衡量标准，为此我们引入两阶段法。其基本思路是将添加人工变量后的线性规划问题拆分成两个阶段:</p>
+<ul>
+<li>第一阶段:求解一个目标函数<strong>只包含人工变量的线性规划问题</strong>，在决策变量非负的约束条件下，人工变量只有取0才能取到最小值，此时的最优解即原问题的一个基可行解。</li>
+<li>第二阶段:回归原问题，并用第一阶段最后的基为初始基，对原问题用单纯形法迭代。</li>
+</ul>
+<p>还是以上一道题为例 <span class="math display">\[
+\max z=-3 x_{1}+0 x_{2}+x_{3}+0 x_{4}+0 x_{5}
+\]</span> <span class="math display">\[
+\text { s.t. }\left\{\begin{array}{r}
+x_{1}+x_{2}+x_{3}+x_{4}=4 \\
+-2 x_{1}+x_{2}-x_{3}-x_{5}=1 \\
+3 x_{2}+x_{3}=9 \\
+x_{1}, x_{2}, x_{3}, x_{4}, x_{5} \geq 0
+\end{array}\right.
+\]</span> <strong>第一阶段</strong>： 加入人工变量 <span
+class="math inline">\(x_{6}\)</span> 和 <span
+class="math inline">\(x_{7}\)</span> ，构建目标函数只包含人工变量的模型:
+<span class="math display">\[
+\max z= 0 x_{1}+0 x_{2}+0 x_{3}+0 x_{4}+0 x_{5}-x_{6}-x_{7}
+\]</span> <span class="math display">\[
+\text { s.t. }\left\{\begin{array}{r}
+x_{1}+x_{2}+x_{3}+x_{4}=4 \\
+-2 x_{1}+x_{2}-x_{3}-x_{5}=1 \\
+3 x_{2}+x_{3}=9 \\
+x_{1}, x_{2}, x_{3}, x_{4}, x_{5} \geq 0
+\end{array}\right.
+\]</span></p>
+<p><strong>第二阶段</strong>：
+第一阶段最后的基为初始基，对原问题用单纯形法迭代。</p>
+<p>若第一阶段迭代最终结果中的基变量仍含有非0的人工变量，即目标函数值不为0，则说明问题无解。</p>
+<h2 id="单纯形法的其他讨论"><a href="#单纯形法的其他讨论" class="headerlink" title="单纯形法的其他讨论"></a>单纯形法的其他讨论</h2>
+<h3 id="一些可能出现的情况"><a href="#一些可能出现的情况" class="headerlink" title="一些可能出现的情况"></a>一些可能出现的情况</h3>
+<ol type="1">
+<li><p>目标函数极小值时解的最优性判别
+根据单纯形法的迭代原理，在目标函数取极小值时，只需确保所有检验数大于0即可保证最优。</p></li>
+<li><p>退化 按最大检验数和最小比值<span
+class="math inline">\(\theta\)</span>确定入基变量和出基变量时，有时会存在两个及以上相同的最大或最小值，从而使得下个表中的基可行解中出现一个或多个基变量等于0的退化解(模型中存在多余约束，使得多个基可行解对应同一顶点)，进而可能导致迭代计算陷入循环，为避免重复的运算，规定:存在多个检验数大于0取得<strong>相同最大值</strong>时，始终取下标值最小(或最大)的变量作为入基变量;存在多个<span
+class="math inline">\(\theta\)</span>出现相同最小比值，始终取下标值最小(或最大)的变量作为出基变量。</p></li>
+<li><p>无可行解的判别
+从人工变量法和两阶段法的计算步骤中可以看出，当求解结果出现所有检验数均小于等于0，但基变量中仍存在非零的人工变量(两阶段法第一阶段目标函数值不为0)时，表明问题无可行解，即人工变量最终求解结果必须为0.</p></li>
+</ol>
+<h3 id="修正单纯形法-求解过程的优化"><a href="#修正单纯形法-(求解过程的优化)" class="headerlink" title="修正单纯形法-(求解过程的优化)"></a>修正单纯形法 (求解过程的优化)</h3>
+<p><strong>单纯形法的矩阵描述</strong></p>
+<p>主要是对换基过程的优化，把求逆过程优化，直接在单纯形表上操作。不严格地说，其实就是把求逆换成初等行变换。
+<img src="images/IMG_20230531_154254.jpg" /></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/16/23.5.16%20Banach-Steinhaus%20%E5%AE%9A%E7%90%86/">← Next 23.5.16 Banach-Steinhaus 定理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/15/OP_%E7%BB%AA%E8%AE%BA/"> Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">1.线性规划问题及数学模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">一些概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">问题形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">一般形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E7%9A%84%E5%81%87%E8%AE%BE"><span class="toc-number">1.3.</span> <span class="toc-text">有关线性规划的假设</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E4%BE%8B%E6%80%A7"><span class="toc-number">1.3.1.</span> <span class="toc-text">比例性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%8A%A0%E6%80%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">可加性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%88%86%E6%80%A7"><span class="toc-number">1.3.3.</span> <span class="toc-text">可分性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="toc-number">1.3.4.</span> <span class="toc-text">确定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%81%87%E8%AE%BEassumption-in-perspective"><span class="toc-number">1.3.5.</span> <span class="toc-text">正确地假设(assumption in
+perspective)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">图解法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AD%B9%E5%AD%A6%E6%B1%82%E8%A7%A3%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-number">1.5.</span> <span class="toc-text">运筹学求解软件包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">2.线性规划几何意义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3%E6%B3%95-1"><span class="toc-number">2.1.</span> <span class="toc-text">图解法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">2.2.</span> <span class="toc-text">解的情况</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">3.解的概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">4.单纯形法原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%AE%9A%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">迭代定理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E7%9A%84%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4"><span class="toc-number">5.</span> <span class="toc-text">5.单纯形法的计算步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E7%9A%84%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4-1"><span class="toc-number">5.1.</span> <span class="toc-text">单纯形法的计算步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E5%88%9D%E5%A7%8B%E5%9F%BA%E5%8F%AF%E8%A1%8C%E8%A7%A3"><span class="toc-number">5.1.1.</span> <span class="toc-text">寻找初始基可行解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E6%80%A7%E6%A3%80%E9%AA%8C%E5%85%A5%E5%9F%BA%E5%8F%98%E9%87%8F%E9%80%89%E5%8F%96"><span class="toc-number">5.1.2.</span> <span class="toc-text">最优性检验&amp;入基变量选取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E5%9F%BA%E5%8F%98%E9%87%8F%E9%80%89%E5%8F%96"><span class="toc-number">5.1.3.</span> <span class="toc-text">出基变量选取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E7%9A%84%E5%8F%98%E5%BD%A2"><span class="toc-number">5.2.</span> <span class="toc-text">单纯形法的变形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7m%E6%B3%95%E4%BA%BA%E5%B7%A5%E5%8F%98%E9%87%8F%E6%B3%95"><span class="toc-number">5.2.1.</span> <span class="toc-text">大M法(人工变量法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%B3%95"><span class="toc-number">5.2.2.</span> <span class="toc-text">两阶段法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95%E7%9A%84%E5%85%B6%E4%BB%96%E8%AE%A8%E8%AE%BA"><span class="toc-number">5.3.</span> <span class="toc-text">单纯形法的其他讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">5.3.1.</span> <span class="toc-text">一些可能出现的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95-%E6%B1%82%E8%A7%A3%E8%BF%87%E7%A8%8B%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">5.3.2.</span> <span class="toc-text">修正单纯形法 (求解过程的优化)</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
 document.querySelector('.lg-container')?.remove()
 lightGallery(document.getElementById('post-bg'), {
   plugins: [lgZoom,lgThumbnail],
