@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.5 所有多项式构成的空间不能赋予完备范数 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Experience</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.5 所有多项式构成的空间不能赋予完备范数</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-06-05T13:28:00.000Z" id="date"> 2023-06-05</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-06-05T15:00:24.697Z" id="updated"> 2023-06-05</time></div></span></div></div><hr><div id="post-content"><h2 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h2>
+<p>所有多项式构成的空间不能赋予完备范数。</p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2>
+<p>为此，我们需要先证明一个引理。</p>
+<blockquote>
+<p>设<span class="math inline">\(E\)</span>是赋范空间，<span
+class="math inline">\(F\)</span>是<span
+class="math inline">\(E\)</span>的向量子空间。若<span
+class="math inline">\(F\neq E\)</span>，则<span
+class="math inline">\(F\)</span>在<span
+class="math inline">\(E\)</span>的内部是空集。</p>
+</blockquote>
+<p><strong>Proof</strong> 因为<span class="math inline">\(F\neq
+E\)</span>，所以<span class="math inline">\(\exists x&#39;\in
+E\backslash F\)</span> ，假设<span
+class="math inline">\(\mathring{F}\neq\varnothing\)</span>，那么<span
+class="math inline">\(\exists x_0\in F,s.t. B(x_0,r)\subset F\)</span> ,
+由于<span class="math inline">\(F\)</span>是向量子空间，有 <span
+class="math display">\[
+B(x_0,r)\subset F\Leftrightarrow x_0\in F,B(0,r)\subset F
+\]</span> 注意到 <span class="math display">\[
+\frac{r}{2}\frac{x&#39;}{||x&#39;||}\in B(0,r)\subset F
+\]</span> 又因为<span
+class="math inline">\(F\)</span>是向量子空间，所以应有<span
+class="math inline">\(x&#39;\in F\)</span>，但这与<span
+class="math inline">\(x&#39;\in E\backslash F\)</span>矛盾。</p>
+<p>下面来证明今日份的命题： 所有多项式构成的空间不能赋予完备范数。</p>
+<p><strong>Proof</strong> 记<span
+class="math inline">\(P\)</span>为所有多项式构成的空间，<span
+class="math inline">\(P_n\)</span>为最高次数不超过<span
+class="math inline">\(n\)</span>的多项式的全体构成的空间。 显然<span
+class="math inline">\(P_n\)</span>是<span
+class="math inline">\(P\)</span>的向量子空间，且 <span
+class="math display">\[
+P=\bigcup_{n\geq 1}P_n
+\]</span> 因<span
+class="math inline">\(P_n\)</span>是有限维的，所以<span
+class="math inline">\(P_n\)</span>是完备的，完备子空间是闭的。
+现假设<span
+class="math inline">\(P\)</span>是可以赋予完备范数的Banach空间。
+由于Banach 空间一定是Baire 空间，因此， <span class="math display">\[
+\bigcup_{n\geq 1}\mathring{P_n}
+\]</span> 在<span
+class="math inline">\(P\)</span>中稠密。但是由前边的引理知， <span
+class="math display">\[
+\forall n\geq 1,\mathring{P_n}=\varnothing\Rightarrow \bigcup_{n\geq
+1}\mathring{P_n}=\varnothing
+\]</span> 空集不可能在<span
+class="math inline">\(P\)</span>中稠密，故假设不成立，即所有多项式构成的空间不能赋予完备范数。</p>
+<h2 id="证明过程中用到的结论"><a href="#证明过程中用到的结论" class="headerlink" title="证明过程中用到的结论"></a>证明过程中用到的结论</h2>
+<ul>
+<li>有限维赋范空间都是完备的</li>
+<li>完备子空间是闭集</li>
+<li>完备度量空间（Banach空间）是Baire空间</li>
+<li>Baire空间的性质： 设 <span class="math inline">\(E\)</span> 是 Baire
+空间, <span class="math inline">\(\left(F_{n}\right)_{n \geqslant
+1}\)</span> 是 <span class="math inline">\(E\)</span> 的一列闭子集, 并且
+<span class="math inline">\(E=\bigcup_{n \geqslant 1} F_{n}\)</span> ,
+那么 <span class="math inline">\(\bigcup_{n \geqslant 1}
+\stackrel{\circ}{F}_{n}\)</span> 在 <span
+class="math inline">\(E\)</span> 中 稠密。</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/06/02/23.6.2%20%E5%A4%84%E5%A4%84%E8%BF%9E%E7%BB%AD%E4%B8%94%E5%A4%84%E5%A4%84%E4%B8%8D%E5%8F%AF%E5%BE%AE%E7%9A%84%E5%87%BD%E6%95%B0%E6%98%AF%E5%BE%88%E5%A4%9A%E7%9A%84/">23.6.2 处处连续且处处不可微的函数是很多的 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%BB%93%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">证明过程中用到的结论</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
