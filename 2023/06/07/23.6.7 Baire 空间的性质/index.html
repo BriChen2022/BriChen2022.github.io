@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.7 Baire 空间的性质 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Experience</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.7 Baire 空间的性质</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-06-07T14:16:00.000Z" id="date"> 2023-06-07</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-06-07T16:10:01.184Z" id="updated"> 2023-06-08</time></div></span></div></div><hr><div id="post-content"><h2 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h2>
+<h3 id="barie空间"><a href="#Barie空间" class="headerlink" title="Barie空间"></a>Barie空间</h3>
+<p>定义：称拓扑空间<span class="math inline">\(E\)</span>是一个 Baire
+空间,若<span class="math inline">\(E\)</span>中<strong>任意</strong> 、
+<strong>可数多个</strong> 、 <strong>稠密</strong>  、
+<strong>开</strong>集的交仍然在<span
+class="math inline">\(E\)</span>中稠密。</p>
+<h3 id="稠密"><a href="#稠密" class="headerlink" title="稠密"></a>稠密</h3>
+<p>设<span class="math inline">\(A,B\)</span>为度量空间<span
+class="math inline">\(E\)</span>中的集合，如果有<span
+class="math inline">\(\bar{B}= A\)</span> ，则称<span
+class="math inline">\(B\)</span>在<span
+class="math inline">\(A\)</span>中稠密。（我们使用这种稠密的定义）</p>
+<p>要证明下面定理，我们需要注意到稠密的一种等价表述为：如果<span
+class="math inline">\(A\)</span>中任意开集与<span
+class="math inline">\(\bar{B}\)</span>的交集非空，称<span
+class="math inline">\(B\)</span>在<span
+class="math inline">\(A\)</span>稠密。</p>
+<h2 id="baire-空间的性质"><a href="#Baire-空间的性质" class="headerlink" title="Baire-空间的性质"></a>Baire 空间的性质</h2>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3>
+<p>定理：设  <span class="math inline">\(E\)</span>  是 Baire 空间, 则
+(1)  <span class="math inline">\(E\)</span>  的任意开子集也是一个 Baire
+空间. (2) 设  <span class="math inline">\(\left(F_{n}\right)_{n
+\geqslant 1}\)</span>  是  <span class="math inline">\(E\)</span>
+ 的一列闭子集, 并且  <span class="math inline">\(E=\bigcup_{n \geqslant
+1} F_{n}\)</span> , 那么  <span class="math inline">\(\bigcup_{n
+\geqslant 1} \stackrel{\circ}{F}_{n}\)</span>  在  <span
+class="math inline">\(E\)</span>  中 稠密。</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3>
+<p><strong>Proof</strong> (1) 设 <span
+class="math inline">\(\Omega\)</span> 是 <span
+class="math inline">\(E\)</span> 中开集, <span
+class="math inline">\(\left(O_{n}\right)_{n \geqslant 1}\)</span>
+是任意一列在 <span class="math inline">\(\Omega\)</span> 中稠密的开子集.
+由于 <span class="math inline">\(\Omega\)</span> 是开集, 令</p>
+<p><span class="math display">\[U_{n}=O_{n} \cup
+\bar{\Omega}^{c}\]</span></p>
+<p>则 <span class="math inline">\(U_{n}\)</span> 显然是 <span
+class="math inline">\(E\)</span> 中开集, 且有 <span
+class="math display">\[
+\overline{U_{n}}=\overline{O_{n}} \cup \bar{\Omega}^{c}=\Omega\cup
+\bar{\Omega}^{c}=E
+\]</span> 因此 <span class="math inline">\(\left(U_{n}\right)_{n
+\geqslant 1}\)</span> 是 <span class="math inline">\(E\)</span>
+的一列稠密开子集. 因 <span class="math inline">\(E\)</span> 是 Baire
+空间, <span class="math inline">\(\bigcap_{n \geqslant 1} U_{n}\)</span>
+依然在 <span class="math inline">\(E\)</span> 中稠密. 而</p>
+<p><span class="math display">\[\bigcap_{n \geqslant 1}
+U_{n}=\left(\bigcap_{n \geqslant 1} O_{n}\right) \cup
+\bar{\Omega}^{c}\]</span></p>
+<p>由此推出 <span class="math inline">\(\bigcap_{n \geqslant 1}
+O_{n}\)</span> 在 <span class="math inline">\(\Omega\)</span>
+中稠密。因为，如果不稠密，那么 <span
+class="math display">\[\overline{\bigcap_{n \geqslant 1}
+U_{n}}=\overline{\left(\bigcap_{n \geqslant 1} O_{n}\right) }\cup
+\bar{\Omega}^{c}\neq E\]</span> 即 <span class="math display">\[
+\overline{\left(\bigcap_{n \geqslant 1} O_{n}\right) }\neq \Omega
+\]</span> 这与我们假设<span class="math inline">\(\left(O_{n}\right)_{n
+\geqslant 1}\)</span> 是任意一列在 <span
+class="math inline">\(\Omega\)</span> 中稠密的开子集矛盾。</p>
+<ol start="2" type="1">
+<li>任取 <span class="math inline">\(E\)</span> 中非空开集 <span
+class="math inline">\(\Omega\)</span>, 则</li>
+</ol>
+<p><span class="math display">\[\Omega=\Omega \cap E=\bigcup_{n
+\geqslant 1}\left(\Omega \cap F_{n}\right) \]</span> 由于 <span
+class="math inline">\(F_{n}\)</span> 是闭集, 则 <span
+class="math inline">\(\Omega \cap F_{n}\)</span> 也是 <span
+class="math inline">\(\Omega\)</span> 中闭集. 由 (1) 可知开集 <span
+class="math inline">\(\Omega\)</span> 也是 Baire 空间, 那么必存在某个
+<span class="math inline">\(n\)</span>, 使得 <span
+class="math inline">\(\left(\Omega \cap F_{n}\right)^{\circ} \neq
+\varnothing\)</span>. 注意此处的内部是关于 <span
+class="math inline">\(\Omega\)</span> 上的拓扑取的. 但由于 <span
+class="math inline">\(\Omega\)</span> 是 <span
+class="math inline">\(E\)</span> 中开集, 则 <span
+class="math inline">\(\Omega \cap F_{n}\)</span> 在 <span
+class="math inline">\(\Omega\)</span> 中的内部也是其在 <span
+class="math inline">\(E\)</span> 中的内部. 那 么 <span
+class="math inline">\(\Omega \cap F_{n}\)</span> 在 <span
+class="math inline">\(E\)</span> 中的内部也非空, 即有 <span
+class="math inline">\(\Omega \cap \stackrel{\circ}{F}_{n} \neq
+\varnothing\)</span>. 故 <span class="math inline">\(\bigcup_{n
+\geqslant 1} \stackrel{\circ}{F}_{n}\)</span> 在 <span
+class="math inline">\(E\)</span> 中稠密。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/06/06/23.6.6%20%E6%9C%89%E7%95%8C%E7%BA%BF%E6%80%A7%E7%AE%97%E5%AD%90%E7%A9%BA%E9%97%B4%E6%88%90%E4%B8%BA%E5%AE%8C%E5%A4%87%E8%B5%8B%E8%8C%83%E7%A9%BA%E9%97%B4/">23.6.6 有界线性算子空间成为完备赋范空间 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">前置概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#barie%E7%A9%BA%E9%97%B4"><span class="toc-number">1.1.</span> <span class="toc-text">Barie空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%A0%E5%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">稠密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#baire-%E7%A9%BA%E9%97%B4%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">Baire 空间的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">证明</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
