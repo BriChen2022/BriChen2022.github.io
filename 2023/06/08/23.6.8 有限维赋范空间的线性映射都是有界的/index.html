@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.8 有限维赋范空间的线性映射都是有界的 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Experience</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.8 有限维赋范空间的线性映射都是有界的</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-06-08T07:38:00.000Z" id="date"> 2023-06-08</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-06-08T09:54:25.313Z" id="updated"> 2023-06-08</time></div></span></div></div><hr><div id="post-content"><h2 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h2>
+<ol type="1">
+<li>线性映射的有界性等价于连续性。<a
+href="23.5.29%20有界线性算子的基本性质.md">23.5.29
+有界线性算子的基本性质</a></li>
+<li>范数等价的定义：设<span
+class="math inline">\(q,p\)</span>为向量空间<span
+class="math inline">\(E\)</span>上的两个范数，如果存在常数<span
+class="math inline">\(m,M&gt;0\)</span>，使得 <span
+class="math display">\[
+mq(x)\leq p(X)\leq Mq(x),\ \forall x\in E
+\]</span> 则称范数<span class="math inline">\(q,p\)</span>等价。</li>
+</ol>
+<p>记号： - 线性算子全体：<span
+class="math inline">\(\mathcal{L}(E,F)\)</span> -
+有界线性算子全体：<span class="math inline">\(\mathcal{B}(E,F)\)</span>
+- 数域<span class="math inline">\(\mathbb{K}=\mathbb{R}\ or\
+\mathbb{C}\)</span> - 无穷范数 <span class="math display">\[
+||x||_{\infty}=\max_{1\leq i\leq n}|x_i|
+\]</span> ## 定理</p>
+<p>设<span class="math inline">\(E\)</span>是有限维的赋范空间，<span
+class="math inline">\(F\)</span>是任意赋范空间，那么由<span
+class="math inline">\(E\)</span>到<span
+class="math inline">\(F\)</span>的任意线性映射都是连续的。 即，<span
+class="math inline">\(\mathcal{L}(E,F)=\mathcal{B}(E,F)\)</span></p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2>
+<p><strong>Proof</strong> 设<span
+class="math inline">\(e_1,\cdots,e_n\)</span>为<span
+class="math inline">\(E\)</span>的一组基，那么任意<span
+class="math inline">\(x\in E\)</span>，有， <span
+class="math display">\[
+x=\sum_{i=1}^nx_ie_i,\quad x_i\in\mathbb{K}
+\]</span> 设<span class="math inline">\(u\in\mathcal{L}(E,F)\)</span>，
+<span class="math display">\[
+||u(x)||_F\leq\sum_{i=1}^{n}|x_i|\cdot||u(e_i)||_F\leq\max_{1\leq i\leq
+n}|x_i|(\sum_{i=1}^{n}||u(e_i)||_F)=||x||_{\infty}(\sum_{i=1}^{n}||u(e_i)||_F)
+\]</span> 由于有限维向量空间上任意范数等价的，故存在某个常数<span
+class="math inline">\(C&gt;0\)</span>使得， <span
+class="math display">\[
+||u(x)||_F\leq||x||_{\infty}(\sum_{i=1}^{n}||u(e_i)||_F)\leq
+C||x||_E(\sum_{i=1}^{n}||u(e_i)||_F)
+\]</span> 这就表明了，<span
+class="math inline">\(u\)</span>是有界线性映射，故连续。</p>
+<h2 id="补充点没什么关系的"><a href="#补充点没什么关系的" class="headerlink" title="补充点没什么关系的"></a>补充点没什么关系的</h2>
+<p>容易<span class="math inline">\(u(E)\)</span>是<span
+class="math inline">\(F\)</span>的闭向量子空间。这是因为<span
+class="math inline">\(E\)</span>是有限维的，<span
+class="math inline">\(u\)</span>线性，所以<span
+class="math inline">\(u(x)\)</span>是有限维的向量空间，有限维向量空间一定是完备的，完备的子空间是闭的。</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/06/07/23.6.7%20Baire%20%E7%A9%BA%E9%97%B4%E7%9A%84%E6%80%A7%E8%B4%A8/">23.6.7 Baire 空间的性质 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">前置概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%81%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%82%B9%E6%B2%A1%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%E7%9A%84"><span class="toc-number">3.</span> <span class="toc-text">补充点没什么关系的</span></a></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
