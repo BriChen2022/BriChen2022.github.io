@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="cn" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>23.6.14 Riesz 表示定理 | BriChen's blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - 共 $1 行","copy":"复制","copyFinish":"复制成功","expand":"展开"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem"><a class="navBlock" href="/contact/"><span class="navItemTitle">Experience</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>23.6.14 Riesz 表示定理</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2023-06-14T08:38:00.000Z" id="date"> 2023-06-14</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2023-06-14T15:27:21.508Z" id="updated"> 2023-06-14</time></div></span></div></div><hr><div id="post-content"><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2>
+<ul>
+<li>有界线性算子全体：<span
+class="math inline">\(\mathcal{B}(E,F)\)</span></li>
+<li>有界线性泛函全体：<span
+class="math inline">\(\mathcal{B}(E,\mathbb{K})\)</span></li>
+<li>赋范空间是度量空间</li>
+<li>度量空间中的闭集当且仅当集合包含集合中所以收敛序列的极限值。</li>
+<li>Hilbert空间是完备的内积空间（其内积可以诱导范数，其诱导的范数是完备的）。</li>
+</ul>
+<h2 id="今日定理"><a href="#今日定理" class="headerlink" title="今日定理"></a>今日定理</h2>
+<p>（Riesz）设<span class="math inline">\(H\)</span>是数域<span
+class="math inline">\(\mathbb{K}\)</span>上的 Hilbert 空间，那么 <span
+class="math display">\[
+\varphi\in\mathcal{B}(H,\mathbb{K})=H^*\Longleftrightarrow\exists !\
+y_{\varphi}\in H,s.t.\ \varphi(x)=\left&lt;x, y_{\varphi}\right&gt;\quad
+\forall x\in H
+\]</span> 且<span
+class="math inline">\(||\varphi||_{H^*}=||y_{\varphi}||_H\)</span></p>
+<h2 id="定理证明"><a href="#定理证明" class="headerlink" title="定理证明"></a>定理证明</h2>
+<p><strong>Proof</strong> (<span
+class="math inline">\(\Leftarrow\)</span>)设<span
+class="math inline">\(y_{\varphi}\in H\)</span>，定义<span
+class="math inline">\(\varphi_y:H\to\mathbb{K},\varphi_y(x)=\left&lt;x,
+y_{\varphi}\right&gt;\)</span>
+由于内积的线性性，可知这样定义的映射是线性泛函。</p>
+<p>由Cauchy-Schwartz不等式，有， <span class="math display">\[
+|\varphi_y(x)|=|\left&lt;x,
+y_{\varphi}\right&gt;|\leq||x||\cdot||y_{\varphi}||,\forall x\in H
+\]</span> 因此<span
+class="math inline">\(\varphi_y\)</span>是连续的（有界的），且<span
+class="math inline">\(||\varphi_y||\leq||y_{\varphi}||\)</span>。
+如果<span class="math inline">\(y_\varphi=0\)</span>，那么显然有<span
+class="math inline">\(\varphi_y(x)=0\)</span>，于是<span
+class="math inline">\(||y_{\varphi}||=||\varphi_y||=0\)</span>。
+如果<span class="math inline">\(y_\varphi\neq0\)</span>，那么取<span
+class="math inline">\(x=\frac{ y_{\varphi}}{||
+y_{\varphi}||}\)</span>，就有 <span class="math display">\[
+|\varphi_y(x)|=|\varphi_y(\frac{ y_{\varphi}}{||
+y_{\varphi}||})|=|\left&lt;\frac{ y_{\varphi}}{|| y_{\varphi}||},
+y_{\varphi}\right&gt;|=|| y_{\varphi}||
+\]</span> 从而仍然有， <span class="math display">\[
+||\varphi_y||=\sup_{||x||=1}|\varphi_y(x)|=|\varphi_y(x)|=||
+y_{\varphi}||
+\]</span> (<span class="math inline">\(\Rightarrow\)</span>)设<span
+class="math inline">\(\varphi\in H^*\)</span>，即<span
+class="math inline">\(\varphi\)</span>是一个连续线性泛函。记<span
+class="math inline">\(E=\ker(\varphi)\)</span> 是<span
+class="math inline">\(\varphi\)</span>的零子空间（核空间）。 由<span
+class="math inline">\(\varphi\)</span>的连续性，可知<span
+class="math inline">\(E\)</span>是<span
+class="math inline">\(H\)</span>的闭子空间。这是因为，如果序列<span
+class="math inline">\((x_n)_{n\leq 1}\subset
+E\)</span>是收敛的，设其收敛于<span class="math inline">\(x\)</span>，
+于是由<span class="math inline">\(\varphi\)</span>的连续性<span
+class="math inline">\(\varphi(x)=\varphi(\lim_{n\to\infty}x_n)=\lim_{n\to\infty}\varphi(x_n)=0\)</span>，故<span
+class="math inline">\(x\in E\)</span>，所以<span
+class="math inline">\(E\)</span>是闭的。</p>
+<p>现在我们将<span class="math inline">\(H\)</span>空间正交分解， <span
+class="math display">\[
+H=E\oplus E^{\bot}
+\]</span> 若<span
+class="math inline">\(\varphi=0\)</span>即为零映射，那么取<span
+class="math inline">\(y_\varphi=0\)</span>即可满足定理。 若<span
+class="math inline">\(\varphi\neq0\)</span>，那么此时<span
+class="math inline">\(E\neq H\)</span>，于是可取<span
+class="math inline">\(0\neq e\in E^{\bot}\)</span>,且<span
+class="math inline">\(\varphi(e)=1\)</span>，那么， <span
+class="math display">\[
+x=[x-\varphi(x)e]+\varphi(x)e,\quad \forall x\in H
+\]</span> 记<span
+class="math inline">\(x&#39;=[x-\varphi(x)e]\)</span>，则可看出<span
+class="math inline">\(\varphi(x&#39;)=0\)</span>,即<span
+class="math inline">\(x&#39;\in E\)</span>，那么， <span
+class="math display">\[
+\left&lt;x, e\right&gt;=\left&lt;x&#39;+\varphi(x)e,
+e\right&gt;=\varphi(x)\left&lt;e, e\right&gt;
+\]</span> 可得， <span class="math display">\[
+\varphi(x)=\left&lt;x,\frac{e}{||e||^2}\right&gt;
+\]</span> 这时取<span
+class="math inline">\(y_{\varphi}=\frac{e}{||e||^2}\)</span>即有， <span
+class="math display">\[
+\varphi(x)=\left&lt;x, y_{\varphi}\right&gt;,\forall x\in H
+\]</span> 此时<span
+class="math inline">\(\varphi\)</span>就是充分性证明中的<span
+class="math inline">\(\varphi_y\)</span>，因此<span
+class="math inline">\(||\varphi_y||=|| y_{\varphi}||\)</span>。</p>
+<p>唯一性证明是容易的，假设还有<span class="math inline">\(y&#39;\in
+H\)</span>满足， <span class="math display">\[
+\varphi_y(x)=\left&lt;x, y&#39;\right&gt;,\forall x\in H
+\]</span> 那么， <span class="math display">\[
+0=\varphi(x)-\varphi(x)=\left&lt;x, y_{\varphi}\right&gt;-\left&lt;x,
+y&#39;\right&gt;,\forall x\in H
+\]</span> <span class="math display">\[
+\left&lt;x, y_{\varphi}-y&#39;\right&gt;=0,\forall x\in  E
+\]</span> 因此<span
+class="math inline">\(y_{\varphi}-y&#39;=0\)</span>，唯一性得证。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2>
+<p>Riesz 表示定理的结论表明我们可把 <span
+class="math inline">\(H^{*}\)</span> 和 <span
+class="math inline">\(H\)</span> 在等距意义下看 成同一个空间, 即 <span
+class="math display">\[
+y \in H \Longleftrightarrow \varphi_{y} \in H^{*}
+\]</span> 且 <span
+class="math inline">\(\left\|\varphi_{y}\right\|=\|y\|\)</span>.
+另外容易验证映射 <span class="math inline">\(\Phi: H \rightarrow H^{*},
+y \mapsto \varphi_{y}\)</span> 满足 - <span
+class="math inline">\(\Phi\left(y+y^{\prime}\right)=\varphi_{y}+\varphi_{y^{\prime}}\)</span>.
+- 当 <span class="math inline">\(\mathbb{K}=\mathbb{R}\)</span> 时, 任取
+<span class="math inline">\(\lambda \in \mathbb{R}\)</span>, 有 <span
+class="math inline">\(\Phi(\lambda y)=\lambda \varphi_{y}\)</span>; 当
+<span class="math inline">\(\mathbb{K}=\mathbb{C}\)</span> 时, 任取
+<span class="math inline">\(\lambda \in \mathbb{C}\)</span>, 有 <span
+class="math inline">\(\Phi(\lambda y)=\bar{\lambda}
+\varphi_{y}\)</span>. 这意味着映射 <span
+class="math inline">\(\Phi\)</span> 在 <span
+class="math inline">\(\mathbb{K}=\mathbb{R}\)</span> 时是线性的, 而在
+<span class="math inline">\(\mathbb{K}=\mathbb{C}\)</span>
+时是共轭线性的.</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/06/12/23.6.12%20%E9%80%86%E7%AE%97%E5%AD%90%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7/">23.6.12 逆算子的存在性 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="文章目录">≡</a><a id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">BriChen</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E6%97%A5%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">今日定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">定理证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">4.</span> <span class="toc-text">补充</span></a></li></ol></div></div><footer><nobr>构建自 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> 使用主题 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>主题作者 <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
